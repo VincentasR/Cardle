@@ -1,0 +1,40 @@
+@prefix car: <https://cardle.example/resource/car/> .
+@prefix cardle: <https://cardle.example/ontology/> .
+@prefix engine: <https://cardle.example/resource/engine/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix source: <https://cardle.example/resource/source/> .
+@prefix style: <https://cardle.example/resource/body-style/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+car:manufacturer-bmw a cardle:Manufacturer ;
+    rdfs:label "BMW"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-f12 ;
+    cardle:hasModel car:model-bmw-6-series .
+
+style:convertible a cardle:BodyStyle ;
+    rdfs:label "Convertible"@en .
+
+car:model-bmw-6-series a cardle:Model ;
+    rdfs:label "6 Series"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-f12 ;
+    cardle:hasVariant car:variant-bmw-6-series-f12 .
+
+car:variant-bmw-6-series-f12 a cardle:Variant ;
+    rdfs:label "F12"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-f12 ;
+    cardle:hasVersion car:version-bmw-f12-640i .
+
+car:version-bmw-f12-640i a cardle:Version ;
+    rdfs:label "640i"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-f12 ;
+    cardle:hasBodyStyle style:convertible ;
+    cardle:hasEngine engine:engine-bmw-n55b30 .
+
+engine:engine-bmw-n55b30 a cardle:Engine ;
+    rdfs:label "BMW N55B30"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-f12 ;
+    cardle:cylinderCount 6 .
+
+source:source-wikipedia-bmw-f12 a cardle:Source ;
+    cardle:sourceUrl "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)"^^xsd:anyURI .
+

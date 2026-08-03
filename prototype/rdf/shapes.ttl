@@ -1,0 +1,136 @@
+@prefix cardle: <https://cardle.example/ontology/> .
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+
+cardle:ManufacturerShape
+    a sh:NodeShape ;
+    sh:targetClass cardle:Manufacturer ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:uniqueLang true ;
+    ] ;
+
+    sh:property [
+        sh:path cardle:hasModel ;
+        sh:minCount 1 ;
+        sh:class cardle:Model ;
+        sh:nodeKind sh:IRI ;
+    ] .
+
+
+cardle:ModelShape
+    a sh:NodeShape ;
+    sh:targetClass cardle:Model ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:uniqueLang true ;
+    ] ;
+
+    sh:property [
+        sh:path cardle:hasVariant ;
+        sh:minCount 1 ;
+        sh:class cardle:Variant ;
+        sh:nodeKind sh:IRI ;
+    ] .
+
+
+cardle:VariantShape
+    a sh:NodeShape ;
+    sh:targetClass cardle:Variant ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:uniqueLang true ;
+    ] ;
+
+    sh:property [
+        sh:path cardle:hasVersion ;
+        sh:minCount 1 ;
+        sh:class cardle:Version ;
+        sh:nodeKind sh:IRI ;
+    ] .
+
+
+cardle:VersionShape
+    a sh:NodeShape ;
+    sh:targetClass cardle:Version ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:uniqueLang true ;
+    ] ;
+
+    sh:property [
+        sh:path cardle:hasBodyStyle ;
+        sh:minCount 1 ;
+        sh:class cardle:BodyStyle ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+
+    sh:property [
+        sh:path cardle:hasEngine ;
+        sh:minCount 1 ;
+        sh:class cardle:Engine ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+
+    sh:property [
+        sh:path cardle:assertedFrom ;
+        sh:minCount 1 ;
+        sh:class cardle:Source ;
+        sh:nodeKind sh:IRI ;
+    ] .
+
+
+cardle:EngineShape
+    a sh:NodeShape ;
+    sh:targetClass cardle:Engine ;
+
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:uniqueLang true ;
+    ] ;
+
+    sh:property [
+        sh:path cardle:cylinderCount ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+    ] ;
+
+    sh:property [
+        sh:path cardle:hasCylinderArrangement ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class cardle:CylinderArrangement ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+
+    sh:property [
+        sh:path cardle:assertedFrom ;
+        sh:minCount 1 ;
+        sh:class cardle:Source ;
+        sh:nodeKind sh:IRI ;
+    ] .
+
+
+cardle:SourceShape
+    a sh:NodeShape ;
+    sh:targetClass cardle:Source ;
+
+    sh:property [
+        sh:path cardle:sourceUrl ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI ;
+    ] .

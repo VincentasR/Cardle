@@ -1,0 +1,39 @@
+@prefix cardle: <https://cardle.example/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://cardle.example/ontology>
+    a owl:Ontology ;
+    rdfs:label "Cardle Ontology"@en .
+
+### Classes
+
+cardle:Manufacturer a owl:Class .
+cardle:Model a owl:Class .
+cardle:Variant a owl:Class .
+cardle:Version a owl:Class .
+
+cardle:Engine a owl:Class .
+cardle:BodyStyle a owl:Class .
+cardle:Drivetrain a owl:Class .
+cardle:VehicleClass a owl:Class .
+cardle:CylinderArrangement a owl:Class .
+cardle:Source a owl:Class .
+
+### Object properties
+
+cardle:hasModel a owl:ObjectProperty .
+cardle:hasVariant a owl:ObjectProperty .
+cardle:hasVersion a owl:ObjectProperty .
+
+cardle:hasEngine a owl:ObjectProperty .
+cardle:hasBodyStyle a owl:ObjectProperty .
+cardle:hasDrivetrain a owl:ObjectProperty .
+cardle:hasVehicleClass a owl:ObjectProperty .
+cardle:hasCylinderArrangement a owl:ObjectProperty .
+cardle:assertedFrom a owl:ObjectProperty .
+
+### Datatype properties
+
+cardle:cylinderCount a owl:DatatypeProperty .
+cardle:sourceUrl a owl:DatatypeProperty .

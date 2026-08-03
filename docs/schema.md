@@ -1,5 +1,5 @@
 CANONICAL AUTOMOTIVE SCHEMA — v1
-
+To be updated!!!!!!
 
 Manufacturer
 - id
@@ -58,6 +58,7 @@ Drivetrain
 - id
 - name
 - FWD, RWD, AWD, 4WD
+
 
 
 EnginePosition

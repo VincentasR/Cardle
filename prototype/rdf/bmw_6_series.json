@@ -1,0 +1,103 @@
+[
+  {
+    "manufacturer": {
+      "id": "manufacturer-bmw",
+      "name": "BMW"
+    },
+    "model": {
+      "id": "model-bmw-6-series",
+      "name": "6 Series"
+    },
+    "variant": {
+      "id": "variant-bmw-6-series-e24",
+      "name": "E24"
+    },
+    "version": {
+      "id": "version-bmw-e24-635csi",
+      "name": "635CSi"
+    },
+    "body_style": {
+      "id": "coupe",
+      "name": "Coupé"
+    },
+    "engine": {
+      "id": "engine-bmw-m30b34",
+      "name": "BMW M30B34",
+      "cylinder_count": 6,
+      "cylinder_arrangement": {
+        "id": "inline",
+        "name": "Inline"
+      }
+    },
+    "source": {
+      "id": "source-wikipedia-bmw-e24",
+      "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"
+    }
+  },
+  {
+    "manufacturer": {
+      "id": "manufacturer-bmw",
+      "name": "BMW"
+    },
+    "model": {
+      "id": "model-bmw-6-series",
+      "name": "6 Series"
+    },
+    "variant": {
+      "id": "variant-bmw-6-series-e63",
+      "name": "E63"
+    },
+    "version": {
+      "id": "version-bmw-e63-650i",
+      "name": "650i"
+    },
+    "body_style": {
+      "id": "coupe",
+      "name": "Coupé"
+    },
+    "engine": {
+      "id": "engine-bmw-n62b48",
+      "name": "BMW N62B48",
+      "cylinder_count": 8,
+      "cylinder_arrangement": {
+        "id": "v",
+        "name": "V"
+      }
+    },
+    "source": {
+      "id": "source-wikipedia-bmw-e63",
+      "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)"
+    }
+  },
+  {
+    "manufacturer": {
+      "id": "manufacturer-bmw",
+      "name": "BMW"
+    },
+    "model": {
+      "id": "model-bmw-6-series",
+      "name": "6 Series"
+    },
+    "variant": {
+      "id": "variant-bmw-6-series-f12",
+      "name": "F12"
+    },
+    "version": {
+      "id": "version-bmw-f12-640i",
+      "name": "640i"
+    },
+    "body_style": {
+      "id": "convertible",
+      "name": "Convertible"
+    },
+    "engine": {
+      "id": "engine-bmw-n55b30",
+      "name": "BMW N55B30",
+      "cylinder_count": 6
+    },
+    "source": {
+      "id": "source-wikipedia-bmw-f12",
+      "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)"
+    }
+  }
+]

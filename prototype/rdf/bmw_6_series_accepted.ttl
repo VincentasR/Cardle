@@ -1,0 +1,71 @@
+@prefix arrangement: <https://cardle.example/resource/cylinder-arrangement/> .
+@prefix car: <https://cardle.example/resource/car/> .
+@prefix cardle: <https://cardle.example/ontology/> .
+@prefix engine: <https://cardle.example/resource/engine/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix source: <https://cardle.example/resource/source/> .
+@prefix style: <https://cardle.example/resource/body-style/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+car:manufacturer-bmw a cardle:Manufacturer ;
+    rdfs:label "BMW"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-e24,
+        source:source-wikipedia-bmw-e63 ;
+    cardle:hasModel car:model-bmw-6-series .
+
+car:model-bmw-6-series a cardle:Model ;
+    rdfs:label "6 Series"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-e24,
+        source:source-wikipedia-bmw-e63 ;
+    cardle:hasVariant car:variant-bmw-6-series-e24,
+        car:variant-bmw-6-series-e63 .
+
+car:variant-bmw-6-series-e24 a cardle:Variant ;
+    rdfs:label "E24"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-e24 ;
+    cardle:hasVersion car:version-bmw-e24-635csi .
+
+car:variant-bmw-6-series-e63 a cardle:Variant ;
+    rdfs:label "E63"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-e63 ;
+    cardle:hasVersion car:version-bmw-e63-650i .
+
+car:version-bmw-e24-635csi a cardle:Version ;
+    rdfs:label "635CSi"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-e24 ;
+    cardle:hasBodyStyle style:coupe ;
+    cardle:hasEngine engine:engine-bmw-m30b34 .
+
+car:version-bmw-e63-650i a cardle:Version ;
+    rdfs:label "650i"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-e63 ;
+    cardle:hasBodyStyle style:coupe ;
+    cardle:hasEngine engine:engine-bmw-n62b48 .
+
+arrangement:inline a cardle:CylinderArrangement ;
+    rdfs:label "Inline"@en .
+
+arrangement:v a cardle:CylinderArrangement ;
+    rdfs:label "V"@en .
+
+engine:engine-bmw-m30b34 a cardle:Engine ;
+    rdfs:label "BMW M30B34"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-e24 ;
+    cardle:cylinderCount 6 ;
+    cardle:hasCylinderArrangement arrangement:inline .
+
+engine:engine-bmw-n62b48 a cardle:Engine ;
+    rdfs:label "BMW N62B48"@en ;
+    cardle:assertedFrom source:source-wikipedia-bmw-e63 ;
+    cardle:cylinderCount 8 ;
+    cardle:hasCylinderArrangement arrangement:v .
+
+style:coupe a cardle:BodyStyle ;
+    rdfs:label "Coupé"@en .
+
+source:source-wikipedia-bmw-e24 a cardle:Source ;
+    cardle:sourceUrl "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"^^xsd:anyURI .
+
+source:source-wikipedia-bmw-e63 a cardle:Source ;
+    cardle:sourceUrl "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)"^^xsd:anyURI .
+
