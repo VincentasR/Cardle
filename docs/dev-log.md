@@ -1,6 +1,24 @@
 
 # Development Log
 
+## 2026-08-04
+
+### Goals
+- Build at least some part of the proper dataset.
+
+### Progress
+- Made a scraper for wikipedia (still not finished).
+
+### Decisions
+- Finding proper datasets was way harder than I thought, so I had to go with wikipedia. Wikipedia contains all the data, however, the formating is not the same everywhere so it makes it quite hard to scrape and use. 
+- Ditched all the other datasets, maybe will use them to fact check the one that I make from wikipedia.
+- Decided to not code all the extraction for all the possible variants, but build the extraction pipeline gradualy.
+
+### Next steps
+- Would really like to get the game running by Friday evening, so I decided to stick with BMW 6 series while extracting, so I can quickly check if my methods even work and then proceed with everything else. 
+- Finishing extracting data, then polishing the ontology, then the whole JSON -> RDF -> SHACL -> Neo4j pipeline.
+- Making at least a simple UI for the game so it can be tested (not for tomorrow, probably for Thursday),
+
 ## 2026-08-03
 
 ### Goals

@@ -20,7 +20,7 @@ Variant
 - manufacturer/internal code
 - production start year
 - production end year
-- designer(s) [optional]
+- DESIGNED_BY -> Designer
 - SUCCEEDED_BY -> Variant
 - HAS_VERSION -> Version
 
@@ -83,15 +83,15 @@ VehicleClass
 CANONICAL / PLAYABLE VERSION MUST HAVE
 
 - Manufacturer
-- Model
-- Variant
-- Version name
-- Production period
-- Vehicle class
-- Body style
-- Engine
-- Power
-- Drivetrain
+    - Model
+        - Variant
+            - Vehicle class
+            - Version name
+                - Production period
+                - Body style
+                - Engine
+                - Power
+                - Drivetrain
 
 Engine position, designer, successor, etc. may be missing.
 
@@ -101,7 +101,7 @@ CORE RULES
 - Every canonical entity has a globally unique stable id.
 - Names are display values, not identifiers.
 - Reuse existing canonical entities.
-- Relationships are the source of truth for hierarchy.
+- Hierarchy is represented exclusively through relationships.
 - One marketed Version name per Variant.
 - Facelifts are separate Variants.
 - Distinct manufacturer body/model codes are separate Variants.
@@ -109,3 +109,4 @@ CORE RULES
 - Missing data means unknown, not false.
 - Never infer unsupported facts during source-constrained ingestion.
 - BMW/non-American cars use European-market specifications; American cars use US-market specifications.
+-Canonical entities represent real-world concepts, not source records.

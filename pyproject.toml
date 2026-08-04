@@ -1,6 +1,8 @@
 [project]
 name = "cardle"
 version = "0.1.0"
-description = "A car guessing game powered by a property graph"
+description = "A car guessing game"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = ["rdflib",
+    "pyshacl",
+    "requests"]
