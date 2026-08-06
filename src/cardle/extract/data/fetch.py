@@ -17,4 +17,4 @@ def fetch_page(url: str) -> BeautifulSoup:
     response.raise_for_status()
 
     return BeautifulSoup(response.text, "html.parser")
-print(fetch_page("https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"))
+# print(fetch_page("https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"))

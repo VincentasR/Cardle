@@ -1,6 +1,20 @@
 
 # Development Log
 
+## 2026-08-06
+
+### Goals 
+- Try to finish the whole pipline for at least all BMW wikipedia cars.
+
+### Progress
+- Got 80% of the requiret instances down (so quite good).
+
+### Decisions
+- Decided to go implement a unique "link scraper" for every car manufacturer and try to make a generic scraper for a vehicle.
+
+### Next Steps
+- Finish scraping the data, start making ontology.
+
 ## 2026-08-04
 
 ### Goals

@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+src/cardle.egg-info/PKG-INFO
+src/cardle.egg-info/SOURCES.txt
+src/cardle.egg-info/dependency_links.txt
+src/cardle.egg-info/requires.txt
+src/cardle.egg-info/top_level.txt
+src/cardle/extract/data/fetch.py
+src/cardle/extract/data/infobox.py
+src/cardle/extract/data/manufacturer.py
+src/cardle/extract/data/pipeline.py
+src/cardle/extract/data/discover/bmw.py
+src/cardle/extract/data/discover/test.py
+src/cardle/extract/rdf/extract_rdf.py
