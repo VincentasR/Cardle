@@ -1,6 +1,18 @@
 # Virtual environment
 .venv/
 
-# Python bytecode
+# Python cache
 __pycache__/
 *.py[cod]
+
+# Packaging
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
