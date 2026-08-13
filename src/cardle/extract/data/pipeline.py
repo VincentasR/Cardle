@@ -112,6 +112,7 @@ def scrape_car_page(
         variants=variants,
     )
     variant_body_styles = extract_variant_body_styles(
+        soup=soup,
         infobox=infobox,
         variants=variants,
     )

@@ -1,4 +1,157 @@
-[{
+ [
+ {
+    "manufacturer": "BMW",
+    "name": "New Six coupés (E9)",
+    "status": "discontinued",
+    "url": "https://en.wikipedia.org/wiki/BMW_E9",
+    "model": "New Six coupés",
+    "variants": [
+      "E9"
+    ],
+    "versions": [
+      "2.5 CS",
+      "2800 CS",
+      "3.0 CS",
+      "3.0 CSi",
+      "3.0 CSL"
+    ],
+    "version_engines": [
+      {
+        "version": "2.5 CS",
+        "engine": "M30B25V SOHC I6"
+      },
+      {
+        "version": "2800 CS",
+        "engine": "M30B28V SOHC I6"
+      },
+      {
+        "version": "3.0 CS",
+        "engine": "M30B30V SOHC I6"
+      },
+      {
+        "version": "3.0 CSi",
+        "engine": "M30B30 SOHC I6"
+      },
+      {
+        "version": "3.0 CSL",
+        "engine": "M30B30V SOHC I6"
+      },
+      {
+        "version": "3.0 CSL",
+        "engine": "M30B30 SOHC I6"
+      },
+      {
+        "version": "3.0 CSL",
+        "engine": "M30B32 SOHC I6"
+      }
+    ],
+    "variant_engines": [],
+    "variant_production": [
+      {
+        "variant": "E9",
+        "production": "1968–1975"
+      }
+    ],
+    "variant_body_styles": [
+      {
+        "variant": "E9",
+        "body_style": "Coupé"
+      }
+    ],
+    "version_years": [
+      {
+        "version": "2.5 CS",
+        "years": "1974-1975"
+      },
+      {
+        "version": "2800 CS",
+        "years": "1968-1971"
+      },
+      {
+        "version": "3.0 CS",
+        "years": "1971-1975"
+      },
+      {
+        "version": "3.0 CSi",
+        "years": "1971-1975"
+      },
+      {
+        "version": "3.0 CSL",
+        "years": "1971-1972"
+      },
+      {
+        "version": "3.0 CSL",
+        "years": "1972-1973"
+      },
+      {
+        "version": "3.0 CSL",
+        "years": "1973-1975"
+      }
+    ],
+    "version_power": [
+      {
+        "version": "2.5 CS",
+        "power": "110 kW (150 PS; 150 bhp) at 6,000 rpm"
+      },
+      {
+        "version": "2800 CS",
+        "power": "125 kW (170 PS; 168 bhp) at 6,000 rpm"
+      },
+      {
+        "version": "3.0 CS",
+        "power": "132 kW (180 PS; 178 bhp) at 6,000 rpm"
+      },
+      {
+        "version": "3.0 CSi",
+        "power": "147 kW (200 PS; 197 bhp) at 5,500 rpm"
+      },
+      {
+        "version": "3.0 CSL",
+        "power": "132 kW (180 PS; 178 bhp) at 6,000 rpm"
+      },
+      {
+        "version": "3.0 CSL",
+        "power": "147 kW (200 PS; 197 bhp) at 5,500 rpm"
+      },
+      {
+        "version": "3.0 CSL",
+        "power": "152 kW (207 PS; 204 bhp) at 5,600 rpm"
+      }
+    ],
+    "variant_layouts": [
+      {
+        "variant": "E9",
+        "layout": "Front-engine, rear-wheel-drive"
+      }
+    ],
+    "variant_vehicle_classes": [
+      {
+        "variant": "E9",
+        "vehicle_class": "Grand tourer"
+      }
+    ],
+    "variant_designers": [
+      {
+        "variant": "E9",
+        "designer": "Wilhelm Hofmeister"
+      }
+    ],
+    "variant_predecessors": [
+      {
+        "variant": "E9",
+        "predecessor": "BMW 2000C / 2000CS",
+        "url": "https://en.wikipedia.org/wiki/BMW_New_Class_coupé"
+      }
+    ],
+    "variant_successors": [
+      {
+        "variant": "E9",
+        "successor": "BMW 6 Series (E24)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"
+      }
+    ]
+  },
+  {
     "manufacturer": "BMW",
     "name": "6 Series (E24)",
     "status": "discontinued",
@@ -319,11 +472,11 @@
     "variant_body_styles": [
       {
         "variant": "E63",
-        "body_style": "2-door coupé (E63) 2-door convertible (E64)"
+        "body_style": "2-door coupé"
       },
       {
         "variant": "E64",
-        "body_style": "2-door coupé (E63) 2-door convertible (E64)"
+        "body_style": "2-door convertible"
       }
     ],
     "version_years": [
@@ -434,158 +587,6 @@
         "variant": "E64",
         "successor": "BMW 6 Series (F12)",
         "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)"
-      }
-    ]
-  },
-  {
-    "manufacturer": "BMW",
-    "name": "New Six coupés (E9)",
-    "status": "discontinued",
-    "url": "https://en.wikipedia.org/wiki/BMW_E9",
-    "model": "New Six coupés",
-    "variants": [
-      "E9"
-    ],
-    "versions": [
-      "2.5 CS",
-      "2800 CS",
-      "3.0 CS",
-      "3.0 CSi",
-      "3.0 CSL"
-    ],
-    "version_engines": [
-      {
-        "version": "2.5 CS",
-        "engine": "M30B25V SOHC I6"
-      },
-      {
-        "version": "2800 CS",
-        "engine": "M30B28V SOHC I6"
-      },
-      {
-        "version": "3.0 CS",
-        "engine": "M30B30V SOHC I6"
-      },
-      {
-        "version": "3.0 CSi",
-        "engine": "M30B30 SOHC I6"
-      },
-      {
-        "version": "3.0 CSL",
-        "engine": "M30B30V SOHC I6"
-      },
-      {
-        "version": "3.0 CSL",
-        "engine": "M30B30 SOHC I6"
-      },
-      {
-        "version": "3.0 CSL",
-        "engine": "M30B32 SOHC I6"
-      }
-    ],
-    "variant_engines": [],
-    "variant_production": [
-      {
-        "variant": "E9",
-        "production": "1968–1975"
-      }
-    ],
-    "variant_body_styles": [
-      {
-        "variant": "E9",
-        "body_style": "Coupé"
-      }
-    ],
-    "version_years": [
-      {
-        "version": "2.5 CS",
-        "years": "1974-1975"
-      },
-      {
-        "version": "2800 CS",
-        "years": "1968-1971"
-      },
-      {
-        "version": "3.0 CS",
-        "years": "1971-1975"
-      },
-      {
-        "version": "3.0 CSi",
-        "years": "1971-1975"
-      },
-      {
-        "version": "3.0 CSL",
-        "years": "1971-1972"
-      },
-      {
-        "version": "3.0 CSL",
-        "years": "1972-1973"
-      },
-      {
-        "version": "3.0 CSL",
-        "years": "1973-1975"
-      }
-    ],
-    "version_power": [
-      {
-        "version": "2.5 CS",
-        "power": "110 kW (150 PS; 150 bhp) at 6,000 rpm"
-      },
-      {
-        "version": "2800 CS",
-        "power": "125 kW (170 PS; 168 bhp) at 6,000 rpm"
-      },
-      {
-        "version": "3.0 CS",
-        "power": "132 kW (180 PS; 178 bhp) at 6,000 rpm"
-      },
-      {
-        "version": "3.0 CSi",
-        "power": "147 kW (200 PS; 197 bhp) at 5,500 rpm"
-      },
-      {
-        "version": "3.0 CSL",
-        "power": "132 kW (180 PS; 178 bhp) at 6,000 rpm"
-      },
-      {
-        "version": "3.0 CSL",
-        "power": "147 kW (200 PS; 197 bhp) at 5,500 rpm"
-      },
-      {
-        "version": "3.0 CSL",
-        "power": "152 kW (207 PS; 204 bhp) at 5,600 rpm"
-      }
-    ],
-    "variant_layouts": [
-      {
-        "variant": "E9",
-        "layout": "Front-engine, rear-wheel-drive"
-      }
-    ],
-    "variant_vehicle_classes": [
-      {
-        "variant": "E9",
-        "vehicle_class": "Grand tourer"
-      }
-    ],
-    "variant_designers": [
-      {
-        "variant": "E9",
-        "designer": "Wilhelm Hofmeister"
-      }
-    ],
-    "variant_predecessors": [
-      {
-        "variant": "E9",
-        "predecessor": "BMW 2000C / 2000CS",
-        "url": "https://en.wikipedia.org/wiki/BMW_New_Class_coupé"
-      }
-    ],
-    "variant_successors": [
-      {
-        "variant": "E9",
-        "successor": "BMW 6 Series (E24)",
-        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"
       }
     ]
   }

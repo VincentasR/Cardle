@@ -110,3 +110,7 @@ CORE RULES
 - Never infer unsupported facts during source-constrained ingestion.
 - BMW/non-American cars use European-market specifications; American cars use US-market specifications.
 -Canonical entities represent real-world concepts, not source records.
+
+CHANGE!!! Changed from using specific engines to using engine family.
+
+A Version may reference multiple valid engine families. power_hp stores one canonical power figure, chosen from the final scraped power entry, and is treated as a Version-level gameplay attribute rather than a precise engine-specific specification.

@@ -1,4 +1,8 @@
+import re
+
 from .body_styles import parse_body_styles
+from .designers import parse_designers
+from .engines import parse_engine_usage
 from .ids import (
     manufacturer_id,
     model_id,
@@ -7,9 +11,28 @@ from .ids import (
     version_id,
 )
 from .layouts import parse_layout
+from .power import parse_power_hp
 from .vehicle_classes import parse_vehicle_classes
 from .years import parse_year_range
-from .designers import parse_designers
+
+
+def clean_version_name(value: str) -> str:
+    """
+    Remove Wikipedia-style footnote markers from a version name.
+
+    Examples:
+        "635d [ c ]" -> "635d"
+        "320i [ a ]" -> "320i"
+        "GTI [ 1 ]" -> "GTI"
+    """
+    value = re.sub(
+        r"\s*\[\s*[^\]]+\s*\]\s*",
+        " ",
+        value,
+    )
+
+    return " ".join(value.split())
+
 
 def canonicalize_vehicle(raw: dict) -> dict:
     manufacturer_name = raw["manufacturer"]
@@ -30,7 +53,10 @@ def canonicalize_vehicle(raw: dict) -> dict:
 
     variants = []
 
-    for variant_name in raw["variants"]:
+    # Deduplicated EngineFamily entities used by this vehicle/page.
+    canonical_engine_families = {}
+
+    for variant_name in raw.get("variants", []):
         production_start = None
         production_end = None
 
@@ -103,6 +129,7 @@ def canonicalize_vehicle(raw: dict) -> dict:
             }
             for drivetrain in drivetrains
         ]
+
         designers = []
 
         for designer_entry in raw.get("variant_designers", []):
@@ -119,9 +146,13 @@ def canonicalize_vehicle(raw: dict) -> dict:
             }
             for designer in designers
         ]
+
         predecessors = []
 
-        for predecessor_entry in raw.get("variant_predecessors", []):
+        for predecessor_entry in raw.get(
+            "variant_predecessors",
+            [],
+        ):
             if predecessor_entry["variant"] == variant_name:
                 predecessors.append(
                     {
@@ -131,10 +162,12 @@ def canonicalize_vehicle(raw: dict) -> dict:
                     }
                 )
 
-
         successors = []
 
-        for successor_entry in raw.get("variant_successors", []):
+        for successor_entry in raw.get(
+            "variant_successors",
+            [],
+        ):
             if successor_entry["variant"] == variant_name:
                 successors.append(
                     {
@@ -143,13 +176,14 @@ def canonicalize_vehicle(raw: dict) -> dict:
                         "target_id": None,
                     }
                 )
+
         variant = {
             "id": variant_id(
                 manufacturer_name,
                 model_name,
                 variant_name,
             ),
-            "source_url": raw["url"],
+            "source_url": raw.get("url"),
             "name": variant_name,
             "production_start": production_start,
             "production_end": production_end,
@@ -163,7 +197,45 @@ def canonicalize_vehicle(raw: dict) -> dict:
             "versions": [],
         }
 
-        for version_name in raw.get("versions", []):
+        for raw_version_name in raw.get("versions", []):
+            # Cleaned value is only used for canonical output.
+            version_name = clean_version_name(raw_version_name)
+
+            engine_usages = []
+
+            # Use the original raw name when matching raw records.
+            for engine_entry in raw.get("version_engines", []):
+                if engine_entry["version"] != raw_version_name:
+                    continue
+
+                engine_family, engine_usage = parse_engine_usage(
+                    engine_entry["engine"]
+                )
+
+                if engine_family is None or engine_usage is None:
+                    continue
+
+                canonical_engine_families[
+                    engine_family["id"]
+                ] = engine_family
+
+                if engine_usage not in engine_usages:
+                    engine_usages.append(engine_usage)
+
+            latest_power_hp = None
+
+            # Again, match using the original raw version name.
+            for power_entry in raw.get("version_power", []):
+                if power_entry["version"] != raw_version_name:
+                    continue
+
+                parsed_power = parse_power_hp(
+                    power_entry["power"]
+                )
+
+                if parsed_power is not None:
+                    latest_power_hp = parsed_power
+
             version = {
                 "id": version_id(
                     manufacturer_name,
@@ -172,6 +244,8 @@ def canonicalize_vehicle(raw: dict) -> dict:
                     version_name,
                 ),
                 "name": version_name,
+                "power_hp": latest_power_hp,
+                "engines": engine_usages,
             }
 
             variant["versions"].append(version)
@@ -181,5 +255,8 @@ def canonicalize_vehicle(raw: dict) -> dict:
     return {
         "manufacturer": manufacturer,
         "model": model,
+        "engine_families": list(
+            canonical_engine_families.values()
+        ),
         "variants": variants,
     }

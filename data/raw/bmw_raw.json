@@ -6911,16 +6911,7 @@
         "production": "July 2001–2008"
       }
     ],
-    "variant_body_styles": [
-      {
-        "variant": "E65",
-        "body_style": "4-door sedan"
-      },
-      {
-        "variant": "E66",
-        "body_style": "4-door sedan"
-      }
-    ],
+    "variant_body_styles": [],
     "version_years": [
       {
         "version": "730i",
@@ -7165,11 +7156,11 @@
     "variant_body_styles": [
       {
         "variant": "E85",
-        "body_style": "2-door roadster 2-door coupé"
+        "body_style": "roadster"
       },
       {
         "variant": "E86",
-        "body_style": "2-door roadster 2-door coupé"
+        "body_style": "coupe"
       }
     ],
     "version_years": [
@@ -7461,11 +7452,11 @@
     "variant_body_styles": [
       {
         "variant": "E60",
-        "body_style": "4-door sedan (E60) 5-door wagon (E61)"
+        "body_style": "4-door sedan"
       },
       {
         "variant": "E61",
-        "body_style": "4-door sedan (E60) 5-door wagon (E61)"
+        "body_style": "5-door wagon"
       }
     ],
     "version_years": [
@@ -7793,11 +7784,11 @@
     "variant_body_styles": [
       {
         "variant": "E63",
-        "body_style": "2-door coupé (E63) 2-door convertible (E64)"
+        "body_style": "2-door coupé"
       },
       {
         "variant": "E64",
-        "body_style": "2-door coupé (E63) 2-door convertible (E64)"
+        "body_style": "2-door convertible"
       }
     ],
     "version_years": [
@@ -8219,19 +8210,19 @@
     "variant_body_styles": [
       {
         "variant": "E81",
-        "body_style": "2-door coupe 2-door convertible 3-door hatchback 5-door hatchback"
+        "body_style": "3-door hatchback"
       },
       {
         "variant": "E82",
-        "body_style": "2-door coupe 2-door convertible 3-door hatchback 5-door hatchback"
+        "body_style": "coupe"
       },
       {
         "variant": "E87",
-        "body_style": "2-door coupe 2-door convertible 3-door hatchback 5-door hatchback"
+        "body_style": "5-door hatchback"
       },
       {
         "variant": "E88",
-        "body_style": "2-door coupe 2-door convertible 3-door hatchback 5-door hatchback"
+        "body_style": "convertible"
       }
     ],
     "version_years": [
@@ -8700,19 +8691,19 @@
     "variant_body_styles": [
       {
         "variant": "E90",
-        "body_style": "4-door sedan/saloon (E90) 5-door wagon/estate (E91) 2-door coupé (E92) 2-door convertible (E93)"
+        "body_style": "4-door sedan/saloon"
       },
       {
         "variant": "E91",
-        "body_style": "4-door sedan/saloon (E90) 5-door wagon/estate (E91) 2-door coupé (E92) 2-door convertible (E93)"
+        "body_style": "5-door wagon/estate"
       },
       {
         "variant": "E92",
-        "body_style": "4-door sedan/saloon (E90) 5-door wagon/estate (E91) 2-door coupé (E92) 2-door convertible (E93)"
+        "body_style": "2-door coupé"
       },
       {
         "variant": "E93",
-        "body_style": "4-door sedan/saloon (E90) 5-door wagon/estate (E91) 2-door coupé (E92) 2-door convertible (E93)"
+        "body_style": "2-door convertible"
       }
     ],
     "version_years": [
@@ -9547,16 +9538,7 @@
         "production": "2008–2015"
       }
     ],
-    "variant_body_styles": [
-      {
-        "variant": "F01",
-        "body_style": "4-door sedan"
-      },
-      {
-        "variant": "F02",
-        "body_style": "4-door sedan"
-      }
-    ],
+    "variant_body_styles": [],
     "version_years": [
       {
         "version": "730i/Li",
@@ -10294,16 +10276,16 @@
     ],
     "variant_body_styles": [
       {
-        "variant": "F07",
-        "body_style": "4-door sedan (F10) 4-door LWB sedan (F18) 5-door wagon (F11) 5-door fastback (F07)"
-      },
-      {
         "variant": "F10",
-        "body_style": "4-door sedan (F10) 4-door LWB sedan (F18) 5-door wagon (F11) 5-door fastback (F07)"
+        "body_style": "4-door sedan"
       },
       {
         "variant": "F11",
-        "body_style": "4-door sedan (F10) 4-door LWB sedan (F18) 5-door wagon (F11) 5-door fastback (F07)"
+        "body_style": "4-door LWB sedan (F18) 5-door wagon"
+      },
+      {
+        "variant": "F07",
+        "body_style": "5-door fastback"
       }
     ],
     "version_years": [
@@ -10633,15 +10615,15 @@
     "variant_body_styles": [
       {
         "variant": "F06",
-        "body_style": "2-door convertible 2-door coupé 4-door sedan"
+        "body_style": "Gran Coupé"
       },
       {
         "variant": "F12",
-        "body_style": "2-door convertible 2-door coupé 4-door sedan"
+        "body_style": "Convertible"
       },
       {
         "variant": "F13",
-        "body_style": "2-door convertible 2-door coupé 4-door sedan"
+        "body_style": "Coupé"
       }
     ],
     "version_years": [
@@ -11101,11 +11083,11 @@
     "variant_body_styles": [
       {
         "variant": "F20",
-        "body_style": "3-door hatchback 5-door hatchback"
+        "body_style": "5-door hatchback"
       },
       {
         "variant": "F21",
-        "body_style": "3-door hatchback 5-door hatchback"
+        "body_style": "3-door hatchback"
       }
     ],
     "version_years": [
@@ -11544,15 +11526,15 @@
     "variant_body_styles": [
       {
         "variant": "F30",
-        "body_style": "4-door sedan (F30/F35) 5-door wagon (F31) 5-door fastback (F34)"
+        "body_style": "4-door sedan"
       },
       {
         "variant": "F31",
-        "body_style": "4-door sedan (F30/F35) 5-door wagon (F31) 5-door fastback (F34)"
+        "body_style": "5-door wagon"
       },
       {
         "variant": "F34",
-        "body_style": "4-door sedan (F30/F35) 5-door wagon (F31) 5-door fastback (F34)"
+        "body_style": "5-door fastback"
       }
     ],
     "version_years": [
@@ -12016,15 +11998,15 @@
     "variant_body_styles": [
       {
         "variant": "F32",
-        "body_style": "2-door coupé (F32) 2-door convertible (F33) 5-door liftback / fastback sedan (F36)"
+        "body_style": "2-door coupé"
       },
       {
         "variant": "F33",
-        "body_style": "2-door coupé (F32) 2-door convertible (F33) 5-door liftback / fastback sedan (F36)"
+        "body_style": "2-door convertible"
       },
       {
         "variant": "F36",
-        "body_style": "2-door coupé (F32) 2-door convertible (F33) 5-door liftback / fastback sedan (F36)"
+        "body_style": "5-door liftback / fastback sedan"
       }
     ],
     "version_years": [
@@ -12368,11 +12350,11 @@
     "variant_body_styles": [
       {
         "variant": "F22",
-        "body_style": "2-door coupé 2-door convertible"
+        "body_style": "Coupé"
       },
       {
         "variant": "F23",
-        "body_style": "2-door coupé 2-door convertible"
+        "body_style": "Convertible"
       }
     ],
     "version_years": [
@@ -12802,11 +12784,11 @@
     "variant_body_styles": [
       {
         "variant": "F45",
-        "body_style": "5-door hatchback (Active Tourer) 5-door estate (Gran Tourer; 2014-2021)"
+        "body_style": "Active Tourer"
       },
       {
         "variant": "F46",
-        "body_style": "5-door hatchback (Active Tourer) 5-door estate (Gran Tourer; 2014-2021)"
+        "body_style": "Gran Tourer"
       }
     ],
     "version_years": [
@@ -13490,16 +13472,7 @@
         "production": "July 2015 – 2022"
       }
     ],
-    "variant_body_styles": [
-      {
-        "variant": "G11",
-        "body_style": "4-door sedan"
-      },
-      {
-        "variant": "G12",
-        "body_style": "4-door sedan"
-      }
-    ],
+    "variant_body_styles": [],
     "version_years": [
       {
         "version": "730i/730Li",
@@ -13788,11 +13761,11 @@
     "variant_body_styles": [
       {
         "variant": "G30",
-        "body_style": "4-door saloon (G30) 5-door estate (G31) 4-door long-wheelbase (G38)"
+        "body_style": "4-door saloon"
       },
       {
         "variant": "G31",
-        "body_style": "4-door saloon (G30) 5-door estate (G31) 4-door long-wheelbase (G38)"
+        "body_style": "5-door estate"
       }
     ],
     "version_years": [
@@ -14942,11 +14915,11 @@
     "variant_body_styles": [
       {
         "variant": "G14",
-        "body_style": "2-door convertible (G14) 2-door coupé (G15) 4-door sedan (G16)"
+        "body_style": "2-door convertible"
       },
       {
         "variant": "G15",
-        "body_style": "2-door convertible (G14) 2-door coupé (G15) 4-door sedan (G16)"
+        "body_style": "2-door coupé"
       }
     ],
     "version_years": [
