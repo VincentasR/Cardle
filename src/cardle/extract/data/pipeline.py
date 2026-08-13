@@ -1,6 +1,6 @@
 import requests
 import json
-
+from pathlib import Path
 
 from cardle.extract.data.discover.bmw import (
     discover_bmw_vehicle_pages,
@@ -99,6 +99,7 @@ def scrape_car_page(
         else []
     )
     variant_lineage = extract_variant_lineage(
+        soup=soup,
         infobox=infobox,
         variants=variants,
     )
@@ -240,7 +241,9 @@ if __name__ == "__main__":
                 **extracted_data,
             }
         )
-    with open("bmw_raw.json", "w", encoding="utf-8") as f:
+    output_path = Path("data/raw/bmw_raw.json")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8") as f:
         json.dump(
             results,
             f,

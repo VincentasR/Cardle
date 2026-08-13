@@ -1,0 +1,592 @@
+[{
+    "manufacturer": "BMW",
+    "name": "6 Series (E24)",
+    "status": "discontinued",
+    "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
+    "model": "6 Series",
+    "variants": [
+      "E24"
+    ],
+    "versions": [
+      "628CSi",
+      "630CS",
+      "633CSi",
+      "635CSi",
+      "M635CSi",
+      "630CSi",
+      "635CSi L6",
+      "M6"
+    ],
+    "version_engines": [
+      {
+        "version": "628CSi",
+        "engine": "M30B28 SOHC I6"
+      },
+      {
+        "version": "630CS",
+        "engine": "M30B30V SOHC I6"
+      },
+      {
+        "version": "633CSi",
+        "engine": "M30B32 SOHC I6"
+      },
+      {
+        "version": "635CSi",
+        "engine": "M90 SOHC I6"
+      },
+      {
+        "version": "635CSi",
+        "engine": "M30B34 SOHC I6"
+      },
+      {
+        "version": "635CSi",
+        "engine": "M30B35 SOHC I6"
+      },
+      {
+        "version": "M635CSi",
+        "engine": "M88/3 DOHC I6"
+      },
+      {
+        "version": "M635CSi",
+        "engine": "S38B35 DOHC I6"
+      },
+      {
+        "version": "630CSi",
+        "engine": "M30B30 SOHC I6"
+      },
+      {
+        "version": "635CSi L6",
+        "engine": "M30B34 SOHC I6"
+      },
+      {
+        "version": "635CSi L6",
+        "engine": "M30B35 SOHC I6"
+      },
+      {
+        "version": "M6",
+        "engine": "S38B35 DOHC I6"
+      }
+    ],
+    "variant_engines": [],
+    "variant_production": [
+      {
+        "variant": "E24",
+        "production": "January 1976 – April 1989 86,216 produced"
+      }
+    ],
+    "variant_body_styles": [
+      {
+        "variant": "E24",
+        "body_style": "2-door coupé"
+      }
+    ],
+    "version_years": [
+      {
+        "version": "628CSi",
+        "years": "1979–1987"
+      },
+      {
+        "version": "630CS",
+        "years": "1976–1979"
+      },
+      {
+        "version": "633CSi",
+        "years": "1976–1979"
+      },
+      {
+        "version": "633CSi",
+        "years": "1979–1984"
+      },
+      {
+        "version": "635CSi",
+        "years": "1978–1982"
+      },
+      {
+        "version": "635CSi",
+        "years": "1982–1987"
+      },
+      {
+        "version": "635CSi",
+        "years": "1985–1987"
+      },
+      {
+        "version": "635CSi",
+        "years": "1987–1989"
+      },
+      {
+        "version": "M635CSi",
+        "years": "1984–1989"
+      },
+      {
+        "version": "M635CSi",
+        "years": "1986–1989"
+      },
+      {
+        "version": "630CSi",
+        "years": "1977–1978"
+      },
+      {
+        "version": "633CSi",
+        "years": "1978–1979"
+      },
+      {
+        "version": "633CSi",
+        "years": "1980–1981"
+      },
+      {
+        "version": "633CSi",
+        "years": "1982–1984"
+      },
+      {
+        "version": "635CSi L6",
+        "years": "1985–1987 1987 (L6)"
+      },
+      {
+        "version": "635CSi L6",
+        "years": "1988–1989"
+      },
+      {
+        "version": "M6",
+        "years": "1987–1989*"
+      }
+    ],
+    "version_power": [
+      {
+        "version": "628CSi",
+        "power": "135 kW (184 PS; 181 hp) at 5,800 rpm"
+      },
+      {
+        "version": "630CS",
+        "power": "136 kW (185 PS; 182 hp) at 5,800 rpm"
+      },
+      {
+        "version": "633CSi",
+        "power": "147 kW (200 PS; 197 hp) at 5,500 rpm"
+      },
+      {
+        "version": "633CSi",
+        "power": "145 kW (197 PS; 194 hp) at 5,500 rpm"
+      },
+      {
+        "version": "635CSi",
+        "power": "160 kW (218 PS; 215 hp) at 5,200 rpm"
+      },
+      {
+        "version": "635CSi",
+        "power": "160 kW (218 PS; 215 hp) at 5,500 rpm"
+      },
+      {
+        "version": "635CSi",
+        "power": "136 kW (185 PS; 182 hp) at 5,400 rpm"
+      },
+      {
+        "version": "635CSi",
+        "power": "162 kW (220 PS; 217 hp) at 5,700 rpm"
+      },
+      {
+        "version": "635CSi",
+        "power": "155 kW (211 PS; 208 hp) at 5,700 rpm"
+      },
+      {
+        "version": "M635CSi",
+        "power": "210 kW (286 PS; 282 hp) at 6,500 rpm"
+      },
+      {
+        "version": "M635CSi",
+        "power": "191 kW (260 PS; 256 hp) at 6,500 rpm"
+      },
+      {
+        "version": "630CSi",
+        "power": "131 kW (176 hp) at 5,500 rpm"
+      },
+      {
+        "version": "633CSi",
+        "power": "132 kW (177 hp) at 5,500 rpm"
+      },
+      {
+        "version": "633CSi",
+        "power": "130 kW (174 hp) at 5,200 rpm"
+      },
+      {
+        "version": "633CSi",
+        "power": "135 kW (181 hp) at 6,000 rpm"
+      },
+      {
+        "version": "635CSi L6",
+        "power": "136 kW (182 hp) at 5,400 rpm"
+      },
+      {
+        "version": "635CSi L6",
+        "power": "155 kW (208 hp) at 5,700 rpm"
+      },
+      {
+        "version": "M6",
+        "power": "191 kW (256 hp) at 6,500 rpm"
+      }
+    ],
+    "variant_layouts": [
+      {
+        "variant": "E24",
+        "layout": "Front-engine, rear-wheel-drive"
+      }
+    ],
+    "variant_vehicle_classes": [
+      {
+        "variant": "E24",
+        "vehicle_class": "Grand tourer"
+      }
+    ],
+    "variant_designers": [
+      {
+        "variant": "E24",
+        "designer": "Paul Bracq"
+      }
+    ],
+    "variant_predecessors": [
+      {
+        "variant": "E24",
+        "predecessor": "BMW E9",
+        "url": "https://en.wikipedia.org/wiki/BMW_E9"
+      }
+    ],
+    "variant_successors": [
+      {
+        "variant": "E24",
+        "successor": "BMW 6 Series (E63)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)"
+      }
+    ]
+  },
+  {
+    "manufacturer": "BMW",
+    "name": "6 Series (E63/E64)",
+    "status": "discontinued",
+    "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)",
+    "model": "6 Series",
+    "variants": [
+      "E63",
+      "E64"
+    ],
+    "versions": [
+      "630Ci",
+      "630i",
+      "645Ci",
+      "650i",
+      "M6",
+      "635d [ c ]"
+    ],
+    "version_engines": [
+      {
+        "version": "630Ci",
+        "engine": "3.0 L N52 inline-6"
+      },
+      {
+        "version": "630i",
+        "engine": "3.0 L N53 inline-6 [ a ]"
+      },
+      {
+        "version": "630i",
+        "engine": "3.0 L N52 inline-6 [ b ]"
+      },
+      {
+        "version": "645Ci",
+        "engine": "4.4 L N62 V8"
+      },
+      {
+        "version": "650i",
+        "engine": "4.8 L N62 V8"
+      },
+      {
+        "version": "M6",
+        "engine": "5.0 L S85 V10"
+      },
+      {
+        "version": "635d [ c ]",
+        "engine": "3.0 L M57 inline-6 turbo"
+      }
+    ],
+    "variant_engines": [],
+    "variant_production": [
+      {
+        "variant": "E63",
+        "production": "July 5, 2003–2010"
+      },
+      {
+        "variant": "E64",
+        "production": "July 5, 2003–2010"
+      }
+    ],
+    "variant_body_styles": [
+      {
+        "variant": "E63",
+        "body_style": "2-door coupé (E63) 2-door convertible (E64)"
+      },
+      {
+        "variant": "E64",
+        "body_style": "2-door coupé (E63) 2-door convertible (E64)"
+      }
+    ],
+    "version_years": [
+      {
+        "version": "630Ci",
+        "years": "2003–2007"
+      },
+      {
+        "version": "630i",
+        "years": "2007–2010"
+      },
+      {
+        "version": "645Ci",
+        "years": "2003–2005"
+      },
+      {
+        "version": "650i",
+        "years": "2005–2010"
+      },
+      {
+        "version": "M6",
+        "years": "2005–2010"
+      },
+      {
+        "version": "635d [ c ]",
+        "years": "2007–2010"
+      }
+    ],
+    "version_power": [
+      {
+        "version": "630Ci",
+        "power": "190 kW (258 PS; 255 hp) at 6,600 rpm"
+      },
+      {
+        "version": "630i",
+        "power": "200 kW (272 PS; 268 hp) at 6,700 rpm"
+      },
+      {
+        "version": "630i",
+        "power": "190 kW (258 PS; 255 hp) at 6,600 rpm"
+      },
+      {
+        "version": "645Ci",
+        "power": "245 kW (333 PS; 329 hp) at 6,100 rpm"
+      },
+      {
+        "version": "650i",
+        "power": "270 kW (367 PS; 362 hp) at 6,300 rpm"
+      },
+      {
+        "version": "M6",
+        "power": "373 kW (507 PS; 500 hp) at 7,750 rpm"
+      },
+      {
+        "version": "635d [ c ]",
+        "power": "210 kW (286 PS; 282 hp) at 4,400 rpm"
+      }
+    ],
+    "variant_layouts": [
+      {
+        "variant": "E63",
+        "layout": "Rear-wheel drive"
+      },
+      {
+        "variant": "E64",
+        "layout": "Rear-wheel drive"
+      }
+    ],
+    "variant_vehicle_classes": [
+      {
+        "variant": "E63",
+        "vehicle_class": "Grand tourer ( S )"
+      },
+      {
+        "variant": "E64",
+        "vehicle_class": "Grand tourer ( S )"
+      }
+    ],
+    "variant_designers": [
+      {
+        "variant": "E63",
+        "designer": "Adrian van Hooydonk [ 1 ]"
+      },
+      {
+        "variant": "E64",
+        "designer": "Adrian van Hooydonk [ 1 ]"
+      }
+    ],
+    "variant_predecessors": [
+      {
+        "variant": "E63",
+        "predecessor": "BMW 6 Series (E24) (nameplate)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"
+      },
+      {
+        "variant": "E64",
+        "predecessor": "BMW 6 Series (E24) (nameplate)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"
+      }
+    ],
+    "variant_successors": [
+      {
+        "variant": "E63",
+        "successor": "BMW 6 Series (F12)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)"
+      },
+      {
+        "variant": "E64",
+        "successor": "BMW 6 Series (F12)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)"
+      }
+    ]
+  },
+  {
+    "manufacturer": "BMW",
+    "name": "New Six coupés (E9)",
+    "status": "discontinued",
+    "url": "https://en.wikipedia.org/wiki/BMW_E9",
+    "model": "New Six coupés",
+    "variants": [
+      "E9"
+    ],
+    "versions": [
+      "2.5 CS",
+      "2800 CS",
+      "3.0 CS",
+      "3.0 CSi",
+      "3.0 CSL"
+    ],
+    "version_engines": [
+      {
+        "version": "2.5 CS",
+        "engine": "M30B25V SOHC I6"
+      },
+      {
+        "version": "2800 CS",
+        "engine": "M30B28V SOHC I6"
+      },
+      {
+        "version": "3.0 CS",
+        "engine": "M30B30V SOHC I6"
+      },
+      {
+        "version": "3.0 CSi",
+        "engine": "M30B30 SOHC I6"
+      },
+      {
+        "version": "3.0 CSL",
+        "engine": "M30B30V SOHC I6"
+      },
+      {
+        "version": "3.0 CSL",
+        "engine": "M30B30 SOHC I6"
+      },
+      {
+        "version": "3.0 CSL",
+        "engine": "M30B32 SOHC I6"
+      }
+    ],
+    "variant_engines": [],
+    "variant_production": [
+      {
+        "variant": "E9",
+        "production": "1968–1975"
+      }
+    ],
+    "variant_body_styles": [
+      {
+        "variant": "E9",
+        "body_style": "Coupé"
+      }
+    ],
+    "version_years": [
+      {
+        "version": "2.5 CS",
+        "years": "1974-1975"
+      },
+      {
+        "version": "2800 CS",
+        "years": "1968-1971"
+      },
+      {
+        "version": "3.0 CS",
+        "years": "1971-1975"
+      },
+      {
+        "version": "3.0 CSi",
+        "years": "1971-1975"
+      },
+      {
+        "version": "3.0 CSL",
+        "years": "1971-1972"
+      },
+      {
+        "version": "3.0 CSL",
+        "years": "1972-1973"
+      },
+      {
+        "version": "3.0 CSL",
+        "years": "1973-1975"
+      }
+    ],
+    "version_power": [
+      {
+        "version": "2.5 CS",
+        "power": "110 kW (150 PS; 150 bhp) at 6,000 rpm"
+      },
+      {
+        "version": "2800 CS",
+        "power": "125 kW (170 PS; 168 bhp) at 6,000 rpm"
+      },
+      {
+        "version": "3.0 CS",
+        "power": "132 kW (180 PS; 178 bhp) at 6,000 rpm"
+      },
+      {
+        "version": "3.0 CSi",
+        "power": "147 kW (200 PS; 197 bhp) at 5,500 rpm"
+      },
+      {
+        "version": "3.0 CSL",
+        "power": "132 kW (180 PS; 178 bhp) at 6,000 rpm"
+      },
+      {
+        "version": "3.0 CSL",
+        "power": "147 kW (200 PS; 197 bhp) at 5,500 rpm"
+      },
+      {
+        "version": "3.0 CSL",
+        "power": "152 kW (207 PS; 204 bhp) at 5,600 rpm"
+      }
+    ],
+    "variant_layouts": [
+      {
+        "variant": "E9",
+        "layout": "Front-engine, rear-wheel-drive"
+      }
+    ],
+    "variant_vehicle_classes": [
+      {
+        "variant": "E9",
+        "vehicle_class": "Grand tourer"
+      }
+    ],
+    "variant_designers": [
+      {
+        "variant": "E9",
+        "designer": "Wilhelm Hofmeister"
+      }
+    ],
+    "variant_predecessors": [
+      {
+        "variant": "E9",
+        "predecessor": "BMW 2000C / 2000CS",
+        "url": "https://en.wikipedia.org/wiki/BMW_New_Class_coupé"
+      }
+    ],
+    "variant_successors": [
+      {
+        "variant": "E9",
+        "successor": "BMW 6 Series (E24)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"
+      }
+    ]
+  }
+]

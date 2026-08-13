@@ -1,0 +1,338 @@
+[
+  {
+    "manufacturer": {
+      "id": "bmw",
+      "name": "BMW"
+    },
+    "model": {
+      "id": "bmw_6_series",
+      "name": "6 Series"
+    },
+    "variants": [
+      {
+        "id": "bmw_6_series_e24",
+        "source_url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
+        "name": "E24",
+        "production_start": 1976,
+        "production_end": 1989,
+        "body_styles": [
+          {
+            "id": "coupe",
+            "name": "Coupe"
+          }
+        ],
+        "vehicle_classes": [
+          {
+            "id": "grand_tourer",
+            "name": "Grand tourer"
+          }
+        ],
+        "engine_positions": [
+          {
+            "id": "front",
+            "name": "Front"
+          }
+        ],
+        "drivetrains": [
+          {
+            "id": "rwd",
+            "name": "RWD"
+          }
+        ],
+        "designers": [
+          {
+            "id": "paul_bracq",
+            "name": "Paul Bracq"
+          }
+        ],
+        "predecessors": [
+          {
+            "name": "BMW E9",
+            "url": "https://en.wikipedia.org/wiki/BMW_E9",
+            "target_id": "bmw_new_six_coupes_e9"
+          }
+        ],
+        "successors": [
+          {
+            "name": "BMW 6 Series (E63)",
+            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)",
+            "target_id": "bmw_6_series_e63"
+          }
+        ],
+        "versions": [
+          {
+            "id": "bmw_6_series_e24_628csi",
+            "name": "628CSi"
+          },
+          {
+            "id": "bmw_6_series_e24_630cs",
+            "name": "630CS"
+          },
+          {
+            "id": "bmw_6_series_e24_633csi",
+            "name": "633CSi"
+          },
+          {
+            "id": "bmw_6_series_e24_635csi",
+            "name": "635CSi"
+          },
+          {
+            "id": "bmw_6_series_e24_m635csi",
+            "name": "M635CSi"
+          },
+          {
+            "id": "bmw_6_series_e24_630csi",
+            "name": "630CSi"
+          },
+          {
+            "id": "bmw_6_series_e24_635csi_l6",
+            "name": "635CSi L6"
+          },
+          {
+            "id": "bmw_6_series_e24_m6",
+            "name": "M6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "manufacturer": {
+      "id": "bmw",
+      "name": "BMW"
+    },
+    "model": {
+      "id": "bmw_6_series",
+      "name": "6 Series"
+    },
+    "variants": [
+      {
+        "id": "bmw_6_series_e63",
+        "source_url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)",
+        "name": "E63",
+        "production_start": 2003,
+        "production_end": 2010,
+        "body_styles": [
+          {
+            "id": "coupe",
+            "name": "Coupe"
+          },
+          {
+            "id": "convertible",
+            "name": "Convertible"
+          }
+        ],
+        "vehicle_classes": [
+          {
+            "id": "grand_tourer",
+            "name": "Grand tourer"
+          }
+        ],
+        "engine_positions": [],
+        "drivetrains": [],
+        "designers": [
+          {
+            "id": "adrian_van_hooydonk",
+            "name": "Adrian van Hooydonk"
+          }
+        ],
+        "predecessors": [
+          {
+            "name": "BMW 6 Series (E24) (nameplate)",
+            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
+            "target_id": "bmw_6_series_e24"
+          }
+        ],
+        "successors": [
+          {
+            "name": "BMW 6 Series (F12)",
+            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)",
+            "target_id": null
+          }
+        ],
+        "versions": [
+          {
+            "id": "bmw_6_series_e63_630ci",
+            "name": "630Ci"
+          },
+          {
+            "id": "bmw_6_series_e63_630i",
+            "name": "630i"
+          },
+          {
+            "id": "bmw_6_series_e63_645ci",
+            "name": "645Ci"
+          },
+          {
+            "id": "bmw_6_series_e63_650i",
+            "name": "650i"
+          },
+          {
+            "id": "bmw_6_series_e63_m6",
+            "name": "M6"
+          },
+          {
+            "id": "bmw_6_series_e63_635d_c",
+            "name": "635d [ c ]"
+          }
+        ]
+      },
+      {
+        "id": "bmw_6_series_e64",
+        "source_url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)",
+        "name": "E64",
+        "production_start": 2003,
+        "production_end": 2010,
+        "body_styles": [
+          {
+            "id": "coupe",
+            "name": "Coupe"
+          },
+          {
+            "id": "convertible",
+            "name": "Convertible"
+          }
+        ],
+        "vehicle_classes": [
+          {
+            "id": "grand_tourer",
+            "name": "Grand tourer"
+          }
+        ],
+        "engine_positions": [],
+        "drivetrains": [],
+        "designers": [
+          {
+            "id": "adrian_van_hooydonk",
+            "name": "Adrian van Hooydonk"
+          }
+        ],
+        "predecessors": [
+          {
+            "name": "BMW 6 Series (E24) (nameplate)",
+            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
+            "target_id": "bmw_6_series_e24"
+          }
+        ],
+        "successors": [
+          {
+            "name": "BMW 6 Series (F12)",
+            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)",
+            "target_id": null
+          }
+        ],
+        "versions": [
+          {
+            "id": "bmw_6_series_e64_630ci",
+            "name": "630Ci"
+          },
+          {
+            "id": "bmw_6_series_e64_630i",
+            "name": "630i"
+          },
+          {
+            "id": "bmw_6_series_e64_645ci",
+            "name": "645Ci"
+          },
+          {
+            "id": "bmw_6_series_e64_650i",
+            "name": "650i"
+          },
+          {
+            "id": "bmw_6_series_e64_m6",
+            "name": "M6"
+          },
+          {
+            "id": "bmw_6_series_e64_635d_c",
+            "name": "635d [ c ]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "manufacturer": {
+      "id": "bmw",
+      "name": "BMW"
+    },
+    "model": {
+      "id": "bmw_new_six_coupes",
+      "name": "New Six coupés"
+    },
+    "variants": [
+      {
+        "id": "bmw_new_six_coupes_e9",
+        "source_url": "https://en.wikipedia.org/wiki/BMW_E9",
+        "name": "E9",
+        "production_start": 1968,
+        "production_end": 1975,
+        "body_styles": [
+          {
+            "id": "coupe",
+            "name": "Coupe"
+          }
+        ],
+        "vehicle_classes": [
+          {
+            "id": "grand_tourer",
+            "name": "Grand tourer"
+          }
+        ],
+        "engine_positions": [
+          {
+            "id": "front",
+            "name": "Front"
+          }
+        ],
+        "drivetrains": [
+          {
+            "id": "rwd",
+            "name": "RWD"
+          }
+        ],
+        "designers": [
+          {
+            "id": "wilhelm_hofmeister",
+            "name": "Wilhelm Hofmeister"
+          }
+        ],
+        "predecessors": [
+          {
+            "name": "BMW 2000C / 2000CS",
+            "url": "https://en.wikipedia.org/wiki/BMW_New_Class_coupé",
+            "target_id": null
+          }
+        ],
+        "successors": [
+          {
+            "name": "BMW 6 Series (E24)",
+            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
+            "target_id": "bmw_6_series_e24"
+          }
+        ],
+        "versions": [
+          {
+            "id": "bmw_new_six_coupes_e9_2_5_cs",
+            "name": "2.5 CS"
+          },
+          {
+            "id": "bmw_new_six_coupes_e9_2800_cs",
+            "name": "2800 CS"
+          },
+          {
+            "id": "bmw_new_six_coupes_e9_3_0_cs",
+            "name": "3.0 CS"
+          },
+          {
+            "id": "bmw_new_six_coupes_e9_3_0_csi",
+            "name": "3.0 CSi"
+          },
+          {
+            "id": "bmw_new_six_coupes_e9_3_0_csl",
+            "name": "3.0 CSL"
+          }
+        ]
+      }
+    ]
+  }
+]

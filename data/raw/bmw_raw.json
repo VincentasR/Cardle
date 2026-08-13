@@ -125,7 +125,8 @@
     "variant_predecessors": [
       {
         "variant": "F70",
-        "predecessor": "BMW 1 Series (F40)"
+        "predecessor": "BMW 1 Series (F40)",
+        "url": "https://en.wikipedia.org/wiki/BMW_1_Series_(F40)"
       }
     ],
     "variant_successors": []
@@ -412,13 +413,18 @@
     "variant_predecessors": [
       {
         "variant": "G20",
-        "predecessor": "BMW 3 Series (F30)"
+        "predecessor": "BMW 3 Series (F30)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)"
       }
     ],
     "variant_successors": [
       {
         "variant": "G20",
-        "successor": "BMW 3 Series (G50) BMW i3 (NA0) (Electric version)"
+        "successor": "BMW 3 Series (G50) BMW i3 (NA0) (Electric version)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(G50)",
+          "https://en.wikipedia.org/wiki/BMW_i3_(NA0)"
+        ]
       }
     ]
   },
@@ -469,7 +475,11 @@
     "variant_predecessors": [
       {
         "variant": "G26",
-        "predecessor": "BMW 4 Series (F32) BMW 3 Series Gran Turismo (F34) (4 Series Gran Coupé)"
+        "predecessor": "BMW 4 Series (F32) BMW 3 Series Gran Turismo (F34) (4 Series Gran Coupé)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(F32)",
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)"
+        ]
       }
     ],
     "variant_successors": []
@@ -623,7 +633,11 @@
     "variant_predecessors": [
       {
         "variant": "G60",
-        "predecessor": "BMW 5 Series (G30) BMW 6 Series (G32)"
+        "predecessor": "BMW 5 Series (G30) BMW 6 Series (G32)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_5_Series_(G30)",
+          "https://en.wikipedia.org/wiki/BMW_6_Series_(G32)"
+        ]
       }
     ],
     "variant_successors": []
@@ -732,7 +746,8 @@
     "variant_predecessors": [
       {
         "variant": "G70",
-        "predecessor": "BMW 7 Series (G11)"
+        "predecessor": "BMW 7 Series (G11)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(G11)"
       }
     ],
     "variant_successors": []
@@ -909,7 +924,8 @@
     "variant_predecessors": [
       {
         "variant": "U11",
-        "predecessor": "BMW X1 (F48)"
+        "predecessor": "BMW X1 (F48)",
+        "url": "https://en.wikipedia.org/wiki/BMW_X1_(F48)"
       }
     ],
     "variant_successors": []
@@ -1130,7 +1146,8 @@
     "variant_predecessors": [
       {
         "variant": "G45",
-        "predecessor": "BMW X3 (G01)"
+        "predecessor": "BMW X3 (G01)",
+        "url": "https://en.wikipedia.org/wiki/BMW_X3"
       }
     ],
     "variant_successors": []
@@ -1172,7 +1189,11 @@
     "variant_predecessors": [
       {
         "variant": "G65",
-        "predecessor": "BMW X5 (G05) BMW iX (iX5) [ 1 ]"
+        "predecessor": "BMW X5 (G05) BMW iX (iX5) [ 1 ]",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_X5_(G05)",
+          "https://en.wikipedia.org/wiki/BMW_iX"
+        ]
       }
     ],
     "variant_successors": []
@@ -1488,7 +1509,8 @@
     "variant_predecessors": [
       {
         "variant": "G42",
-        "predecessor": "BMW 2 Series (F22/F23)"
+        "predecessor": "BMW 2 Series (F22/F23)",
+        "url": "https://en.wikipedia.org/wiki/BMW_2_Series_(F22)"
       }
     ],
     "variant_successors": []
@@ -1713,13 +1735,15 @@
     "variant_predecessors": [
       {
         "variant": "3/20 PS",
-        "predecessor": "BMW 3/15"
+        "predecessor": "BMW 3/15",
+        "url": "https://en.wikipedia.org/wiki/BMW_3/15"
       }
     ],
     "variant_successors": [
       {
         "variant": "3/20 PS",
-        "successor": "BMW 309"
+        "successor": "BMW 309",
+        "url": "https://en.wikipedia.org/wiki/BMW_303"
       }
     ]
   },
@@ -1771,7 +1795,8 @@
     "variant_successors": [
       {
         "variant": "303",
-        "successor": "BMW 315 (model) BMW 320 (series)"
+        "successor": "BMW 315 (model) BMW 320 (series)",
+        "url": "https://en.wikipedia.org/wiki/BMW_320"
       }
     ]
   },
@@ -1818,7 +1843,8 @@
     "variant_successors": [
       {
         "variant": "309",
-        "successor": "BMW 315 (model) BMW 320 (series)"
+        "successor": "BMW 315 (model) BMW 320 (series)",
+        "url": "https://en.wikipedia.org/wiki/BMW_320"
       }
     ]
   },
@@ -1865,7 +1891,8 @@
     "variant_successors": [
       {
         "variant": "315",
-        "successor": "BMW 315 (model) BMW 320 (series)"
+        "successor": "BMW 315 (model) BMW 320 (series)",
+        "url": "https://en.wikipedia.org/wiki/BMW_320"
       }
     ]
   },
@@ -1921,13 +1948,15 @@
     "variant_predecessors": [
       {
         "variant": "328",
-        "predecessor": "BMW 319/1"
+        "predecessor": "BMW 319/1",
+        "url": "https://en.wikipedia.org/wiki/BMW_303"
       }
     ],
     "variant_successors": [
       {
         "variant": "328",
-        "successor": "BMW 507"
+        "successor": "BMW 507",
+        "url": "https://en.wikipedia.org/wiki/BMW_507"
       }
     ]
   },
@@ -1983,13 +2012,15 @@
     "variant_predecessors": [
       {
         "variant": "326",
-        "predecessor": "BMW 319"
+        "predecessor": "BMW 319",
+        "url": "https://en.wikipedia.org/wiki/BMW_319"
       }
     ],
     "variant_successors": [
       {
         "variant": "326",
-        "successor": "BMW/EMW 340"
+        "successor": "BMW/EMW 340",
+        "url": "https://en.wikipedia.org/wiki/BMW_340"
       }
     ]
   },
@@ -2092,13 +2123,15 @@
     "variant_predecessors": [
       {
         "variant": "320",
-        "predecessor": "BMW 329"
+        "predecessor": "BMW 329",
+        "url": "https://en.wikipedia.org/wiki/BMW_315"
       }
     ],
     "variant_successors": [
       {
         "variant": "320",
-        "successor": "BMW 321"
+        "successor": "BMW 321",
+        "url": "https://en.wikipedia.org/wiki/BMW_321"
       }
     ]
   },
@@ -2149,13 +2182,15 @@
     "variant_predecessors": [
       {
         "variant": "321",
-        "predecessor": "BMW 320"
+        "predecessor": "BMW 320",
+        "url": "https://en.wikipedia.org/wiki/BMW_320"
       }
     ],
     "variant_successors": [
       {
         "variant": "321",
-        "successor": "BMW New Class"
+        "successor": "BMW New Class",
+        "url": "https://en.wikipedia.org/wiki/BMW_New_Class"
       }
     ]
   },
@@ -2212,7 +2247,8 @@
     "variant_successors": [
       {
         "variant": "335",
-        "successor": "BMW 501"
+        "successor": "BMW 501",
+        "url": "https://en.wikipedia.org/wiki/BMW_501"
       }
     ]
   },
@@ -2258,7 +2294,8 @@
     "variant_predecessors": [
       {
         "variant": "340",
-        "predecessor": "BMW 326"
+        "predecessor": "BMW 326",
+        "url": "https://en.wikipedia.org/wiki/BMW_326"
       }
     ],
     "variant_successors": []
@@ -2315,13 +2352,15 @@
     "variant_predecessors": [
       {
         "variant": "501",
-        "predecessor": "BMW 326"
+        "predecessor": "BMW 326",
+        "url": "https://en.wikipedia.org/wiki/BMW_326"
       }
     ],
     "variant_successors": [
       {
         "variant": "501",
-        "successor": "BMW 2500 / 2800 ‘New Six’"
+        "successor": "BMW 2500 / 2800 ‘New Six’",
+        "url": "https://en.wikipedia.org/wiki/BMW_New_Six"
       }
     ]
   },
@@ -2414,13 +2453,15 @@
     "variant_predecessors": [
       {
         "variant": "503",
-        "predecessor": "BMW 327"
+        "predecessor": "BMW 327",
+        "url": "https://en.wikipedia.org/wiki/BMW_327"
       }
     ],
     "variant_successors": [
       {
         "variant": "503",
-        "successor": "BMW 3200 CS"
+        "successor": "BMW 3200 CS",
+        "url": "https://en.wikipedia.org/wiki/BMW_3200_CS"
       }
     ]
   },
@@ -2476,13 +2517,18 @@
     "variant_predecessors": [
       {
         "variant": "507",
-        "predecessor": "BMW 328"
+        "predecessor": "BMW 328",
+        "url": "https://en.wikipedia.org/wiki/BMW_328"
       }
     ],
     "variant_successors": [
       {
         "variant": "507",
-        "successor": "BMW 3200 CS BMW Z8 (spiritual)"
+        "successor": "BMW 3200 CS BMW Z8 (spiritual)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3200_CS",
+          "https://en.wikipedia.org/wiki/BMW_Z8"
+        ]
       }
     ]
   },
@@ -2538,7 +2584,8 @@
     "variant_predecessors": [
       {
         "variant": "700",
-        "predecessor": "BMW 600"
+        "predecessor": "BMW 600",
+        "url": "https://en.wikipedia.org/wiki/BMW_600"
       }
     ],
     "variant_successors": []
@@ -2595,13 +2642,15 @@
     "variant_predecessors": [
       {
         "variant": "3200 CS",
-        "predecessor": "BMW 503"
+        "predecessor": "BMW 503",
+        "url": "https://en.wikipedia.org/wiki/BMW_503"
       }
     ],
     "variant_successors": [
       {
         "variant": "3200 CS",
-        "successor": "BMW New Class coupé"
+        "successor": "BMW New Class coupé",
+        "url": "https://en.wikipedia.org/wiki/BMW_New_Class_coupé"
       }
     ]
   },
@@ -2704,7 +2753,8 @@
     "variant_successors": [
       {
         "variant": "02 Series",
-        "successor": "BMW 3 Series (E21)"
+        "successor": "BMW 3 Series (E21)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E21)"
       }
     ]
   },
@@ -2848,13 +2898,15 @@
     "variant_predecessors": [
       {
         "variant": "E9",
-        "predecessor": "BMW 2000C / 2000CS"
+        "predecessor": "BMW 2000C / 2000CS",
+        "url": "https://en.wikipedia.org/wiki/BMW_New_Class_coupé"
       }
     ],
     "variant_successors": [
       {
         "variant": "E9",
-        "successor": "BMW 6 Series (E24)"
+        "successor": "BMW 6 Series (E24)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"
       }
     ]
   },
@@ -2905,13 +2957,15 @@
     "variant_predecessors": [
       {
         "variant": "E3",
-        "predecessor": "BMW 501/502"
+        "predecessor": "BMW 501/502",
+        "url": "https://en.wikipedia.org/wiki/BMW_501"
       }
     ],
     "variant_successors": [
       {
         "variant": "E3",
-        "successor": "BMW 7 Series (E23)"
+        "successor": "BMW 7 Series (E23)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(E23)"
       }
     ]
   },
@@ -3162,13 +3216,15 @@
     "variant_predecessors": [
       {
         "variant": "E12",
-        "predecessor": "BMW New Class"
+        "predecessor": "BMW New Class",
+        "url": "https://en.wikipedia.org/wiki/BMW_New_Class"
       }
     ],
     "variant_successors": [
       {
         "variant": "E12",
-        "successor": "BMW 5 Series (E28)"
+        "successor": "BMW 5 Series (E28)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E28)"
       }
     ]
   },
@@ -3364,13 +3420,15 @@
     "variant_predecessors": [
       {
         "variant": "E21",
-        "predecessor": "BMW 02 Series"
+        "predecessor": "BMW 02 Series",
+        "url": "https://en.wikipedia.org/wiki/BMW_02_Series"
       }
     ],
     "variant_successors": [
       {
         "variant": "E21",
-        "successor": "BMW 3 Series (E30)"
+        "successor": "BMW 3 Series (E30)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E30)"
       }
     ]
   },
@@ -3621,13 +3679,15 @@
     "variant_predecessors": [
       {
         "variant": "E24",
-        "predecessor": "BMW E9"
+        "predecessor": "BMW E9",
+        "url": "https://en.wikipedia.org/wiki/BMW_E9"
       }
     ],
     "variant_successors": [
       {
         "variant": "E24",
-        "successor": "BMW 6 Series (E63)"
+        "successor": "BMW 6 Series (E63)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)"
       }
     ]
   },
@@ -3865,13 +3925,15 @@
     "variant_predecessors": [
       {
         "variant": "E23",
-        "predecessor": "BMW E3"
+        "predecessor": "BMW E3",
+        "url": "https://en.wikipedia.org/wiki/BMW_E3"
       }
     ],
     "variant_successors": [
       {
         "variant": "E23",
-        "successor": "BMW 7 Series (E32)"
+        "successor": "BMW 7 Series (E32)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(E32)"
       }
     ]
   },
@@ -3927,7 +3989,8 @@
     "variant_predecessors": [
       {
         "variant": "M1",
-        "predecessor": "BMW Turbo"
+        "predecessor": "BMW Turbo",
+        "url": "https://en.wikipedia.org/wiki/BMW_Turbo"
       }
     ],
     "variant_successors": []
@@ -4182,13 +4245,15 @@
     "variant_predecessors": [
       {
         "variant": "E28",
-        "predecessor": "BMW 5 Series (E12)"
+        "predecessor": "BMW 5 Series (E12)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E12)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E28",
-        "successor": "BMW 5 Series (E34)"
+        "successor": "BMW 5 Series (E34)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E34)"
       }
     ]
   },
@@ -4474,13 +4539,15 @@
     "variant_predecessors": [
       {
         "variant": "E30",
-        "predecessor": "BMW 3 Series (E21)"
+        "predecessor": "BMW 3 Series (E21)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E21)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E30",
-        "successor": "BMW 3 Series (E36)"
+        "successor": "BMW 3 Series (E36)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E36)"
       }
     ]
   },
@@ -4619,13 +4686,15 @@
     "variant_predecessors": [
       {
         "variant": "E32",
-        "predecessor": "BMW 7 Series (E23)"
+        "predecessor": "BMW 7 Series (E23)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(E23)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E32",
-        "successor": "BMW 7 Series (E38)"
+        "successor": "BMW 7 Series (E38)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(E38)"
       }
     ]
   },
@@ -4894,13 +4963,15 @@
     "variant_predecessors": [
       {
         "variant": "E34",
-        "predecessor": "BMW 5 Series (E28)"
+        "predecessor": "BMW 5 Series (E28)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E28)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E34",
-        "successor": "BMW 5 Series (E39)"
+        "successor": "BMW 5 Series (E39)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E39)"
       }
     ]
   },
@@ -4956,13 +5027,15 @@
     "variant_predecessors": [
       {
         "variant": "Z1",
-        "predecessor": "BMW 507"
+        "predecessor": "BMW 507",
+        "url": "https://en.wikipedia.org/wiki/BMW_507"
       }
     ],
     "variant_successors": [
       {
         "variant": "Z1",
-        "successor": "BMW Z3"
+        "successor": "BMW Z3",
+        "url": "https://en.wikipedia.org/wiki/BMW_Z3"
       }
     ]
   },
@@ -5077,13 +5150,15 @@
     "variant_predecessors": [
       {
         "variant": "E31",
-        "predecessor": "BMW 6 Series (E24)"
+        "predecessor": "BMW 6 Series (E24)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E31",
-        "successor": "BMW 8 Series (G15)"
+        "successor": "BMW 8 Series (G15)",
+        "url": "https://en.wikipedia.org/wiki/BMW_8_Series_(G15)"
       }
     ]
   },
@@ -5385,13 +5460,15 @@
     "variant_predecessors": [
       {
         "variant": "E36",
-        "predecessor": "BMW 3 Series (E30)"
+        "predecessor": "BMW 3 Series (E30)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E30)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E36",
-        "successor": "BMW 3 Series (E46)"
+        "successor": "BMW 3 Series (E46)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E46)"
       }
     ]
   },
@@ -5598,13 +5675,15 @@
     "variant_predecessors": [
       {
         "variant": "E38",
-        "predecessor": "BMW 7 Series (E32)"
+        "predecessor": "BMW 7 Series (E32)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(E32)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E38",
-        "successor": "BMW 7 Series (E65)"
+        "successor": "BMW 7 Series (E65)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(E65)"
       }
     ]
   },
@@ -5859,13 +5938,15 @@
     "variant_predecessors": [
       {
         "variant": "Z3",
-        "predecessor": "BMW Z1"
+        "predecessor": "BMW Z1",
+        "url": "https://en.wikipedia.org/wiki/BMW_Z1"
       }
     ],
     "variant_successors": [
       {
         "variant": "Z3",
-        "successor": "BMW Z4 (E85)"
+        "successor": "BMW Z4 (E85)",
+        "url": "https://en.wikipedia.org/wiki/BMW_Z4_(E85)"
       }
     ]
   },
@@ -6161,13 +6242,15 @@
     "variant_predecessors": [
       {
         "variant": "E39",
-        "predecessor": "BMW 5 Series (E34)"
+        "predecessor": "BMW 5 Series (E34)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E34)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E39",
-        "successor": "BMW 5 Series (E60)"
+        "successor": "BMW 5 Series (E60)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E60)"
       }
     ]
   },
@@ -6544,13 +6627,15 @@
     "variant_predecessors": [
       {
         "variant": "E46",
-        "predecessor": "BMW 3 Series (E36)"
+        "predecessor": "BMW 3 Series (E36)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E36)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E46",
-        "successor": "BMW 3 Series (E90)"
+        "successor": "BMW 3 Series (E90)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E90)"
       }
     ]
   },
@@ -6682,7 +6767,8 @@
     "variant_successors": [
       {
         "variant": "E53",
-        "successor": "BMW X5 (E70)"
+        "successor": "BMW X5 (E70)",
+        "url": "https://en.wikipedia.org/wiki/BMW_X5_(E70)"
       }
     ]
   },
@@ -6976,21 +7062,25 @@
     "variant_predecessors": [
       {
         "variant": "E65",
-        "predecessor": "BMW 7 Series (E38)"
+        "predecessor": "BMW 7 Series (E38)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(E38)"
       },
       {
         "variant": "E66",
-        "predecessor": "BMW 7 Series (E38)"
+        "predecessor": "BMW 7 Series (E38)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(E38)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E65",
-        "successor": "BMW 7 Series (F01)"
+        "successor": "BMW 7 Series (F01)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(F01)"
       },
       {
         "variant": "E66",
-        "successor": "BMW 7 Series (F01)"
+        "successor": "BMW 7 Series (F01)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(F01)"
       }
     ]
   },
@@ -7207,21 +7297,25 @@
     "variant_predecessors": [
       {
         "variant": "E85",
-        "predecessor": "BMW Z3"
+        "predecessor": "BMW Z3",
+        "url": "https://en.wikipedia.org/wiki/BMW_Z3"
       },
       {
         "variant": "E86",
-        "predecessor": "BMW Z3"
+        "predecessor": "BMW Z3",
+        "url": "https://en.wikipedia.org/wiki/BMW_Z3"
       }
     ],
     "variant_successors": [
       {
         "variant": "E85",
-        "successor": "BMW Z4 (E89)"
+        "successor": "BMW Z4 (E89)",
+        "url": "https://en.wikipedia.org/wiki/BMW_Z4_(E89)"
       },
       {
         "variant": "E86",
-        "successor": "BMW Z4 (E89)"
+        "successor": "BMW Z4 (E89)",
+        "url": "https://en.wikipedia.org/wiki/BMW_Z4_(E89)"
       }
     ]
   },
@@ -7615,21 +7709,25 @@
     "variant_predecessors": [
       {
         "variant": "E60",
-        "predecessor": "BMW 5 Series (E39)"
+        "predecessor": "BMW 5 Series (E39)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E39)"
       },
       {
         "variant": "E61",
-        "predecessor": "BMW 5 Series (E39)"
+        "predecessor": "BMW 5 Series (E39)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E39)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E60",
-        "successor": "BMW 5 Series (F10)"
+        "successor": "BMW 5 Series (F10)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(F10)"
       },
       {
         "variant": "E61",
-        "successor": "BMW 5 Series (F10)"
+        "successor": "BMW 5 Series (F10)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(F10)"
       }
     ]
   },
@@ -7791,21 +7889,25 @@
     "variant_predecessors": [
       {
         "variant": "E63",
-        "predecessor": "BMW 6 Series (E24) (nameplate)"
+        "predecessor": "BMW 6 Series (E24) (nameplate)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"
       },
       {
         "variant": "E64",
-        "predecessor": "BMW 6 Series (E24) (nameplate)"
+        "predecessor": "BMW 6 Series (E24) (nameplate)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E63",
-        "successor": "BMW 6 Series (F12)"
+        "successor": "BMW 6 Series (F12)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)"
       },
       {
         "variant": "E64",
-        "successor": "BMW 6 Series (F12)"
+        "successor": "BMW 6 Series (F12)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)"
       }
     ]
   },
@@ -8373,37 +8475,57 @@
     "variant_predecessors": [
       {
         "variant": "E81",
-        "predecessor": "BMW 3 Series Compact"
+        "predecessor": "BMW 3 Series Compact",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_Compact"
       },
       {
         "variant": "E82",
-        "predecessor": "BMW 3 Series Compact"
+        "predecessor": "BMW 3 Series Compact",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_Compact"
       },
       {
         "variant": "E87",
-        "predecessor": "BMW 3 Series Compact"
+        "predecessor": "BMW 3 Series Compact",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_Compact"
       },
       {
         "variant": "E88",
-        "predecessor": "BMW 3 Series Compact"
+        "predecessor": "BMW 3 Series Compact",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_Compact"
       }
     ],
     "variant_successors": [
       {
         "variant": "E81",
-        "successor": "E81/E87: 1 Series (F20/F21) E82/E88: 2 Series (F22/F23)"
+        "successor": "E81/E87: 1 Series (F20/F21) E82/E88: 2 Series (F22/F23)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_1_Series_(F20)",
+          "https://en.wikipedia.org/wiki/BMW_2_Series_(F22)"
+        ]
       },
       {
         "variant": "E82",
-        "successor": "E81/E87: 1 Series (F20/F21) E82/E88: 2 Series (F22/F23)"
+        "successor": "E81/E87: 1 Series (F20/F21) E82/E88: 2 Series (F22/F23)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_1_Series_(F20)",
+          "https://en.wikipedia.org/wiki/BMW_2_Series_(F22)"
+        ]
       },
       {
         "variant": "E87",
-        "successor": "E81/E87: 1 Series (F20/F21) E82/E88: 2 Series (F22/F23)"
+        "successor": "E81/E87: 1 Series (F20/F21) E82/E88: 2 Series (F22/F23)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_1_Series_(F20)",
+          "https://en.wikipedia.org/wiki/BMW_2_Series_(F22)"
+        ]
       },
       {
         "variant": "E88",
-        "successor": "E81/E87: 1 Series (F20/F21) E82/E88: 2 Series (F22/F23)"
+        "successor": "E81/E87: 1 Series (F20/F21) E82/E88: 2 Series (F22/F23)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_1_Series_(F20)",
+          "https://en.wikipedia.org/wiki/BMW_2_Series_(F22)"
+        ]
       }
     ]
   },
@@ -8898,37 +9020,57 @@
     "variant_predecessors": [
       {
         "variant": "E90",
-        "predecessor": "BMW 3 Series (E46)"
+        "predecessor": "BMW 3 Series (E46)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E46)"
       },
       {
         "variant": "E91",
-        "predecessor": "BMW 3 Series (E46)"
+        "predecessor": "BMW 3 Series (E46)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E46)"
       },
       {
         "variant": "E92",
-        "predecessor": "BMW 3 Series (E46)"
+        "predecessor": "BMW 3 Series (E46)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E46)"
       },
       {
         "variant": "E93",
-        "predecessor": "BMW 3 Series (E46)"
+        "predecessor": "BMW 3 Series (E46)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E46)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E90",
-        "successor": "BMW 3 Series (F30/F31) (saloons and estates) BMW 4 Series (F32/F33) (coupés and convertibles)"
+        "successor": "BMW 3 Series (F30/F31) (saloons and estates) BMW 4 Series (F32/F33) (coupés and convertibles)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)",
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(F32)"
+        ]
       },
       {
         "variant": "E91",
-        "successor": "BMW 3 Series (F30/F31) (saloons and estates) BMW 4 Series (F32/F33) (coupés and convertibles)"
+        "successor": "BMW 3 Series (F30/F31) (saloons and estates) BMW 4 Series (F32/F33) (coupés and convertibles)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)",
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(F32)"
+        ]
       },
       {
         "variant": "E92",
-        "successor": "BMW 3 Series (F30/F31) (saloons and estates) BMW 4 Series (F32/F33) (coupés and convertibles)"
+        "successor": "BMW 3 Series (F30/F31) (saloons and estates) BMW 4 Series (F32/F33) (coupés and convertibles)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)",
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(F32)"
+        ]
       },
       {
         "variant": "E93",
-        "successor": "BMW 3 Series (F30/F31) (saloons and estates) BMW 4 Series (F32/F33) (coupés and convertibles)"
+        "successor": "BMW 3 Series (F30/F31) (saloons and estates) BMW 4 Series (F32/F33) (coupés and convertibles)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)",
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(F32)"
+        ]
       }
     ]
   },
@@ -9177,13 +9319,15 @@
     "variant_predecessors": [
       {
         "variant": "E70",
-        "predecessor": "BMW X5 (E53)"
+        "predecessor": "BMW X5 (E53)",
+        "url": "https://en.wikipedia.org/wiki/BMW_X5_(E53)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E70",
-        "successor": "BMW X5 (F15)"
+        "successor": "BMW X5 (F15)",
+        "url": "https://en.wikipedia.org/wiki/BMW_X5_(F15)"
       }
     ]
   },
@@ -9586,21 +9730,25 @@
     "variant_predecessors": [
       {
         "variant": "F01",
-        "predecessor": "BMW 7 Series (E65)"
+        "predecessor": "BMW 7 Series (E65)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(E65)"
       },
       {
         "variant": "F02",
-        "predecessor": "BMW 7 Series (E65)"
+        "predecessor": "BMW 7 Series (E65)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(E65)"
       }
     ],
     "variant_successors": [
       {
         "variant": "F01",
-        "successor": "BMW 7 Series (G11)"
+        "successor": "BMW 7 Series (G11)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(G11)"
       },
       {
         "variant": "F02",
-        "successor": "BMW 7 Series (G11)"
+        "successor": "BMW 7 Series (G11)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(G11)"
       }
     ]
   },
@@ -9746,13 +9894,15 @@
     "variant_predecessors": [
       {
         "variant": "E89",
-        "predecessor": "BMW Z4 (E85)"
+        "predecessor": "BMW Z4 (E85)",
+        "url": "https://en.wikipedia.org/wiki/BMW_Z4_(E85)"
       }
     ],
     "variant_successors": [
       {
         "variant": "E89",
-        "successor": "BMW Z4 (G29)"
+        "successor": "BMW Z4 (G29)",
+        "url": "https://en.wikipedia.org/wiki/BMW_Z4_(G29)"
       }
     ]
   },
@@ -9997,7 +10147,8 @@
     "variant_successors": [
       {
         "variant": "E84",
-        "successor": "BMW X1 (F48)"
+        "successor": "BMW X1 (F48)",
+        "url": "https://en.wikipedia.org/wiki/BMW_X1_(F48)"
       }
     ]
   },
@@ -10388,29 +10539,44 @@
     "variant_predecessors": [
       {
         "variant": "F07",
-        "predecessor": "BMW 5 Series (E60)"
+        "predecessor": "BMW 5 Series (E60)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E60)"
       },
       {
         "variant": "F10",
-        "predecessor": "BMW 5 Series (E60)"
+        "predecessor": "BMW 5 Series (E60)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E60)"
       },
       {
         "variant": "F11",
-        "predecessor": "BMW 5 Series (E60)"
+        "predecessor": "BMW 5 Series (E60)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E60)"
       }
     ],
     "variant_successors": [
       {
         "variant": "F07",
-        "successor": "BMW 5 Series (G30) BMW 6 Series Gran Turismo (F07)"
+        "successor": "BMW 5 Series (G30) BMW 6 Series Gran Turismo (F07)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_5_Series_(G30)",
+          "https://en.wikipedia.org/wiki/BMW_6_Series_Gran_Turismo"
+        ]
       },
       {
         "variant": "F10",
-        "successor": "BMW 5 Series (G30) BMW 6 Series Gran Turismo (F07)"
+        "successor": "BMW 5 Series (G30) BMW 6 Series Gran Turismo (F07)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_5_Series_(G30)",
+          "https://en.wikipedia.org/wiki/BMW_6_Series_Gran_Turismo"
+        ]
       },
       {
         "variant": "F11",
-        "successor": "BMW 5 Series (G30) BMW 6 Series Gran Turismo (F07)"
+        "successor": "BMW 5 Series (G30) BMW 6 Series Gran Turismo (F07)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_5_Series_(G30)",
+          "https://en.wikipedia.org/wiki/BMW_6_Series_Gran_Turismo"
+        ]
       }
     ]
   },
@@ -10567,29 +10733,44 @@
     "variant_predecessors": [
       {
         "variant": "F06",
-        "predecessor": "BMW 6 Series (E63)"
+        "predecessor": "BMW 6 Series (E63)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)"
       },
       {
         "variant": "F12",
-        "predecessor": "BMW 6 Series (E63)"
+        "predecessor": "BMW 6 Series (E63)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)"
       },
       {
         "variant": "F13",
-        "predecessor": "BMW 6 Series (E63)"
+        "predecessor": "BMW 6 Series (E63)",
+        "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)"
       }
     ],
     "variant_successors": [
       {
         "variant": "F06",
-        "successor": "BMW 8 Series (G15) (for body style and class), BMW 6 Series (G32) (for 6 series nameplate)"
+        "successor": "BMW 8 Series (G15) (for body style and class), BMW 6 Series (G32) (for 6 series nameplate)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_8_Series_(G15)",
+          "https://en.wikipedia.org/wiki/BMW_6_Series_(G32)"
+        ]
       },
       {
         "variant": "F12",
-        "successor": "BMW 8 Series (G15) (for body style and class), BMW 6 Series (G32) (for 6 series nameplate)"
+        "successor": "BMW 8 Series (G15) (for body style and class), BMW 6 Series (G32) (for 6 series nameplate)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_8_Series_(G15)",
+          "https://en.wikipedia.org/wiki/BMW_6_Series_(G32)"
+        ]
       },
       {
         "variant": "F13",
-        "successor": "BMW 8 Series (G15) (for body style and class), BMW 6 Series (G32) (for 6 series nameplate)"
+        "successor": "BMW 8 Series (G15) (for body style and class), BMW 6 Series (G32) (for 6 series nameplate)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_8_Series_(G15)",
+          "https://en.wikipedia.org/wiki/BMW_6_Series_(G32)"
+        ]
       }
     ]
   },
@@ -11184,21 +11365,25 @@
     "variant_predecessors": [
       {
         "variant": "F20",
-        "predecessor": "BMW 1 Series (E87)"
+        "predecessor": "BMW 1 Series (E87)",
+        "url": "https://en.wikipedia.org/wiki/BMW_1_Series_(E87)"
       },
       {
         "variant": "F21",
-        "predecessor": "BMW 1 Series (E87)"
+        "predecessor": "BMW 1 Series (E87)",
+        "url": "https://en.wikipedia.org/wiki/BMW_1_Series_(E87)"
       }
     ],
     "variant_successors": [
       {
         "variant": "F20",
-        "successor": "BMW 1 Series (F40)"
+        "successor": "BMW 1 Series (F40)",
+        "url": "https://en.wikipedia.org/wiki/BMW_1_Series_(F40)"
       },
       {
         "variant": "F21",
-        "successor": "BMW 1 Series (F40)"
+        "successor": "BMW 1 Series (F40)",
+        "url": "https://en.wikipedia.org/wiki/BMW_1_Series_(F40)"
       }
     ]
   },
@@ -11619,29 +11804,44 @@
     "variant_predecessors": [
       {
         "variant": "F30",
-        "predecessor": "BMW 3 Series (E90)"
+        "predecessor": "BMW 3 Series (E90)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E90)"
       },
       {
         "variant": "F31",
-        "predecessor": "BMW 3 Series (E90)"
+        "predecessor": "BMW 3 Series (E90)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E90)"
       },
       {
         "variant": "F34",
-        "predecessor": "BMW 3 Series (E90)"
+        "predecessor": "BMW 3 Series (E90)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E90)"
       }
     ],
     "variant_successors": [
       {
         "variant": "F30",
-        "successor": "BMW 3 Series (G20) BMW 4 Series (G26) Gran Coupé (F34)"
+        "successor": "BMW 3 Series (G20) BMW 4 Series (G26) Gran Coupé (F34)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(G20)",
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(G22)"
+        ]
       },
       {
         "variant": "F31",
-        "successor": "BMW 3 Series (G20) BMW 4 Series (G26) Gran Coupé (F34)"
+        "successor": "BMW 3 Series (G20) BMW 4 Series (G26) Gran Coupé (F34)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(G20)",
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(G22)"
+        ]
       },
       {
         "variant": "F34",
-        "successor": "BMW 3 Series (G20) BMW 4 Series (G26) Gran Coupé (F34)"
+        "successor": "BMW 3 Series (G20) BMW 4 Series (G26) Gran Coupé (F34)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(G20)",
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(G22)"
+        ]
       }
     ]
   },
@@ -12028,29 +12228,35 @@
     "variant_predecessors": [
       {
         "variant": "F32",
-        "predecessor": "BMW 3 Series (E92/E93)"
+        "predecessor": "BMW 3 Series (E92/E93)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E90)"
       },
       {
         "variant": "F33",
-        "predecessor": "BMW 3 Series (E92/E93)"
+        "predecessor": "BMW 3 Series (E92/E93)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E90)"
       },
       {
         "variant": "F36",
-        "predecessor": "BMW 3 Series (E92/E93)"
+        "predecessor": "BMW 3 Series (E92/E93)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E90)"
       }
     ],
     "variant_successors": [
       {
         "variant": "F32",
-        "successor": "BMW 4 Series (G22)"
+        "successor": "BMW 4 Series (G22)",
+        "url": "https://en.wikipedia.org/wiki/BMW_4_Series_(G22)"
       },
       {
         "variant": "F33",
-        "successor": "BMW 4 Series (G22)"
+        "successor": "BMW 4 Series (G22)",
+        "url": "https://en.wikipedia.org/wiki/BMW_4_Series_(G22)"
       },
       {
         "variant": "F36",
-        "successor": "BMW 4 Series (G22)"
+        "successor": "BMW 4 Series (G22)",
+        "url": "https://en.wikipedia.org/wiki/BMW_4_Series_(G22)"
       }
     ]
   },
@@ -12334,21 +12540,25 @@
     "variant_predecessors": [
       {
         "variant": "F22",
-        "predecessor": "BMW 1 Series (E82/E88)"
+        "predecessor": "BMW 1 Series (E82/E88)",
+        "url": "https://en.wikipedia.org/wiki/BMW_1_Series_(E87)"
       },
       {
         "variant": "F23",
-        "predecessor": "BMW 1 Series (E82/E88)"
+        "predecessor": "BMW 1 Series (E82/E88)",
+        "url": "https://en.wikipedia.org/wiki/BMW_1_Series_(E87)"
       }
     ],
     "variant_successors": [
       {
         "variant": "F22",
-        "successor": "BMW 2 Series (G42)"
+        "successor": "BMW 2 Series (G42)",
+        "url": "https://en.wikipedia.org/wiki/BMW_2_Series_(G42)"
       },
       {
         "variant": "F23",
-        "successor": "BMW 2 Series (G42)"
+        "successor": "BMW 2 Series (G42)",
+        "url": "https://en.wikipedia.org/wiki/BMW_2_Series_(G42)"
       }
     ]
   },
@@ -12553,13 +12763,15 @@
     "variant_predecessors": [
       {
         "variant": "F15",
-        "predecessor": "BMW X5 (E70)"
+        "predecessor": "BMW X5 (E70)",
+        "url": "https://en.wikipedia.org/wiki/BMW_X5_(E70)"
       }
     ],
     "variant_successors": [
       {
         "variant": "F15",
-        "successor": "BMW X5 (G05)"
+        "successor": "BMW X5 (G05)",
+        "url": "https://en.wikipedia.org/wiki/BMW_X5_(G05)"
       }
     ]
   },
@@ -12742,7 +12954,8 @@
     "variant_predecessors": [
       {
         "variant": "i8",
-        "predecessor": "BMW Vision EfficientDynamics (Concept) BMW ActiveE"
+        "predecessor": "BMW Vision EfficientDynamics (Concept) BMW ActiveE",
+        "url": "https://en.wikipedia.org/wiki/BMW_ActiveE"
       }
     ],
     "variant_successors": []
@@ -12880,7 +13093,8 @@
     "variant_successors": [
       {
         "variant": "F26",
-        "successor": "BMW iX4"
+        "successor": "BMW iX4",
+        "url": "https://en.wikipedia.org/wiki/BMW_iX4"
       }
     ]
   },
@@ -13184,13 +13398,15 @@
     "variant_predecessors": [
       {
         "variant": "F48",
-        "predecessor": "BMW X1 (E84)"
+        "predecessor": "BMW X1 (E84)",
+        "url": "https://en.wikipedia.org/wiki/BMW_X1_(E84)"
       }
     ],
     "variant_successors": [
       {
         "variant": "F48",
-        "successor": "BMW X1 (U11)"
+        "successor": "BMW X1 (U11)",
+        "url": "https://en.wikipedia.org/wiki/BMW_X1_(U11)"
       }
     ]
   },
@@ -13433,21 +13649,25 @@
     "variant_predecessors": [
       {
         "variant": "G11",
-        "predecessor": "BMW 7 Series (F01)"
+        "predecessor": "BMW 7 Series (F01)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(F01)"
       },
       {
         "variant": "G12",
-        "predecessor": "BMW 7 Series (F01)"
+        "predecessor": "BMW 7 Series (F01)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(F01)"
       }
     ],
     "variant_successors": [
       {
         "variant": "G11",
-        "successor": "BMW 7 Series (G70)"
+        "successor": "BMW 7 Series (G70)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(G70)"
       },
       {
         "variant": "G12",
-        "successor": "BMW 7 Series (G70)"
+        "successor": "BMW 7 Series (G70)",
+        "url": "https://en.wikipedia.org/wiki/BMW_7_Series_(G70)"
       }
     ]
   },
@@ -13780,21 +14000,25 @@
     "variant_predecessors": [
       {
         "variant": "G30",
-        "predecessor": "BMW 5 Series (F10)"
+        "predecessor": "BMW 5 Series (F10)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(F10)"
       },
       {
         "variant": "G31",
-        "predecessor": "BMW 5 Series (F10)"
+        "predecessor": "BMW 5 Series (F10)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(F10)"
       }
     ],
     "variant_successors": [
       {
         "variant": "G30",
-        "successor": "BMW 5 Series (G60)"
+        "successor": "BMW 5 Series (G60)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(G60)"
       },
       {
         "variant": "G31",
-        "successor": "BMW 5 Series (G60)"
+        "successor": "BMW 5 Series (G60)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(G60)"
       }
     ]
   },
@@ -13851,7 +14075,8 @@
     "variant_successors": [
       {
         "variant": "F52",
-        "successor": "BMW 2 Series Gran Coupé L (F78)"
+        "successor": "BMW 2 Series Gran Coupé L (F78)",
+        "url": "https://en.wikipedia.org/wiki/BMW_2_Series_Gran_Coupé_(F78)"
       }
     ]
   },
@@ -14010,13 +14235,18 @@
     "variant_predecessors": [
       {
         "variant": "G32",
-        "predecessor": "BMW 5 Series Gran Turismo BMW 6 Series Gran Coupe"
+        "predecessor": "BMW 5 Series Gran Turismo BMW 6 Series Gran Coupe",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_5_Series_Gran_Turismo",
+          "https://en.wikipedia.org/wiki/BMW_6_Series_(F06/F12/F13)"
+        ]
       }
     ],
     "variant_successors": [
       {
         "variant": "G32",
-        "successor": "BMW 5 Series (G68)"
+        "successor": "BMW 5 Series (G68)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(G60)"
       }
     ]
   },
@@ -14545,7 +14775,8 @@
     "variant_successors": [
       {
         "variant": "G02",
-        "successor": "BMW iX4"
+        "successor": "BMW iX4",
+        "url": "https://en.wikipedia.org/wiki/BMW_iX4"
       }
     ]
   },
@@ -14647,7 +14878,8 @@
     "variant_predecessors": [
       {
         "variant": "G29",
-        "predecessor": "BMW Z4 (E89)"
+        "predecessor": "BMW Z4 (E89)",
+        "url": "https://en.wikipedia.org/wiki/BMW_Z4_(E89)"
       }
     ],
     "variant_successors": []
@@ -14802,11 +15034,19 @@
     "variant_predecessors": [
       {
         "variant": "G14",
-        "predecessor": "BMW 6 Series (F06/F12/F13) (for body style) BMW 8 Series (E31) (for 8-series nameplate)"
+        "predecessor": "BMW 6 Series (F06/F12/F13) (for body style) BMW 8 Series (E31) (for 8-series nameplate)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_6_Series_(F06/F12/F13)",
+          "https://en.wikipedia.org/wiki/BMW_8_Series_(E31)"
+        ]
       },
       {
         "variant": "G15",
-        "predecessor": "BMW 6 Series (F06/F12/F13) (for body style) BMW 8 Series (E31) (for 8-series nameplate)"
+        "predecessor": "BMW 6 Series (F06/F12/F13) (for body style) BMW 8 Series (E31) (for 8-series nameplate)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_6_Series_(F06/F12/F13)",
+          "https://en.wikipedia.org/wiki/BMW_8_Series_(E31)"
+        ]
       }
     ],
     "variant_successors": []
@@ -14966,13 +15206,15 @@
     "variant_predecessors": [
       {
         "variant": "F40",
-        "predecessor": "BMW 1 Series (F20)"
+        "predecessor": "BMW 1 Series (F20)",
+        "url": "https://en.wikipedia.org/wiki/BMW_1_Series_(F20)"
       }
     ],
     "variant_successors": [
       {
         "variant": "F40",
-        "successor": "BMW 1 Series (F70)"
+        "successor": "BMW 1 Series (F70)",
+        "url": "https://en.wikipedia.org/wiki/BMW_1_Series_(F70)"
       }
     ]
   },
