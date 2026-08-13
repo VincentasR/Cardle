@@ -10,6 +10,11 @@ from cardle.extract.data.fetch import fetch_page
 BMW_LIST_URL = "https://en.wikipedia.org/wiki/List_of_BMW_vehicles"
 WIKIPEDIA_BASE_URL = "https://en.wikipedia.org"
 
+SKIP_NAMES = {
+    "325",
+    "505",
+}
+
 
 def normalize_text(text: str) -> str:
     """Normalize visible HTML text for matching."""
@@ -239,12 +244,14 @@ def extract_links_from_column(
 
             seen_urls.add(url)
 
-            results.append(
-                {
-                    "name": name,
-                    "url": url,
-                }
-            )
+            if name in SKIP_NAMES:
+                continue
+
+            results.append({
+                "manufacturer": "BMW",
+                "name": name,
+                "url": url,
+            })
 
     return results
 

@@ -1,5 +1,11 @@
 
 # Development Log
+## 2026-08-08
+
+### Progress
+- Corrected multiple bugs with variants, versions and corresponding engines.
+- Added production years
+- Added power.
 
 ## 2026-08-06
 

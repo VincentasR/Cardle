@@ -1,4 +1,6 @@
 import requests
+import json
+
 
 from cardle.extract.data.discover.bmw import (
     discover_bmw_vehicle_pages,
@@ -7,6 +9,9 @@ from cardle.extract.data.engine import (
     extract_variant_engines,
     extract_version_engines,
 )
+from cardle.extract.data.body_style import (
+    extract_variant_body_styles,
+)
 from cardle.extract.data.fetch import fetch_page
 from cardle.extract.data.infobox import extract_infobox
 from cardle.extract.data.manufacturer import extract_manufacturer
@@ -14,6 +19,18 @@ from cardle.extract.data.model import extract_model
 from cardle.extract.data.section import extract_section
 from cardle.extract.data.table.version_table import (
     extract_version_rows,
+)
+from cardle.extract.data.layout import (
+    extract_variant_layouts,
+)
+from cardle.extract.data.vehicle_class import (
+    extract_variant_vehicle_classes,
+)
+from cardle.extract.data.designer import (
+    extract_variant_designers,
+)
+from cardle.extract.data.lineage import (
+    extract_variant_lineage,
 )
 from cardle.extract.data.variant import extract_variants
 from cardle.extract.data.version import extract_versions
@@ -49,9 +66,7 @@ def scrape_car_page(
 
     infobox = extract_infobox(soup)
 
-    manufacturer = extract_manufacturer(
-        infobox
-    )
+    manufacturer = vehicle["manufacturer"]
 
     # ---------------------------------------------------------
     # Model
@@ -83,7 +98,28 @@ def scrape_car_page(
         if manufacturer is not None
         else []
     )
+    variant_lineage = extract_variant_lineage(
+        infobox=infobox,
+        variants=variants,
+    )
+    variant_designers = extract_variant_designers(
+        infobox=infobox,
+        variants=variants,
+    )
+    variant_vehicle_classes = extract_variant_vehicle_classes(
+        infobox=infobox,
+        variants=variants,
+    )
+    variant_body_styles = extract_variant_body_styles(
+        infobox=infobox,
+        variants=variants,
+    )
+    variant_layouts = extract_variant_layouts(
+        infobox=infobox,
+        variants=variants,
+    )
     variant_production = extract_variant_production(
+        soup=soup,
         infobox=infobox,
         variants=variants,
     )
@@ -98,6 +134,7 @@ def scrape_car_page(
     section = extract_section(
         soup=soup,
         variant_codes=variants,
+        url=url,
     )
 
     # ---------------------------------------------------------
@@ -152,16 +189,22 @@ def scrape_car_page(
         "version_engines": version_engines,
         "variant_engines": variant_engines,
         "variant_production": variant_production,
+        "variant_body_styles": variant_body_styles,
         "version_years": version_years,
         "version_power": version_power,
+        "variant_layouts": variant_layouts,
+        "variant_vehicle_classes": variant_vehicle_classes,
+        "variant_designers": variant_designers,
+        "variant_predecessors": variant_lineage["variant_predecessors"],
+        "variant_successors": variant_lineage["variant_successors"],
     }
 
 
 if __name__ == "__main__":
     vehicle_pages = discover_bmw_vehicle_pages()
-
+    print(vehicle_pages)
     results = []
-
+    # vehicle_pages = ({'manufacturer': 'BMW', 'name': 'iX3 (G08)', 'status': 'discontinued', 'url': '"https://en.wikipedia.org/wiki/BMW_303#309"'},)
     for vehicle in vehicle_pages:
         url = vehicle["url"]
 
@@ -197,3 +240,12 @@ if __name__ == "__main__":
                 **extracted_data,
             }
         )
+    with open("bmw_raw.json", "w", encoding="utf-8") as f:
+        json.dump(
+            results,
+            f,
+            ensure_ascii=False,
+            indent=2,
+        )
+
+    print("Saved results to bmw_raw.json")
