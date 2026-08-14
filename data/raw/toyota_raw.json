@@ -1,0 +1,177 @@
+[
+  {
+    "manufacturer": "Toyota",
+    "name": "Auris",
+    "status": "discontinued",
+    "url": "https://en.wikipedia.org/wiki/Toyota_Auris",
+    "model": "No Model",
+    "variants": [
+      "Auris"
+    ],
+    "versions": [
+      "150X 2WD",
+      "150X 4WD",
+      "180G 2WD",
+      "180G 4WD",
+      "RS",
+      "1.33 Dual VVT-i",
+      "1.4 VVT-i",
+      "1.6 Dual VVT-i",
+      "1.6 Valvematic",
+      "1.8 Dual VVT-i",
+      "1.8 Valvematic",
+      "1.4 D-4D",
+      "2.0 D-4D",
+      "2.2 D-CAT",
+      "120T 2WD",
+      "180S 2WD",
+      "RS 2WD"
+    ],
+    "version_engines": [],
+    "variant_engines": [],
+    "variant_production": [
+      {
+        "variant": "Auris",
+        "production": "October 2006 – July 2020"
+      }
+    ],
+    "variant_body_styles": [],
+    "version_years": [
+      {
+        "version": "150X 2WD",
+        "years": "2006–2012"
+      },
+      {
+        "version": "150X 4WD",
+        "years": "2006–2012"
+      },
+      {
+        "version": "180G 2WD",
+        "years": "2006–2009"
+      },
+      {
+        "version": "180G 2WD",
+        "years": "2009–2012"
+      },
+      {
+        "version": "180G 4WD",
+        "years": "2006–2009"
+      },
+      {
+        "version": "180G 4WD",
+        "years": "2009–2012"
+      },
+      {
+        "version": "RS",
+        "years": "2009–2012"
+      },
+      {
+        "version": "180G 2WD",
+        "years": "2006–2012"
+      },
+      {
+        "version": "180G 4WD",
+        "years": "2006–2012"
+      },
+      {
+        "version": "1.33 Dual VVT-i",
+        "years": "2008–2012"
+      },
+      {
+        "version": "1.4 VVT-i",
+        "years": "2007–2008"
+      },
+      {
+        "version": "1.6 Dual VVT-i",
+        "years": "2007–2009"
+      },
+      {
+        "version": "1.6 Valvematic",
+        "years": "2009–2012"
+      },
+      {
+        "version": "1.8 Dual VVT-i",
+        "years": "2007–2009"
+      },
+      {
+        "version": "1.8 Valvematic",
+        "years": "2009–2012"
+      },
+      {
+        "version": "1.4 D-4D",
+        "years": "2007–2009"
+      },
+      {
+        "version": "1.4 D-4D",
+        "years": "2009–2012"
+      },
+      {
+        "version": "2.0 D-4D",
+        "years": "2007–2009"
+      },
+      {
+        "version": "2.0 D-4D",
+        "years": "2009–2012"
+      },
+      {
+        "version": "2.2 D-CAT",
+        "years": "2007–2009"
+      },
+      {
+        "version": "2.2 D-CAT",
+        "years": "2009–2012"
+      },
+      {
+        "version": "120T 2WD",
+        "years": "2012–2018"
+      },
+      {
+        "version": "150X 2WD",
+        "years": "2012–2018"
+      },
+      {
+        "version": "150X 4WD",
+        "years": "2012–2018"
+      },
+      {
+        "version": "180S 2WD",
+        "years": "2012–2018"
+      },
+      {
+        "version": "RS 2WD",
+        "years": "2012–2018"
+      }
+    ],
+    "version_power": [],
+    "variant_layouts": [
+      {
+        "variant": "Auris",
+        "layout": "Front-engine, front-wheel drive Front-engine, four-wheel drive"
+      }
+    ],
+    "variant_vehicle_classes": [
+      {
+        "variant": "Auris",
+        "vehicle_class": "Compact car ( C )"
+      }
+    ],
+    "variant_designers": [],
+    "variant_predecessors": [
+      {
+        "variant": "Auris",
+        "predecessor": "Toyota Corolla (E120) – hatchback",
+        "url": "https://en.wikipedia.org/wiki/Toyota_Corolla_(E120)"
+      }
+    ],
+    "variant_successors": [
+      {
+        "variant": "Auris",
+        "successor": "Toyota Corolla (E210) – hatchback, estate car Toyota GR Corolla – Blade",
+        "urls": [
+          "https://en.wikipedia.org/wiki/Toyota_Corolla_(E210)",
+          "https://en.wikipedia.org/wiki/Toyota_GR_Corolla"
+        ]
+      }
+    ]
+  }
+]

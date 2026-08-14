@@ -1,5 +1,20 @@
 
 # Development Log
+
+## 2026-08-14
+
+Missed a couple of days of logging, there was a lot of back and forth going with what is going to be in the final canonized schema, how should I scrape things, what things should I scrape, how to deal with body styles being attached to different trim numbers (BMW), designers being in one string, models not showing up for specific variants of cars, versions being assigned to different variants when these variants do not contain these specific versions (for example long wheel based version assigned to a variant that only contains sedans and wagons), multiple capitalization/id generation/random letter normalization bugs, and many many more problems... but the schema was updated to a final (game) version! (You can find it in shcema.md) The schema will remain unchanged until the release of the game, the canonization and scraping of BMW's is done, however, it doesn't really generalize to multiple car brands (BMW's are described in way more detail then some other car manufacturers). So knowing that information I will move forward and will probably make the full game with just BMW and then decide how to integrate other cars into the game.
+
+I also decided against using RDF and SHACL for now as it is not necessary for the game and I do not think that this is something that I will touch until the game is fully playable.
+
+### Progress
+- Finished scraping (BMW)
+- Finished canonization pipeline
+
+### Next step
+
+- Convert json to neo4j
+
 ## 2026-08-08
 
 ### Progress

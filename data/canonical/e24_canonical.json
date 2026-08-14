@@ -1,657 +1,640 @@
-[
-  {
-    "manufacturer": {
+{
+  "manufacturers": [
+    {
       "id": "bmw",
       "name": "BMW"
-    },
-    "model": {
+    }
+  ],
+  "models": [
+    {
       "id": "bmw_new_six_coupes",
-      "name": "New Six coupés"
+      "name": "New Six coupés",
+      "manufacturer_id": "bmw"
     },
-    "engine_families": [
-      {
-        "id": "m30b25v",
-        "name": "M30B25V",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m30b28v",
-        "name": "M30B28V",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m30b30v",
-        "name": "M30B30V",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m30b30",
-        "name": "M30B30",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m30b32",
-        "name": "M30B32",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      }
-    ],
-    "variants": [
-      {
-        "id": "bmw_new_six_coupes_e9",
-        "source_url": "https://en.wikipedia.org/wiki/BMW_E9",
-        "name": "E9",
-        "production_start": 1968,
-        "production_end": 1975,
-        "body_styles": [
-          {
-            "id": "coupe",
-            "name": "Coupe"
-          }
-        ],
-        "vehicle_classes": [
-          {
-            "id": "grand_tourer",
-            "name": "Grand tourer"
-          }
-        ],
-        "engine_positions": [
-          {
-            "id": "front",
-            "name": "Front"
-          }
-        ],
-        "drivetrains": [
-          {
-            "id": "rwd",
-            "name": "RWD"
-          }
-        ],
-        "designers": [
-          {
-            "id": "wilhelm_hofmeister",
-            "name": "Wilhelm Hofmeister"
-          }
-        ],
-        "predecessors": [
-          {
-            "name": "BMW 2000C / 2000CS",
-            "url": "https://en.wikipedia.org/wiki/BMW_New_Class_coupé",
-            "target_id": null
-          }
-        ],
-        "successors": [
-          {
-            "name": "BMW 6 Series (E24)",
-            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
-            "target_id": "bmw_6_series_e24"
-          }
-        ],
-        "versions": [
-          {
-            "id": "bmw_new_six_coupes_e9_2_5_cs",
-            "name": "2.5 CS",
-            "power_hp": 150,
-            "engines": [
-              {
-                "engine_family_id": "m30b25v",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_new_six_coupes_e9_2800_cs",
-            "name": "2800 CS",
-            "power_hp": 168,
-            "engines": [
-              {
-                "engine_family_id": "m30b28v",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_new_six_coupes_e9_3_0_cs",
-            "name": "3.0 CS",
-            "power_hp": 178,
-            "engines": [
-              {
-                "engine_family_id": "m30b30v",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_new_six_coupes_e9_3_0_csi",
-            "name": "3.0 CSi",
-            "power_hp": 197,
-            "engines": [
-              {
-                "engine_family_id": "m30b30",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_new_six_coupes_e9_3_0_csl",
-            "name": "3.0 CSL",
-            "power_hp": 204,
-            "engines": [
-              {
-                "engine_family_id": "m30b30v",
-                "displacement_l": null
-              },
-              {
-                "engine_family_id": "m30b30",
-                "displacement_l": null
-              },
-              {
-                "engine_family_id": "m30b32",
-                "displacement_l": null
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "manufacturer": {
-      "id": "bmw",
-      "name": "BMW"
-    },
-    "model": {
+    {
       "id": "bmw_6_series",
-      "name": "6 Series"
+      "name": "6 Series",
+      "manufacturer_id": "bmw"
+    }
+  ],
+  "variants": [
+    {
+      "id": "bmw_new_six_coupes_e9",
+      "name": "E9",
+      "model_id": "bmw_new_six_coupes",
+      "source_url": "https://en.wikipedia.org/wiki/BMW_E9",
+      "production_start": 1968,
+      "production_end": 1975,
+      "body_style_ids": [
+        "coupe"
+      ],
+      "vehicle_class_ids": [
+        "grand_tourer"
+      ],
+      "engine_position_ids": [
+        "front"
+      ],
+      "drivetrain_ids": [
+        "rwd"
+      ],
+      "designer_ids": [
+        "wilhelm_hofmeister"
+      ],
+      "predecessors": [
+        {
+          "name": "BMW 2000C / 2000CS",
+          "url": "https://en.wikipedia.org/wiki/BMW_New_Class_coupé",
+          "target_id": null
+        }
+      ],
+      "successors": [
+        {
+          "name": "BMW 6 Series (E24)",
+          "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
+          "target_id": "bmw_6_series_e24"
+        }
+      ]
     },
-    "engine_families": [
-      {
-        "id": "m30b28",
-        "name": "M30B28",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m30b30v",
-        "name": "M30B30V",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m30b32",
-        "name": "M30B32",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m90",
-        "name": "M90",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m30b34",
-        "name": "M30B34",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m30b35",
-        "name": "M30B35",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m88_3",
-        "name": "M88/3",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "s38b35",
-        "name": "S38B35",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "m30b30",
-        "name": "M30B30",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      }
-    ],
-    "variants": [
-      {
-        "id": "bmw_6_series_e24",
-        "source_url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
-        "name": "E24",
-        "production_start": 1976,
-        "production_end": 1989,
-        "body_styles": [
-          {
-            "id": "coupe",
-            "name": "Coupe"
-          }
-        ],
-        "vehicle_classes": [
-          {
-            "id": "grand_tourer",
-            "name": "Grand tourer"
-          }
-        ],
-        "engine_positions": [
-          {
-            "id": "front",
-            "name": "Front"
-          }
-        ],
-        "drivetrains": [
-          {
-            "id": "rwd",
-            "name": "RWD"
-          }
-        ],
-        "designers": [
-          {
-            "id": "paul_bracq",
-            "name": "Paul Bracq"
-          }
-        ],
-        "predecessors": [
-          {
-            "name": "BMW E9",
-            "url": "https://en.wikipedia.org/wiki/BMW_E9",
-            "target_id": "bmw_new_six_coupes_e9"
-          }
-        ],
-        "successors": [
-          {
-            "name": "BMW 6 Series (E63)",
-            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)",
-            "target_id": "bmw_6_series_e63"
-          }
-        ],
-        "versions": [
-          {
-            "id": "bmw_6_series_e24_628csi",
-            "name": "628CSi",
-            "power_hp": 181,
-            "engines": [
-              {
-                "engine_family_id": "m30b28",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e24_630cs",
-            "name": "630CS",
-            "power_hp": 182,
-            "engines": [
-              {
-                "engine_family_id": "m30b30v",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e24_633csi",
-            "name": "633CSi",
-            "power_hp": 181,
-            "engines": [
-              {
-                "engine_family_id": "m30b32",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e24_635csi",
-            "name": "635CSi",
-            "power_hp": 208,
-            "engines": [
-              {
-                "engine_family_id": "m90",
-                "displacement_l": null
-              },
-              {
-                "engine_family_id": "m30b34",
-                "displacement_l": null
-              },
-              {
-                "engine_family_id": "m30b35",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e24_m635csi",
-            "name": "M635CSi",
-            "power_hp": 256,
-            "engines": [
-              {
-                "engine_family_id": "m88_3",
-                "displacement_l": null
-              },
-              {
-                "engine_family_id": "s38b35",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e24_630csi",
-            "name": "630CSi",
-            "power_hp": 176,
-            "engines": [
-              {
-                "engine_family_id": "m30b30",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e24_635csi_l6",
-            "name": "635CSi L6",
-            "power_hp": 208,
-            "engines": [
-              {
-                "engine_family_id": "m30b34",
-                "displacement_l": null
-              },
-              {
-                "engine_family_id": "m30b35",
-                "displacement_l": null
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e24_m6",
-            "name": "M6",
-            "power_hp": 256,
-            "engines": [
-              {
-                "engine_family_id": "s38b35",
-                "displacement_l": null
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "manufacturer": {
-      "id": "bmw",
-      "name": "BMW"
+    {
+      "id": "bmw_6_series_e24",
+      "name": "E24",
+      "model_id": "bmw_6_series",
+      "source_url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
+      "production_start": 1976,
+      "production_end": 1989,
+      "body_style_ids": [
+        "coupe"
+      ],
+      "vehicle_class_ids": [
+        "grand_tourer"
+      ],
+      "engine_position_ids": [
+        "front"
+      ],
+      "drivetrain_ids": [
+        "rwd"
+      ],
+      "designer_ids": [
+        "paul_bracq"
+      ],
+      "predecessors": [
+        {
+          "name": "BMW E9",
+          "url": "https://en.wikipedia.org/wiki/BMW_E9",
+          "target_id": "bmw_new_six_coupes_e9"
+        }
+      ],
+      "successors": [
+        {
+          "name": "BMW 6 Series (E63)",
+          "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)",
+          "target_id": "bmw_6_series_e63"
+        }
+      ]
     },
-    "model": {
-      "id": "bmw_6_series",
-      "name": "6 Series"
+    {
+      "id": "bmw_6_series_e63",
+      "name": "E63",
+      "model_id": "bmw_6_series",
+      "source_url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)",
+      "production_start": 2003,
+      "production_end": 2010,
+      "body_style_ids": [
+        "coupe"
+      ],
+      "vehicle_class_ids": [
+        "grand_tourer"
+      ],
+      "engine_position_ids": [],
+      "drivetrain_ids": [
+        "rwd"
+      ],
+      "designer_ids": [
+        "adrian_van_hooydonk"
+      ],
+      "predecessors": [
+        {
+          "name": "BMW 6 Series (E24) (nameplate)",
+          "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
+          "target_id": "bmw_6_series_e24"
+        }
+      ],
+      "successors": [
+        {
+          "name": "BMW 6 Series (F12)",
+          "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)",
+          "target_id": null
+        }
+      ]
     },
-    "engine_families": [
-      {
-        "id": "n52",
-        "name": "N52",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "n53",
-        "name": "N53",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      },
-      {
-        "id": "n62",
-        "name": "N62",
-        "cylinder_count": 8,
-        "arrangement": "V"
-      },
-      {
-        "id": "s85",
-        "name": "S85",
-        "cylinder_count": 10,
-        "arrangement": "V"
-      },
-      {
-        "id": "m57",
-        "name": "M57",
-        "cylinder_count": 6,
-        "arrangement": "Inline"
-      }
-    ],
-    "variants": [
-      {
-        "id": "bmw_6_series_e63",
-        "source_url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)",
-        "name": "E63",
-        "production_start": 2003,
-        "production_end": 2010,
-        "body_styles": [
-          {
-            "id": "coupe",
-            "name": "Coupe"
-          }
-        ],
-        "vehicle_classes": [
-          {
-            "id": "grand_tourer",
-            "name": "Grand tourer"
-          }
-        ],
-        "engine_positions": [],
-        "drivetrains": [],
-        "designers": [
-          {
-            "id": "adrian_van_hooydonk",
-            "name": "Adrian van Hooydonk"
-          }
-        ],
-        "predecessors": [
-          {
-            "name": "BMW 6 Series (E24) (nameplate)",
-            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
-            "target_id": "bmw_6_series_e24"
-          }
-        ],
-        "successors": [
-          {
-            "name": "BMW 6 Series (F12)",
-            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)",
-            "target_id": null
-          }
-        ],
-        "versions": [
-          {
-            "id": "bmw_6_series_e63_630ci",
-            "name": "630Ci",
-            "power_hp": 255,
-            "engines": [
-              {
-                "engine_family_id": "n52",
-                "displacement_l": 3.0
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e63_630i",
-            "name": "630i",
-            "power_hp": 255,
-            "engines": [
-              {
-                "engine_family_id": "n53",
-                "displacement_l": 3.0
-              },
-              {
-                "engine_family_id": "n52",
-                "displacement_l": 3.0
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e63_645ci",
-            "name": "645Ci",
-            "power_hp": 329,
-            "engines": [
-              {
-                "engine_family_id": "n62",
-                "displacement_l": 4.4
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e63_650i",
-            "name": "650i",
-            "power_hp": 362,
-            "engines": [
-              {
-                "engine_family_id": "n62",
-                "displacement_l": 4.8
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e63_m6",
-            "name": "M6",
-            "power_hp": 500,
-            "engines": [
-              {
-                "engine_family_id": "s85",
-                "displacement_l": 5.0
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e63_635d",
-            "name": "635d",
-            "power_hp": 282,
-            "engines": [
-              {
-                "engine_family_id": "m57",
-                "displacement_l": 3.0
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "bmw_6_series_e64",
-        "source_url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)",
-        "name": "E64",
-        "production_start": 2003,
-        "production_end": 2010,
-        "body_styles": [
-          {
-            "id": "convertible",
-            "name": "Convertible"
-          }
-        ],
-        "vehicle_classes": [
-          {
-            "id": "grand_tourer",
-            "name": "Grand tourer"
-          }
-        ],
-        "engine_positions": [],
-        "drivetrains": [],
-        "designers": [
-          {
-            "id": "adrian_van_hooydonk",
-            "name": "Adrian van Hooydonk"
-          }
-        ],
-        "predecessors": [
-          {
-            "name": "BMW 6 Series (E24) (nameplate)",
-            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
-            "target_id": "bmw_6_series_e24"
-          }
-        ],
-        "successors": [
-          {
-            "name": "BMW 6 Series (F12)",
-            "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)",
-            "target_id": null
-          }
-        ],
-        "versions": [
-          {
-            "id": "bmw_6_series_e64_630ci",
-            "name": "630Ci",
-            "power_hp": 255,
-            "engines": [
-              {
-                "engine_family_id": "n52",
-                "displacement_l": 3.0
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e64_630i",
-            "name": "630i",
-            "power_hp": 255,
-            "engines": [
-              {
-                "engine_family_id": "n53",
-                "displacement_l": 3.0
-              },
-              {
-                "engine_family_id": "n52",
-                "displacement_l": 3.0
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e64_645ci",
-            "name": "645Ci",
-            "power_hp": 329,
-            "engines": [
-              {
-                "engine_family_id": "n62",
-                "displacement_l": 4.4
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e64_650i",
-            "name": "650i",
-            "power_hp": 362,
-            "engines": [
-              {
-                "engine_family_id": "n62",
-                "displacement_l": 4.8
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e64_m6",
-            "name": "M6",
-            "power_hp": 500,
-            "engines": [
-              {
-                "engine_family_id": "s85",
-                "displacement_l": 5.0
-              }
-            ]
-          },
-          {
-            "id": "bmw_6_series_e64_635d",
-            "name": "635d",
-            "power_hp": 282,
-            "engines": [
-              {
-                "engine_family_id": "m57",
-                "displacement_l": 3.0
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-]
+    {
+      "id": "bmw_6_series_e64",
+      "name": "E64",
+      "model_id": "bmw_6_series",
+      "source_url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E63)",
+      "production_start": 2003,
+      "production_end": 2010,
+      "body_style_ids": [
+        "convertible"
+      ],
+      "vehicle_class_ids": [
+        "grand_tourer"
+      ],
+      "engine_position_ids": [],
+      "drivetrain_ids": [
+        "rwd"
+      ],
+      "designer_ids": [
+        "adrian_van_hooydonk"
+      ],
+      "predecessors": [
+        {
+          "name": "BMW 6 Series (E24) (nameplate)",
+          "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(E24)",
+          "target_id": "bmw_6_series_e24"
+        }
+      ],
+      "successors": [
+        {
+          "name": "BMW 6 Series (F12)",
+          "url": "https://en.wikipedia.org/wiki/BMW_6_Series_(F12)",
+          "target_id": null
+        }
+      ]
+    }
+  ],
+  "versions": [
+    {
+      "id": "bmw_new_six_coupes_e9_2_5_cs",
+      "name": "2.5 CS",
+      "variant_id": "bmw_new_six_coupes_e9",
+      "power_hp": 150,
+      "engines": [
+        {
+          "engine_family_id": "m30b25v",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_new_six_coupes_e9_2800_cs",
+      "name": "2800 CS",
+      "variant_id": "bmw_new_six_coupes_e9",
+      "power_hp": 168,
+      "engines": [
+        {
+          "engine_family_id": "m30b28v",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_new_six_coupes_e9_3_0_cs",
+      "name": "3.0 CS",
+      "variant_id": "bmw_new_six_coupes_e9",
+      "power_hp": 178,
+      "engines": [
+        {
+          "engine_family_id": "m30b30v",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_new_six_coupes_e9_3_0_csi",
+      "name": "3.0 CSi",
+      "variant_id": "bmw_new_six_coupes_e9",
+      "power_hp": 197,
+      "engines": [
+        {
+          "engine_family_id": "m30b30",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_new_six_coupes_e9_3_0_csl",
+      "name": "3.0 CSL",
+      "variant_id": "bmw_new_six_coupes_e9",
+      "power_hp": 204,
+      "engines": [
+        {
+          "engine_family_id": "m30b30v",
+          "displacement_l": null
+        },
+        {
+          "engine_family_id": "m30b30",
+          "displacement_l": null
+        },
+        {
+          "engine_family_id": "m30b32",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e24_628csi",
+      "name": "628CSi",
+      "variant_id": "bmw_6_series_e24",
+      "power_hp": 181,
+      "engines": [
+        {
+          "engine_family_id": "m30b28",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e24_630cs",
+      "name": "630CS",
+      "variant_id": "bmw_6_series_e24",
+      "power_hp": 182,
+      "engines": [
+        {
+          "engine_family_id": "m30b30v",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e24_633csi",
+      "name": "633CSi",
+      "variant_id": "bmw_6_series_e24",
+      "power_hp": 181,
+      "engines": [
+        {
+          "engine_family_id": "m30b32",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e24_635csi",
+      "name": "635CSi",
+      "variant_id": "bmw_6_series_e24",
+      "power_hp": 208,
+      "engines": [
+        {
+          "engine_family_id": "m90",
+          "displacement_l": null
+        },
+        {
+          "engine_family_id": "m30b34",
+          "displacement_l": null
+        },
+        {
+          "engine_family_id": "m30b35",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e24_m635csi",
+      "name": "M635CSi",
+      "variant_id": "bmw_6_series_e24",
+      "power_hp": 256,
+      "engines": [
+        {
+          "engine_family_id": "m88_3",
+          "displacement_l": null
+        },
+        {
+          "engine_family_id": "s38b35",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e24_630csi",
+      "name": "630CSi",
+      "variant_id": "bmw_6_series_e24",
+      "power_hp": 176,
+      "engines": [
+        {
+          "engine_family_id": "m30b30",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e24_635csi_l6",
+      "name": "635CSi L6",
+      "variant_id": "bmw_6_series_e24",
+      "power_hp": 208,
+      "engines": [
+        {
+          "engine_family_id": "m30b34",
+          "displacement_l": null
+        },
+        {
+          "engine_family_id": "m30b35",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e24_m6",
+      "name": "M6",
+      "variant_id": "bmw_6_series_e24",
+      "power_hp": 256,
+      "engines": [
+        {
+          "engine_family_id": "s38b35",
+          "displacement_l": null
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e63_630ci",
+      "name": "630Ci",
+      "variant_id": "bmw_6_series_e63",
+      "power_hp": 255,
+      "engines": [
+        {
+          "engine_family_id": "n52",
+          "displacement_l": 3.0
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e63_630i",
+      "name": "630i",
+      "variant_id": "bmw_6_series_e63",
+      "power_hp": 255,
+      "engines": [
+        {
+          "engine_family_id": "n53",
+          "displacement_l": 3.0
+        },
+        {
+          "engine_family_id": "n52",
+          "displacement_l": 3.0
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e63_645ci",
+      "name": "645Ci",
+      "variant_id": "bmw_6_series_e63",
+      "power_hp": 329,
+      "engines": [
+        {
+          "engine_family_id": "n62",
+          "displacement_l": 4.4
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e63_650i",
+      "name": "650i",
+      "variant_id": "bmw_6_series_e63",
+      "power_hp": 362,
+      "engines": [
+        {
+          "engine_family_id": "n62",
+          "displacement_l": 4.8
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e63_m6",
+      "name": "M6",
+      "variant_id": "bmw_6_series_e63",
+      "power_hp": 500,
+      "engines": [
+        {
+          "engine_family_id": "s85",
+          "displacement_l": 5.0
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e63_635d",
+      "name": "635d",
+      "variant_id": "bmw_6_series_e63",
+      "power_hp": 282,
+      "engines": [
+        {
+          "engine_family_id": "m57",
+          "displacement_l": 3.0
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e64_630ci",
+      "name": "630Ci",
+      "variant_id": "bmw_6_series_e64",
+      "power_hp": 255,
+      "engines": [
+        {
+          "engine_family_id": "n52",
+          "displacement_l": 3.0
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e64_630i",
+      "name": "630i",
+      "variant_id": "bmw_6_series_e64",
+      "power_hp": 255,
+      "engines": [
+        {
+          "engine_family_id": "n53",
+          "displacement_l": 3.0
+        },
+        {
+          "engine_family_id": "n52",
+          "displacement_l": 3.0
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e64_645ci",
+      "name": "645Ci",
+      "variant_id": "bmw_6_series_e64",
+      "power_hp": 329,
+      "engines": [
+        {
+          "engine_family_id": "n62",
+          "displacement_l": 4.4
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e64_650i",
+      "name": "650i",
+      "variant_id": "bmw_6_series_e64",
+      "power_hp": 362,
+      "engines": [
+        {
+          "engine_family_id": "n62",
+          "displacement_l": 4.8
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e64_m6",
+      "name": "M6",
+      "variant_id": "bmw_6_series_e64",
+      "power_hp": 500,
+      "engines": [
+        {
+          "engine_family_id": "s85",
+          "displacement_l": 5.0
+        }
+      ]
+    },
+    {
+      "id": "bmw_6_series_e64_635d",
+      "name": "635d",
+      "variant_id": "bmw_6_series_e64",
+      "power_hp": 282,
+      "engines": [
+        {
+          "engine_family_id": "m57",
+          "displacement_l": 3.0
+        }
+      ]
+    }
+  ],
+  "engine_families": [
+    {
+      "id": "m30b25v",
+      "name": "M30B25V",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "m30b28v",
+      "name": "M30B28V",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "m30b30v",
+      "name": "M30B30V",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "m30b30",
+      "name": "M30B30",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "m30b32",
+      "name": "M30B32",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "m30b28",
+      "name": "M30B28",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "m90",
+      "name": "M90",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "m30b34",
+      "name": "M30B34",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "m30b35",
+      "name": "M30B35",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "m88_3",
+      "name": "M88/3",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "s38b35",
+      "name": "S38B35",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "n52",
+      "name": "N52",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "n53",
+      "name": "N53",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    },
+    {
+      "id": "n62",
+      "name": "N62",
+      "cylinder_count": 8,
+      "arrangement": "V"
+    },
+    {
+      "id": "s85",
+      "name": "S85",
+      "cylinder_count": 10,
+      "arrangement": "V"
+    },
+    {
+      "id": "m57",
+      "name": "M57",
+      "cylinder_count": 6,
+      "arrangement": "Inline"
+    }
+  ],
+  "body_styles": [
+    {
+      "id": "coupe",
+      "name": "Coupe"
+    },
+    {
+      "id": "convertible",
+      "name": "Convertible"
+    }
+  ],
+  "vehicle_classes": [
+    {
+      "id": "grand_tourer",
+      "name": "Grand tourer"
+    }
+  ],
+  "engine_positions": [
+    {
+      "id": "front",
+      "name": "Front"
+    }
+  ],
+  "drivetrains": [
+    {
+      "id": "rwd",
+      "name": "RWD"
+    }
+  ],
+  "designers": [
+    {
+      "id": "wilhelm_hofmeister",
+      "name": "Wilhelm Hofmeister"
+    },
+    {
+      "id": "paul_bracq",
+      "name": "Paul Bracq"
+    },
+    {
+      "id": "adrian_van_hooydonk",
+      "name": "Adrian van Hooydonk"
+    }
+  ]
+}

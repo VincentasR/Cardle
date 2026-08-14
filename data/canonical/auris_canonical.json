@@ -1,0 +1,190 @@
+{
+  "manufacturers": [
+    {
+      "id": "toyota",
+      "name": "Toyota"
+    }
+  ],
+  "models": [
+    {
+      "id": "toyota_no_model",
+      "name": "No Model",
+      "manufacturer_id": "toyota"
+    }
+  ],
+  "variants": [
+    {
+      "id": "toyota_no_model_auris",
+      "name": "Auris",
+      "model_id": "toyota_no_model",
+      "source_url": "https://en.wikipedia.org/wiki/Toyota_Auris",
+      "production_start": 2006,
+      "production_end": 2020,
+      "body_style_ids": [],
+      "vehicle_class_ids": [],
+      "engine_position_ids": [
+        "front"
+      ],
+      "drivetrain_ids": [
+        "fwd",
+        "awd"
+      ],
+      "designer_ids": [],
+      "predecessors": [
+        {
+          "name": "Toyota Corolla (E120) – hatchback",
+          "url": "https://en.wikipedia.org/wiki/Toyota_Corolla_(E120)",
+          "target_id": null
+        }
+      ],
+      "successors": [
+        {
+          "name": "Toyota Corolla (E210) – hatchback, estate car Toyota GR Corolla – Blade",
+          "url": null,
+          "target_id": null
+        }
+      ]
+    }
+  ],
+  "versions": [
+    {
+      "id": "toyota_no_model_auris_150x_2wd",
+      "name": "150X 2WD",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_150x_4wd",
+      "name": "150X 4WD",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_180g_2wd",
+      "name": "180G 2WD",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_180g_4wd",
+      "name": "180G 4WD",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_rs",
+      "name": "RS",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_1_33_dual_vvt_i",
+      "name": "1.33 Dual VVT-i",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_1_4_vvt_i",
+      "name": "1.4 VVT-i",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_1_6_dual_vvt_i",
+      "name": "1.6 Dual VVT-i",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_1_6_valvematic",
+      "name": "1.6 Valvematic",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_1_8_dual_vvt_i",
+      "name": "1.8 Dual VVT-i",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_1_8_valvematic",
+      "name": "1.8 Valvematic",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_1_4_d_4d",
+      "name": "1.4 D-4D",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_2_0_d_4d",
+      "name": "2.0 D-4D",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_2_2_d_cat",
+      "name": "2.2 D-CAT",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_120t_2wd",
+      "name": "120T 2WD",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_180s_2wd",
+      "name": "180S 2WD",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    },
+    {
+      "id": "toyota_no_model_auris_rs_2wd",
+      "name": "RS 2WD",
+      "variant_id": "toyota_no_model_auris",
+      "power_hp": null,
+      "engines": []
+    }
+  ],
+  "engine_families": [],
+  "body_styles": [],
+  "vehicle_classes": [],
+  "engine_positions": [
+    {
+      "id": "front",
+      "name": "Front"
+    }
+  ],
+  "drivetrains": [
+    {
+      "id": "fwd",
+      "name": "FWD"
+    },
+    {
+      "id": "awd",
+      "name": "AWD"
+    }
+  ],
+  "designers": []
+}

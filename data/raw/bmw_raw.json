@@ -119,7 +119,19 @@
     "variant_designers": [
       {
         "variant": "F70",
-        "designer": "José Casas, Jae-heon Lee, Ted Lee (exterior) Julius Laurien (interior)"
+        "designer": "José Casas"
+      },
+      {
+        "variant": "F70",
+        "designer": "Jae-heon Lee"
+      },
+      {
+        "variant": "F70",
+        "designer": "Ted Lee (exterior)"
+      },
+      {
+        "variant": "F70",
+        "designer": "Julius Laurien (interior)"
       }
     ],
     "variant_predecessors": [
@@ -175,7 +187,9 @@
     "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(G20)",
     "model": "3 Series",
     "variants": [
-      "G20"
+      "G20",
+      "G28",
+      "G21"
     ],
     "versions": [
       "318i / 320Li",
@@ -260,12 +274,28 @@
       {
         "variant": "G20",
         "production": "October 2018 – 2026"
+      },
+      {
+        "variant": "G28",
+        "production": "October 2018 – 2026"
+      },
+      {
+        "variant": "G21",
+        "production": "October 2018 – 2026"
       }
     ],
     "variant_body_styles": [
       {
         "variant": "G20",
-        "body_style": "4-door sedan (G20/G28) 5-door wagon (G21)"
+        "body_style": "4-door sedan"
+      },
+      {
+        "variant": "G28",
+        "body_style": "4-door sedan"
+      },
+      {
+        "variant": "G21",
+        "body_style": "5-door wagon"
       }
     ],
     "version_years": [
@@ -396,18 +426,54 @@
       {
         "variant": "G20",
         "layout": "Front-engine, rear-wheel-drive Front-engine, four-wheel-drive ( xDrive )"
+      },
+      {
+        "variant": "G28",
+        "layout": "Front-engine, rear-wheel-drive Front-engine, four-wheel-drive ( xDrive )"
+      },
+      {
+        "variant": "G21",
+        "layout": "Front-engine, rear-wheel-drive Front-engine, four-wheel-drive ( xDrive )"
       }
     ],
     "variant_vehicle_classes": [
       {
         "variant": "G20",
         "vehicle_class": "Compact executive car ( D )"
+      },
+      {
+        "variant": "G28",
+        "vehicle_class": "Compact executive car ( D )"
+      },
+      {
+        "variant": "G21",
+        "vehicle_class": "Compact executive car ( D )"
       }
     ],
     "variant_designers": [
       {
         "variant": "G20",
-        "designer": "Alexey Kezha [ 3 ] Marc Michael Markefka [ 4 ]"
+        "designer": "Alexey Kezha"
+      },
+      {
+        "variant": "G28",
+        "designer": "Alexey Kezha"
+      },
+      {
+        "variant": "G21",
+        "designer": "Alexey Kezha"
+      },
+      {
+        "variant": "G20",
+        "designer": "Marc Michael Markefka"
+      },
+      {
+        "variant": "G28",
+        "designer": "Marc Michael Markefka"
+      },
+      {
+        "variant": "G21",
+        "designer": "Marc Michael Markefka"
       }
     ],
     "variant_predecessors": [
@@ -415,11 +481,37 @@
         "variant": "G20",
         "predecessor": "BMW 3 Series (F30)",
         "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)"
+      },
+      {
+        "variant": "G28",
+        "predecessor": "BMW 3 Series (F30)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)"
+      },
+      {
+        "variant": "G21",
+        "predecessor": "BMW 3 Series (F30)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)"
       }
     ],
     "variant_successors": [
       {
         "variant": "G20",
+        "successor": "BMW 3 Series (G50) BMW i3 (NA0) (Electric version)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(G50)",
+          "https://en.wikipedia.org/wiki/BMW_i3_(NA0)"
+        ]
+      },
+      {
+        "variant": "G28",
+        "successor": "BMW 3 Series (G50) BMW i3 (NA0) (Electric version)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(G50)",
+          "https://en.wikipedia.org/wiki/BMW_i3_(NA0)"
+        ]
+      },
+      {
+        "variant": "G21",
         "successor": "BMW 3 Series (G50) BMW i3 (NA0) (Electric version)",
         "urls": [
           "https://en.wikipedia.org/wiki/BMW_3_Series_(G50)",
@@ -435,46 +527,186 @@
     "url": "https://en.wikipedia.org/wiki/BMW_4_Series_(G22)",
     "model": "4 Series",
     "variants": [
-      "G26"
+      "G22",
+      "G26",
+      "G23"
     ],
-    "versions": [],
-    "version_engines": [],
-    "variant_engines": [
+    "versions": [
+      "420i 420i xDrive",
+      "430i 430i xDrive",
+      "M440i M440i xDrive",
+      "420d 420d xDrive",
+      "430d xDrive",
+      "M440d xDrive"
+    ],
+    "version_engines": [
       {
-        "variant": "G26",
-        "engine": "Petrol: 2.0 L B48 turbo I4 3.0 L B58 turbo I6 (Mild Hybrid) Diesel : 2.0 L B47 turbo I4 (Mild hybrid) 3.0 L B57 turbo I6"
+        "version": "420i 420i xDrive",
+        "engine": "2.0 L turbo I4 B48B20M0"
+      },
+      {
+        "version": "430i 430i xDrive",
+        "engine": "2.0 L turbo I4 B48B20O1"
+      },
+      {
+        "version": "M440i M440i xDrive",
+        "engine": "3.0 L turbo I6 B58B30TÜ1 [ a ]"
+      },
+      {
+        "version": "420d 420d xDrive",
+        "engine": "2.0 L B47 turbo I4"
+      },
+      {
+        "version": "430d xDrive",
+        "engine": "3.0 L B57 turbo I6"
+      },
+      {
+        "version": "M440d xDrive",
+        "engine": "3.0 L B57 twin-turbo I6"
       }
     ],
-    "variant_production": [],
+    "variant_engines": [],
+    "variant_production": [
+      {
+        "variant": "G22",
+        "production": "2020–present"
+      },
+      {
+        "variant": "G26",
+        "production": "2020–present"
+      },
+      {
+        "variant": "G23",
+        "production": "2020–present"
+      }
+    ],
     "variant_body_styles": [
       {
-        "variant": "G26",
-        "body_style": "2-door coupé (G22) 2-door convertible (G23) 5-door liftback (G26, Gran Coupé)"
-      }
-    ],
-    "version_years": [],
-    "version_power": [],
-    "variant_layouts": [
+        "variant": "G22",
+        "body_style": "2-door coupé"
+      },
+      {
+        "variant": "G23",
+        "body_style": "2-door convertible"
+      },
       {
         "variant": "G26",
+        "body_style": "5-door liftback"
+      }
+    ],
+    "version_years": [
+      {
+        "version": "420i 420i xDrive",
+        "years": "2021–present"
+      },
+      {
+        "version": "430i 430i xDrive",
+        "years": "2021-present"
+      },
+      {
+        "version": "M440i M440i xDrive",
+        "years": "2021-present"
+      },
+      {
+        "version": "420d 420d xDrive",
+        "years": "2021-present"
+      },
+      {
+        "version": "430d xDrive",
+        "years": "2021-present"
+      },
+      {
+        "version": "M440d xDrive",
+        "years": "2021-present"
+      }
+    ],
+    "version_power": [
+      {
+        "version": "420i 420i xDrive",
+        "power": "135 kW (184 PS; 181 hp) at 4,400–6,000 rpm"
+      },
+      {
+        "version": "430i 430i xDrive",
+        "power": "190 kW (258 PS; 255 hp) at 5,000-6,500 rpm"
+      },
+      {
+        "version": "M440i M440i xDrive",
+        "power": "EU: 275 kW (374 PS; 369 hp) at 5,500-6,500 rpm US: 285 kW (387 PS; 382 hp) at 5,800-6,500 rpm"
+      },
+      {
+        "version": "420d 420d xDrive",
+        "power": "140 kW (190 PS) at 4,000 rpm"
+      },
+      {
+        "version": "430d xDrive",
+        "power": "210 kW (286 PS) at 4,000 rpm"
+      },
+      {
+        "version": "M440d xDrive",
+        "power": "250 kW (340 PS) at 4,400 rpm"
+      }
+    ],
+    "variant_layouts": [
+      {
+        "variant": "G22",
+        "layout": "Front-engine, rear-wheel-drive / all-wheel-drive ( xDrive )"
+      },
+      {
+        "variant": "G26",
+        "layout": "Front-engine, rear-wheel-drive / all-wheel-drive ( xDrive )"
+      },
+      {
+        "variant": "G23",
         "layout": "Front-engine, rear-wheel-drive / all-wheel-drive ( xDrive )"
       }
     ],
     "variant_vehicle_classes": [
       {
+        "variant": "G22",
+        "vehicle_class": "Compact executive car ( D )"
+      },
+      {
         "variant": "G26",
+        "vehicle_class": "Compact executive car ( D )"
+      },
+      {
+        "variant": "G23",
         "vehicle_class": "Compact executive car ( D )"
       }
     ],
     "variant_designers": [
       {
+        "variant": "G22",
+        "designer": "Seungmo Lim (concept & production versions)"
+      },
+      {
         "variant": "G26",
-        "designer": "Seungmo Lim (concept & production versions) [ 1 ]"
+        "designer": "Seungmo Lim (concept & production versions)"
+      },
+      {
+        "variant": "G23",
+        "designer": "Seungmo Lim (concept & production versions)"
       }
     ],
     "variant_predecessors": [
       {
+        "variant": "G22",
+        "predecessor": "BMW 4 Series (F32) BMW 3 Series Gran Turismo (F34) (4 Series Gran Coupé)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(F32)",
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)"
+        ]
+      },
+      {
         "variant": "G26",
+        "predecessor": "BMW 4 Series (F32) BMW 3 Series Gran Turismo (F34) (4 Series Gran Coupé)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(F32)",
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(F30)"
+        ]
+      },
+      {
+        "variant": "G23",
         "predecessor": "BMW 4 Series (F32) BMW 3 Series Gran Turismo (F34) (4 Series Gran Coupé)",
         "urls": [
           "https://en.wikipedia.org/wiki/BMW_4_Series_(F32)",
@@ -491,7 +723,8 @@
     "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(G60)",
     "model": "5 Series",
     "variants": [
-      "G60"
+      "G60",
+      "G61"
     ],
     "versions": [
       "520i",
@@ -556,13 +789,21 @@
     "variant_production": [
       {
         "variant": "G60",
-        "production": "July 2023 – present (sedan) March 2024 – present (estate) June 2024 – present (M5)"
+        "production": "July 2023 – present"
+      },
+      {
+        "variant": "G61",
+        "production": "March 2024 – present"
       }
     ],
     "variant_body_styles": [
       {
         "variant": "G60",
-        "body_style": "4-door saloon (G60) 5-door estate (G61)"
+        "body_style": "4-door saloon"
+      },
+      {
+        "variant": "G61",
+        "body_style": "5-door estate"
       }
     ],
     "version_years": [],
@@ -616,11 +857,19 @@
       {
         "variant": "G60",
         "layout": "Front-engine, rear-wheel-drive Front-engine, all-wheel-drive ( xDrive ) Rear-motor, rear-wheel-drive (i5 eDrive40) Dual-motors, all-wheel-drive (i5 xDrive40, M60)"
+      },
+      {
+        "variant": "G61",
+        "layout": "Front-engine, rear-wheel-drive Front-engine, all-wheel-drive ( xDrive ) Rear-motor, rear-wheel-drive (i5 eDrive40) Dual-motors, all-wheel-drive (i5 xDrive40, M60)"
       }
     ],
     "variant_vehicle_classes": [
       {
         "variant": "G60",
+        "vehicle_class": "Executive car ( E )"
+      },
+      {
+        "variant": "G61",
         "vehicle_class": "Executive car ( E )"
       }
     ],
@@ -628,11 +877,23 @@
       {
         "variant": "G60",
         "designer": "Anders Thøgersen"
+      },
+      {
+        "variant": "G61",
+        "designer": "Anders Thøgersen"
       }
     ],
     "variant_predecessors": [
       {
         "variant": "G60",
+        "predecessor": "BMW 5 Series (G30) BMW 6 Series (G32)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_5_Series_(G30)",
+          "https://en.wikipedia.org/wiki/BMW_6_Series_(G32)"
+        ]
+      },
+      {
+        "variant": "G61",
         "predecessor": "BMW 5 Series (G30) BMW 6 Series (G32)",
         "urls": [
           "https://en.wikipedia.org/wiki/BMW_5_Series_(G30)",
@@ -740,7 +1001,19 @@
     "variant_designers": [
       {
         "variant": "G70",
-        "designer": "Jozef Kabaň , [ 2 ] Domagoj Đukec, [ 3 ] Sebastian Simm (exterior) Henri von Freyberg (interior) [ 4 ]"
+        "designer": "Jozef Kabaň"
+      },
+      {
+        "variant": "G70",
+        "designer": "Domagoj Đukec"
+      },
+      {
+        "variant": "G70",
+        "designer": "Sebastian Simm (exterior)"
+      },
+      {
+        "variant": "G70",
+        "designer": "Henri von Freyberg (interior)"
       }
     ],
     "variant_predecessors": [
@@ -1140,7 +1413,23 @@
     "variant_designers": [
       {
         "variant": "G45",
-        "designer": "Jacek Pepłowski, Martin Simmet, Serkan Budur (exterior) Misha Klimov, Erik Melldahl (interior)"
+        "designer": "Jacek Pepłowski"
+      },
+      {
+        "variant": "G45",
+        "designer": "Martin Simmet"
+      },
+      {
+        "variant": "G45",
+        "designer": "Serkan Budur (exterior)"
+      },
+      {
+        "variant": "G45",
+        "designer": "Misha Klimov"
+      },
+      {
+        "variant": "G45",
+        "designer": "Erik Melldahl (interior)"
       }
     ],
     "variant_predecessors": [
@@ -1503,7 +1792,7 @@
     "variant_designers": [
       {
         "variant": "G42",
-        "designer": "José Casas [ 2 ]"
+        "designer": "José Casas"
       }
     ],
     "variant_predecessors": [
@@ -1865,7 +2154,12 @@
         "engine": "BMW M78 OHV I6 303: 1,173 cc (71.6 cu in), 22.5 kW (31 PS; 30 hp) at 4000 rpm [ 2 ] 315: 1,490 cc (90.9 cu in), 25 kW (34 PS; 34 hp) at 4000 rpm [ 3 ] 319, 329: 1,911 cc (116.6 cu in), 34 kW (45.6 hp) at 3750 rpm [ 4 ]"
       }
     ],
-    "variant_production": [],
+    "variant_production": [
+      {
+        "variant": "315",
+        "production": "303: 1933–1934 315: 1934–1937 319: 1935–1936 329: 1937 [ 1 ]"
+      }
+    ],
     "variant_body_styles": [
       {
         "variant": "315",
@@ -1942,7 +2236,23 @@
     "variant_designers": [
       {
         "variant": "328",
-        "designer": "Peter Szymanowski [ citation needed ] Fritz Fiedler [ 2 ] Alfred Böning [ 2 ] Alex von Falkenhausen [ 2 ] Ernst Loof [ 2 ]"
+        "designer": "Peter Szymanowski"
+      },
+      {
+        "variant": "328",
+        "designer": "Fritz Fiedler"
+      },
+      {
+        "variant": "328",
+        "designer": "Alfred Böning"
+      },
+      {
+        "variant": "328",
+        "designer": "Alex von Falkenhausen"
+      },
+      {
+        "variant": "328",
+        "designer": "Ernst Loof"
       }
     ],
     "variant_predecessors": [
@@ -2006,7 +2316,15 @@
     "variant_designers": [
       {
         "variant": "326",
-        "designer": "Engineers: Fritz Fiedler , Alfred Böning Stylist: Peter Szymanowski"
+        "designer": "Engineers: Fritz Fiedler"
+      },
+      {
+        "variant": "326",
+        "designer": "Alfred Böning"
+      },
+      {
+        "variant": "326",
+        "designer": "Stylist: Peter Szymanowski"
       }
     ],
     "variant_predecessors": [
@@ -2578,7 +2896,7 @@
     "variant_designers": [
       {
         "variant": "700",
-        "designer": "Giovanni Michelotti [ 3 ]"
+        "designer": "Giovanni Michelotti"
       }
     ],
     "variant_predecessors": [
@@ -2746,7 +3064,15 @@
     "variant_designers": [
       {
         "variant": "02 Series",
-        "designer": "Georg Bertram, Manfred Rennen, Giovanni Michelotti"
+        "designer": "Georg Bertram"
+      },
+      {
+        "variant": "02 Series",
+        "designer": "Manfred Rennen"
+      },
+      {
+        "variant": "02 Series",
+        "designer": "Giovanni Michelotti"
       }
     ],
     "variant_predecessors": [],
@@ -2951,7 +3277,7 @@
     "variant_designers": [
       {
         "variant": "E3",
-        "designer": "Wilhelm Hofmeister [ 1 ]"
+        "designer": "Wilhelm Hofmeister"
       }
     ],
     "variant_predecessors": [
@@ -3210,7 +3536,11 @@
     "variant_designers": [
       {
         "variant": "E12",
-        "designer": "Paul Bracq Marcello Gandini"
+        "designer": "Paul Bracq"
+      },
+      {
+        "variant": "E12",
+        "designer": "Marcello Gandini"
       }
     ],
     "variant_predecessors": [
@@ -3919,7 +4249,11 @@
     "variant_designers": [
       {
         "variant": "E23",
-        "designer": "Paul Bracq , Manfred Rennen"
+        "designer": "Paul Bracq"
+      },
+      {
+        "variant": "E23",
+        "designer": "Manfred Rennen"
       }
     ],
     "variant_predecessors": [
@@ -4533,7 +4867,11 @@
     "variant_designers": [
       {
         "variant": "E30",
-        "designer": "Claus Luthe , Boyke Boyer"
+        "designer": "Claus Luthe"
+      },
+      {
+        "variant": "E30",
+        "designer": "Boyke Boyer"
       }
     ],
     "variant_predecessors": [
@@ -4680,7 +5018,15 @@
     "variant_designers": [
       {
         "variant": "E32",
-        "designer": "Ercole Spada (concept exterior: 1981, 1983) Hans Kerschbaum (production exterior: 1983) [ 4 ] Claus Luthe (design director: 1979-84)"
+        "designer": "Ercole Spada (concept exterior: 1981, 1983)"
+      },
+      {
+        "variant": "E32",
+        "designer": "Hans Kerschbaum (production exterior: 1983)"
+      },
+      {
+        "variant": "E32",
+        "designer": "Claus Luthe (design director: 1979-84)"
       }
     ],
     "variant_predecessors": [
@@ -5144,7 +5490,7 @@
     "variant_designers": [
       {
         "variant": "E31",
-        "designer": "Klaus Kapitza (1986) [ 5 ]"
+        "designer": "Klaus Kapitza (1986)"
       }
     ],
     "variant_predecessors": [
@@ -5454,7 +5800,15 @@
     "variant_designers": [
       {
         "variant": "E36",
-        "designer": "Claus Luthe , Pinky Lai , Boyke Boyer"
+        "designer": "Claus Luthe"
+      },
+      {
+        "variant": "E36",
+        "designer": "Pinky Lai"
+      },
+      {
+        "variant": "E36",
+        "designer": "Boyke Boyer"
       }
     ],
     "variant_predecessors": [
@@ -5932,7 +6286,11 @@
     "variant_designers": [
       {
         "variant": "Z3",
-        "designer": "Joji Nagashima Burkhard Göschel"
+        "designer": "Joji Nagashima"
+      },
+      {
+        "variant": "Z3",
+        "designer": "Burkhard Göschel"
       }
     ],
     "variant_predecessors": [
@@ -6621,7 +6979,15 @@
     "variant_designers": [
       {
         "variant": "E46",
-        "designer": "Chris Bangle , Wolfgang Reitzle (sedan) [ 5 ] Erik Goplen (coupe, convertible, station wagon) [ 6 ]"
+        "designer": "Chris Bangle"
+      },
+      {
+        "variant": "E46",
+        "designer": "Wolfgang Reitzle (sedan)"
+      },
+      {
+        "variant": "E46",
+        "designer": "Erik Goplen (coupe, convertible, station wagon)"
       }
     ],
     "variant_predecessors": [
@@ -6760,7 +7126,23 @@
     "variant_designers": [
       {
         "variant": "E53",
-        "designer": "Peter Gabath (1995) Chris Bangle (1996, LCI: 2002) Wolfgang Reitzle (1996) Frank Stephenson (1996) Henrik Fisker"
+        "designer": "Peter Gabath (1995)"
+      },
+      {
+        "variant": "E53",
+        "designer": "Chris Bangle (1996, LCI: 2002)"
+      },
+      {
+        "variant": "E53",
+        "designer": "Wolfgang Reitzle (1996)"
+      },
+      {
+        "variant": "E53",
+        "designer": "Frank Stephenson (1996)"
+      },
+      {
+        "variant": "E53",
+        "designer": "Henrik Fisker"
       }
     ],
     "variant_predecessors": [],
@@ -6818,7 +7200,11 @@
     "variant_designers": [
       {
         "variant": "Z8",
-        "designer": "Henrik Fisker Scott Lempert (interior)"
+        "designer": "Henrik Fisker"
+      },
+      {
+        "variant": "Z8",
+        "designer": "Scott Lempert (interior)"
       }
     ],
     "variant_predecessors": [],
@@ -7043,11 +7429,19 @@
     "variant_designers": [
       {
         "variant": "E65",
-        "designer": "Adrian van Hooydonk , Chris Bangle"
+        "designer": "Adrian van Hooydonk"
       },
       {
         "variant": "E66",
-        "designer": "Adrian van Hooydonk , Chris Bangle"
+        "designer": "Adrian van Hooydonk"
+      },
+      {
+        "variant": "E65",
+        "designer": "Chris Bangle"
+      },
+      {
+        "variant": "E66",
+        "designer": "Chris Bangle"
       }
     ],
     "variant_predecessors": [
@@ -7278,11 +7672,11 @@
     "variant_designers": [
       {
         "variant": "E85",
-        "designer": "Anders Warming (E85) [ 1 ] Thomas Sycha (E86) [ 2 ]"
+        "designer": "Anders Warming (E85)"
       },
       {
         "variant": "E86",
-        "designer": "Anders Warming (E85) [ 1 ] Thomas Sycha (E86) [ 2 ]"
+        "designer": "Thomas Sycha (E86)"
       }
     ],
     "variant_predecessors": [
@@ -7690,11 +8084,27 @@
     "variant_designers": [
       {
         "variant": "E60",
-        "designer": "Boyke Boyer [ 1 ] Davide Arcangeli [ 2 ] Chris Bangle [ 3 ] [ 4 ]"
+        "designer": "Boyke Boyer"
       },
       {
         "variant": "E61",
-        "designer": "Boyke Boyer [ 1 ] Davide Arcangeli [ 2 ] Chris Bangle [ 3 ] [ 4 ]"
+        "designer": "Boyke Boyer"
+      },
+      {
+        "variant": "E60",
+        "designer": "Davide Arcangeli"
+      },
+      {
+        "variant": "E61",
+        "designer": "Davide Arcangeli"
+      },
+      {
+        "variant": "E60",
+        "designer": "Chris Bangle"
+      },
+      {
+        "variant": "E61",
+        "designer": "Chris Bangle"
       }
     ],
     "variant_predecessors": [
@@ -7870,11 +8280,11 @@
     "variant_designers": [
       {
         "variant": "E63",
-        "designer": "Adrian van Hooydonk [ 1 ]"
+        "designer": "Adrian van Hooydonk"
       },
       {
         "variant": "E64",
-        "designer": "Adrian van Hooydonk [ 1 ]"
+        "designer": "Adrian van Hooydonk"
       }
     ],
     "variant_predecessors": [
@@ -8448,19 +8858,27 @@
     "variant_designers": [
       {
         "variant": "E81",
-        "designer": "Peter Gabath, Marc Michael Markefka (E82) [ 1 ] Chris Chapman (E87) [ 2 ]"
+        "designer": "Peter Gabath"
       },
       {
         "variant": "E82",
-        "designer": "Peter Gabath, Marc Michael Markefka (E82) [ 1 ] Chris Chapman (E87) [ 2 ]"
+        "designer": "Peter Gabath"
       },
       {
         "variant": "E87",
-        "designer": "Peter Gabath, Marc Michael Markefka (E82) [ 1 ] Chris Chapman (E87) [ 2 ]"
+        "designer": "Peter Gabath"
       },
       {
         "variant": "E88",
-        "designer": "Peter Gabath, Marc Michael Markefka (E82) [ 1 ] Chris Chapman (E87) [ 2 ]"
+        "designer": "Peter Gabath"
+      },
+      {
+        "variant": "E82",
+        "designer": "Marc Michael Markefka (E82)"
+      },
+      {
+        "variant": "E87",
+        "designer": "Chris Chapman (E87)"
       }
     ],
     "variant_predecessors": [
@@ -8993,19 +9411,19 @@
     "variant_designers": [
       {
         "variant": "E90",
-        "designer": "Joji Nagashima (saloon and estate) Marc Michael Markefka (coupé and convertible)"
+        "designer": "Joji Nagashima (saloon and estate)"
       },
       {
         "variant": "E91",
-        "designer": "Joji Nagashima (saloon and estate) Marc Michael Markefka (coupé and convertible)"
+        "designer": "Joji Nagashima (saloon and estate)"
       },
       {
         "variant": "E92",
-        "designer": "Joji Nagashima (saloon and estate) Marc Michael Markefka (coupé and convertible)"
+        "designer": "Marc Michael Markefka (coupé and convertible)"
       },
       {
         "variant": "E93",
-        "designer": "Joji Nagashima (saloon and estate) Marc Michael Markefka (coupé and convertible)"
+        "designer": "Marc Michael Markefka (coupé and convertible)"
       }
     ],
     "variant_predecessors": [
@@ -9304,7 +9722,7 @@
     "variant_designers": [
       {
         "variant": "E70",
-        "designer": "Pierre Leclercq (2003) [ 2 ]"
+        "designer": "Pierre Leclercq (2003)"
       }
     ],
     "variant_predecessors": [
@@ -9870,7 +10288,11 @@
     "variant_designers": [
       {
         "variant": "E89",
-        "designer": "Juliane Blasi (exterior) Nadya Arnaout (interior)"
+        "designer": "Juliane Blasi (exterior)"
+      },
+      {
+        "variant": "E89",
+        "designer": "Nadya Arnaout (interior)"
       }
     ],
     "variant_predecessors": [
@@ -10122,7 +10544,7 @@
     "variant_designers": [
       {
         "variant": "E84",
-        "designer": "Richard Kim [ 6 ]"
+        "designer": "Richard Kim"
       }
     ],
     "variant_predecessors": [],
@@ -10143,7 +10565,8 @@
     "variants": [
       "F07",
       "F10",
-      "F11"
+      "F11",
+      "F18"
     ],
     "versions": [
       "520i",
@@ -10272,6 +10695,10 @@
       {
         "variant": "F11",
         "production": "2010–2017"
+      },
+      {
+        "variant": "F18",
+        "production": "2010–2017"
       }
     ],
     "variant_body_styles": [
@@ -10280,8 +10707,12 @@
         "body_style": "4-door sedan"
       },
       {
+        "variant": "F18",
+        "body_style": "4-door LWB sedan"
+      },
+      {
         "variant": "F11",
-        "body_style": "4-door LWB sedan (F18) 5-door wagon"
+        "body_style": "5-door wagon"
       },
       {
         "variant": "F07",
@@ -10488,6 +10919,10 @@
       {
         "variant": "F11",
         "layout": "Front-engine, rear-wheel-drive Front-engine, all-wheel drive ( xDrive )"
+      },
+      {
+        "variant": "F18",
+        "layout": "Front-engine, rear-wheel-drive Front-engine, all-wheel drive ( xDrive )"
       }
     ],
     "variant_vehicle_classes": [
@@ -10502,20 +10937,28 @@
       {
         "variant": "F11",
         "vehicle_class": "Executive car ( E )"
+      },
+      {
+        "variant": "F18",
+        "vehicle_class": "Executive car ( E )"
       }
     ],
     "variant_designers": [
       {
-        "variant": "F07",
-        "designer": "Jacek Fröhlich (sedan: 2006) [ 1 ] [ 2 ] Jean-Francois Huet (Touring) [ 3 ] Christopher Weil (Gran Turismo) [ 4 ]"
+        "variant": "F10",
+        "designer": "Jacek Fröhlich (sedan: 2006)"
       },
       {
-        "variant": "F10",
-        "designer": "Jacek Fröhlich (sedan: 2006) [ 1 ] [ 2 ] Jean-Francois Huet (Touring) [ 3 ] Christopher Weil (Gran Turismo) [ 4 ]"
+        "variant": "F18",
+        "designer": "Jacek Fröhlich (sedan: 2006)"
       },
       {
         "variant": "F11",
-        "designer": "Jacek Fröhlich (sedan: 2006) [ 1 ] [ 2 ] Jean-Francois Huet (Touring) [ 3 ] Christopher Weil (Gran Turismo) [ 4 ]"
+        "designer": "Jean-Francois Huet (Touring)"
+      },
+      {
+        "variant": "F07",
+        "designer": "Christopher Weil (Gran Turismo)"
       }
     ],
     "variant_predecessors": [
@@ -10531,6 +10974,11 @@
       },
       {
         "variant": "F11",
+        "predecessor": "BMW 5 Series (E60)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E60)"
+      },
+      {
+        "variant": "F18",
         "predecessor": "BMW 5 Series (E60)",
         "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(E60)"
       }
@@ -10554,6 +11002,14 @@
       },
       {
         "variant": "F11",
+        "successor": "BMW 5 Series (G30) BMW 6 Series Gran Turismo (F07)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_5_Series_(G30)",
+          "https://en.wikipedia.org/wiki/BMW_6_Series_Gran_Turismo"
+        ]
+      },
+      {
+        "variant": "F18",
         "successor": "BMW 5 Series (G30) BMW 6 Series Gran Turismo (F07)",
         "urls": [
           "https://en.wikipedia.org/wiki/BMW_5_Series_(G30)",
@@ -10701,15 +11157,15 @@
     "variant_designers": [
       {
         "variant": "F06",
-        "designer": "Nader Faghihzadeh [ 1 ]"
+        "designer": "Nader Faghihzadeh"
       },
       {
         "variant": "F12",
-        "designer": "Nader Faghihzadeh [ 1 ]"
+        "designer": "Nader Faghihzadeh"
       },
       {
         "variant": "F13",
-        "designer": "Nader Faghihzadeh [ 1 ]"
+        "designer": "Nader Faghihzadeh"
       }
     ],
     "variant_predecessors": [
@@ -11337,11 +11793,19 @@
     "variant_designers": [
       {
         "variant": "F20",
-        "designer": "Nicolas Huet [ 2 ] Calvin Luk (facelift)"
+        "designer": "Nicolas Huet"
       },
       {
         "variant": "F21",
-        "designer": "Nicolas Huet [ 2 ] Calvin Luk (facelift)"
+        "designer": "Nicolas Huet"
+      },
+      {
+        "variant": "F20",
+        "designer": "Calvin Luk (facelift)"
+      },
+      {
+        "variant": "F21",
+        "designer": "Calvin Luk (facelift)"
       }
     ],
     "variant_predecessors": [
@@ -11378,7 +11842,8 @@
     "variants": [
       "F30",
       "F31",
-      "F34"
+      "F34",
+      "F35"
     ],
     "versions": [
       "316i",
@@ -11521,11 +11986,19 @@
       {
         "variant": "F34",
         "production": "October 2011 – October 2018"
+      },
+      {
+        "variant": "F35",
+        "production": "October 2011 – October 2018"
       }
     ],
     "variant_body_styles": [
       {
         "variant": "F30",
+        "body_style": "4-door sedan"
+      },
+      {
+        "variant": "F35",
         "body_style": "4-door sedan"
       },
       {
@@ -11753,6 +12226,10 @@
       {
         "variant": "F34",
         "layout": "Front-engine, rear-wheel-drive Front-engine, all-wheel-drive ( xDrive )"
+      },
+      {
+        "variant": "F35",
+        "layout": "Front-engine, rear-wheel-drive Front-engine, all-wheel-drive ( xDrive )"
       }
     ],
     "variant_vehicle_classes": [
@@ -11767,20 +12244,36 @@
       {
         "variant": "F34",
         "vehicle_class": "Compact executive car ( D )"
+      },
+      {
+        "variant": "F35",
+        "vehicle_class": "Compact executive car ( D )"
       }
     ],
     "variant_designers": [
       {
         "variant": "F30",
-        "designer": "Christopher Weil (2009) Michael de Bono (F31, 2009) Page Beermann (F34, 2009)"
+        "designer": "Christopher Weil (2009)"
       },
       {
         "variant": "F31",
-        "designer": "Christopher Weil (2009) Michael de Bono (F31, 2009) Page Beermann (F34, 2009)"
+        "designer": "Christopher Weil (2009)"
       },
       {
         "variant": "F34",
-        "designer": "Christopher Weil (2009) Michael de Bono (F31, 2009) Page Beermann (F34, 2009)"
+        "designer": "Christopher Weil (2009)"
+      },
+      {
+        "variant": "F35",
+        "designer": "Christopher Weil (2009)"
+      },
+      {
+        "variant": "F31",
+        "designer": "Michael de Bono (F31, 2009)"
+      },
+      {
+        "variant": "F34",
+        "designer": "Page Beermann (F34, 2009)"
       }
     ],
     "variant_predecessors": [
@@ -11796,6 +12289,11 @@
       },
       {
         "variant": "F34",
+        "predecessor": "BMW 3 Series (E90)",
+        "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E90)"
+      },
+      {
+        "variant": "F35",
         "predecessor": "BMW 3 Series (E90)",
         "url": "https://en.wikipedia.org/wiki/BMW_3_Series_(E90)"
       }
@@ -11819,6 +12317,14 @@
       },
       {
         "variant": "F34",
+        "successor": "BMW 3 Series (G20) BMW 4 Series (G26) Gran Coupé (F34)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_3_Series_(G20)",
+          "https://en.wikipedia.org/wiki/BMW_4_Series_(G22)"
+        ]
+      },
+      {
+        "variant": "F35",
         "successor": "BMW 3 Series (G20) BMW 4 Series (G26) Gran Coupé (F34)",
         "urls": [
           "https://en.wikipedia.org/wiki/BMW_3_Series_(G20)",
@@ -11868,7 +12374,7 @@
     "variant_designers": [
       {
         "variant": "I01",
-        "designer": "Richard Kim [ 2 ] [ 3 ]"
+        "designer": "Richard Kim"
       }
     ],
     "variant_predecessors": [],
@@ -12196,15 +12702,15 @@
     "variant_designers": [
       {
         "variant": "F32",
-        "designer": "Per Ivar Selvaag (F32/F33) [ 1 ] [ 2 ] Nicolas Huet (F36) [ 3 ] [ 4 ]"
+        "designer": "Per Ivar Selvaag (F32/F33)"
       },
       {
         "variant": "F33",
-        "designer": "Per Ivar Selvaag (F32/F33) [ 1 ] [ 2 ] Nicolas Huet (F36) [ 3 ] [ 4 ]"
+        "designer": "Per Ivar Selvaag (F32/F33)"
       },
       {
         "variant": "F36",
-        "designer": "Per Ivar Selvaag (F32/F33) [ 1 ] [ 2 ] Nicolas Huet (F36) [ 3 ] [ 4 ]"
+        "designer": "Nicolas Huet (F36)"
       }
     ],
     "variant_predecessors": [
@@ -12340,11 +12846,11 @@
     "variant_production": [
       {
         "variant": "F22",
-        "production": "2013-2021 (F22); 2014-2021 (F23)."
+        "production": "2013-2021"
       },
       {
         "variant": "F23",
-        "production": "2013-2021 (F22); 2014-2021 (F23)."
+        "production": "2014-2021"
       }
     ],
     "variant_body_styles": [
@@ -12512,11 +13018,11 @@
     "variant_designers": [
       {
         "variant": "F22",
-        "designer": "Christopher Weil [ 1 ]"
+        "designer": "Christopher Weil"
       },
       {
         "variant": "F23",
-        "designer": "Christopher Weil [ 1 ]"
+        "designer": "Christopher Weil"
       }
     ],
     "variant_predecessors": [
@@ -12739,7 +13245,7 @@
     "variant_designers": [
       {
         "variant": "F15",
-        "designer": "Mark Johnson (2010) [ 5 ]"
+        "designer": "Mark Johnson (2010)"
       }
     ],
     "variant_predecessors": [
@@ -12930,7 +13436,15 @@
     "variant_designers": [
       {
         "variant": "i8",
-        "designer": "Vision EfficientDynamics [ 1 ] Benoit Jacob (production i8) [ 2 ] Richard Kim (2011 i8 Concept) [ 3 ]"
+        "designer": "Vision EfficientDynamics"
+      },
+      {
+        "variant": "i8",
+        "designer": "Benoit Jacob (production i8)"
+      },
+      {
+        "variant": "i8",
+        "designer": "Richard Kim (2011 i8 Concept)"
       }
     ],
     "variant_predecessors": [
@@ -13374,7 +13888,7 @@
     "variant_designers": [
       {
         "variant": "F48",
-        "designer": "Calvin Luk [ 5 ]"
+        "designer": "Calvin Luk"
       }
     ],
     "variant_predecessors": [
@@ -13612,11 +14126,19 @@
     "variant_designers": [
       {
         "variant": "G11",
-        "designer": "Nader Faghihzadeh [ 1 ] Alexey Kezha (facelift) [ 2 ]"
+        "designer": "Nader Faghihzadeh"
       },
       {
         "variant": "G12",
-        "designer": "Nader Faghihzadeh [ 1 ] Alexey Kezha (facelift) [ 2 ]"
+        "designer": "Nader Faghihzadeh"
+      },
+      {
+        "variant": "G11",
+        "designer": "Alexey Kezha (facelift)"
+      },
+      {
+        "variant": "G12",
+        "designer": "Alexey Kezha (facelift)"
       }
     ],
     "variant_predecessors": [
@@ -13652,7 +14174,8 @@
     "model": "5 Series",
     "variants": [
       "G30",
-      "G31"
+      "G31",
+      "G38"
     ],
     "versions": [
       "520i [ a ]",
@@ -13756,6 +14279,10 @@
       {
         "variant": "G31",
         "production": "November 2016–2023"
+      },
+      {
+        "variant": "G38",
+        "production": "November 2016–2023"
       }
     ],
     "variant_body_styles": [
@@ -13766,6 +14293,10 @@
       {
         "variant": "G31",
         "body_style": "5-door estate"
+      },
+      {
+        "variant": "G38",
+        "body_style": "4-door long-wheelbase"
       }
     ],
     "version_years": [
@@ -13948,6 +14479,10 @@
       {
         "variant": "G31",
         "layout": "Front-engine, rear-wheel-drive Front-engine, all-wheel-drive ( xDrive )"
+      },
+      {
+        "variant": "G38",
+        "layout": "Front-engine, rear-wheel-drive Front-engine, all-wheel-drive ( xDrive )"
       }
     ],
     "variant_vehicle_classes": [
@@ -13958,16 +14493,36 @@
       {
         "variant": "G31",
         "vehicle_class": "Executive car ( E )"
+      },
+      {
+        "variant": "G38",
+        "vehicle_class": "Executive car ( E )"
       }
     ],
     "variant_designers": [
       {
         "variant": "G30",
-        "designer": "Karim Habib (exterior) [ 1 ] Daniel Mayerle (interior) [ 2 ]"
+        "designer": "Karim Habib (exterior)"
       },
       {
         "variant": "G31",
-        "designer": "Karim Habib (exterior) [ 1 ] Daniel Mayerle (interior) [ 2 ]"
+        "designer": "Karim Habib (exterior)"
+      },
+      {
+        "variant": "G38",
+        "designer": "Karim Habib (exterior)"
+      },
+      {
+        "variant": "G30",
+        "designer": "Daniel Mayerle (interior)"
+      },
+      {
+        "variant": "G31",
+        "designer": "Daniel Mayerle (interior)"
+      },
+      {
+        "variant": "G38",
+        "designer": "Daniel Mayerle (interior)"
       }
     ],
     "variant_predecessors": [
@@ -13980,6 +14535,11 @@
         "variant": "G31",
         "predecessor": "BMW 5 Series (F10)",
         "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(F10)"
+      },
+      {
+        "variant": "G38",
+        "predecessor": "BMW 5 Series (F10)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(F10)"
       }
     ],
     "variant_successors": [
@@ -13990,6 +14550,11 @@
       },
       {
         "variant": "G31",
+        "successor": "BMW 5 Series (G60)",
+        "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(G60)"
+      },
+      {
+        "variant": "G38",
         "successor": "BMW 5 Series (G60)",
         "url": "https://en.wikipedia.org/wiki/BMW_5_Series_(G60)"
       }
@@ -14041,7 +14606,7 @@
     "variant_designers": [
       {
         "variant": "F52",
-        "designer": "Anne Forschner [ 2 ]"
+        "designer": "Anne Forschner"
       }
     ],
     "variant_predecessors": [],
@@ -14202,7 +14767,7 @@
     "variant_designers": [
       {
         "variant": "G32",
-        "designer": "Hussein Al-Attar [ 1 ]"
+        "designer": "Hussein Al-Attar"
       }
     ],
     "variant_predecessors": [
@@ -14845,7 +15410,7 @@
     "variant_designers": [
       {
         "variant": "G29",
-        "designer": "Calvin Luk [ 3 ]"
+        "designer": "Calvin Luk"
       }
     ],
     "variant_predecessors": [
@@ -14865,7 +15430,8 @@
     "model": "8 Series",
     "variants": [
       "G14",
-      "G15"
+      "G15",
+      "G16"
     ],
     "versions": [
       "840i / 840i xDrive",
@@ -14910,6 +15476,10 @@
       {
         "variant": "G15",
         "production": "2018 [ 1 ] – 2026"
+      },
+      {
+        "variant": "G16",
+        "production": "2018 [ 1 ] – 2026"
       }
     ],
     "variant_body_styles": [
@@ -14920,6 +15490,10 @@
       {
         "variant": "G15",
         "body_style": "2-door coupé"
+      },
+      {
+        "variant": "G16",
+        "body_style": "4-door sedan"
       }
     ],
     "version_years": [
@@ -14982,6 +15556,10 @@
       {
         "variant": "G15",
         "layout": "Front-engine, rear-wheel-drive Front-engine, all-wheel-drive ( xDrive )"
+      },
+      {
+        "variant": "G16",
+        "layout": "Front-engine, rear-wheel-drive Front-engine, all-wheel-drive ( xDrive )"
       }
     ],
     "variant_vehicle_classes": [
@@ -14992,16 +15570,24 @@
       {
         "variant": "G15",
         "vehicle_class": "Grand tourer ( S ) (coupé/convertible) Executive car ( E ) (Gran Coupé)"
+      },
+      {
+        "variant": "G16",
+        "vehicle_class": "Grand tourer ( S ) (coupé/convertible) Executive car ( E ) (Gran Coupé)"
       }
     ],
     "variant_designers": [
       {
         "variant": "G14",
-        "designer": "John Buckingham (G14, G15) [ 2 ] Jacobo Domínguez (G16) [ 3 ]"
+        "designer": "John Buckingham (G14, G15)"
       },
       {
         "variant": "G15",
-        "designer": "John Buckingham (G14, G15) [ 2 ] Jacobo Domínguez (G16) [ 3 ]"
+        "designer": "John Buckingham (G14, G15)"
+      },
+      {
+        "variant": "G16",
+        "designer": "Jacobo Domínguez (G16)"
       }
     ],
     "variant_predecessors": [
@@ -15015,6 +15601,14 @@
       },
       {
         "variant": "G15",
+        "predecessor": "BMW 6 Series (F06/F12/F13) (for body style) BMW 8 Series (E31) (for 8-series nameplate)",
+        "urls": [
+          "https://en.wikipedia.org/wiki/BMW_6_Series_(F06/F12/F13)",
+          "https://en.wikipedia.org/wiki/BMW_8_Series_(E31)"
+        ]
+      },
+      {
+        "variant": "G16",
         "predecessor": "BMW 6 Series (F06/F12/F13) (for body style) BMW 8 Series (E31) (for 8-series nameplate)",
         "urls": [
           "https://en.wikipedia.org/wiki/BMW_6_Series_(F06/F12/F13)",
@@ -15173,7 +15767,7 @@
     "variant_designers": [
       {
         "variant": "F40",
-        "designer": "Sebastian Simm [ 1 ]"
+        "designer": "Sebastian Simm"
       }
     ],
     "variant_predecessors": [

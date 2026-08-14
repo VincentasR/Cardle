@@ -94,6 +94,7 @@ def scrape_car_page(
             manufacturer=manufacturer,
             discovery_name=vehicle.get("name"),
             model=model,
+            infobox=infobox,
         )
         if manufacturer is not None
         else []
@@ -103,10 +104,7 @@ def scrape_car_page(
         infobox=infobox,
         variants=variants,
     )
-    variant_designers = extract_variant_designers(
-        infobox=infobox,
-        variants=variants,
-    )
+    
     variant_vehicle_classes = extract_variant_vehicle_classes(
         infobox=infobox,
         variants=variants,
@@ -116,6 +114,12 @@ def scrape_car_page(
         infobox=infobox,
         variants=variants,
     )
+    variant_designers = extract_variant_designers(
+            soup=soup,
+            infobox=infobox,
+            variants=variants,
+            variant_body_styles=variant_body_styles,
+        )
     variant_layouts = extract_variant_layouts(
         infobox=infobox,
         variants=variants,
@@ -124,6 +128,7 @@ def scrape_car_page(
         soup=soup,
         infobox=infobox,
         variants=variants,
+        variant_body_styles=variant_body_styles,
     )
     # ---------------------------------------------------------
     # Scope article to the requested generation/variant
@@ -206,7 +211,14 @@ if __name__ == "__main__":
     vehicle_pages = discover_bmw_vehicle_pages()
     print(vehicle_pages)
     results = []
-    # vehicle_pages = ({'manufacturer': 'BMW', 'name': 'iX3 (G08)', 'status': 'discontinued', 'url': '"https://en.wikipedia.org/wiki/BMW_303#309"'},)
+    vehicle_pages = (
+        {
+            "manufacturer": "Toyota",
+            "name": "Auris",
+            "status": "discontinued",
+            "url": "https://en.wikipedia.org/wiki/Toyota_Auris",
+        },
+    )
     for vehicle in vehicle_pages:
         url = vehicle["url"]
 
@@ -242,7 +254,7 @@ if __name__ == "__main__":
                 **extracted_data,
             }
         )
-    output_path = Path("data/raw/bmw_raw.json")
+    output_path = Path("data/raw/toyota_raw.json")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", encoding="utf-8") as f:
         json.dump(

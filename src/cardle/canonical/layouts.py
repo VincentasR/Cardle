@@ -1,35 +1,119 @@
+import re
+
+
 def parse_layout(value: str) -> tuple[list[str], list[str]]:
+    """
+    Parse a raw vehicle layout string into canonical
+    engine-position and drivetrain values.
+
+    Examples:
+        "Front-engine, rear-wheel-drive"
+            -> ["Front"], ["RWD"]
+
+        "Rear-wheel drive"
+            -> [], ["RWD"]
+
+        "Front-engine, front-wheel-drive
+         Front-engine, all-wheel-drive (xDrive)"
+            -> ["Front"], ["FWD", "AWD"]
+
+        "FR"
+            -> ["Front"], ["RWD"]
+    """
+
+    if not value:
+        return [], []
+
     value_lower = value.lower()
 
     engine_positions = []
     drivetrains = []
 
+    # ---------------------------------------------------------
     # Engine position
-    if "front-engine" in value_lower:
-        engine_positions.append("Front")
+    # ---------------------------------------------------------
 
-    if "mid-engine" in value_lower:
-        engine_positions.append("Mid")
+    if (
+        "front-engine" in value_lower
+        or "front engine" in value_lower
+    ):
+        _append_unique(
+            engine_positions,
+            "Front",
+        )
 
-    if "rear-engine" in value_lower:
-        engine_positions.append("Rear")
+    if (
+        "mid-engine" in value_lower
+        or "mid engine" in value_lower
+    ):
+        _append_unique(
+            engine_positions,
+            "Mid",
+        )
 
+    if (
+        "rear-engine" in value_lower
+        or "rear engine" in value_lower
+    ):
+        _append_unique(
+            engine_positions,
+            "Rear",
+        )
+
+    # ---------------------------------------------------------
     # Drivetrain
-    if "front-wheel-drive" in value_lower:
-        drivetrains.append("FWD")
+    # ---------------------------------------------------------
 
-    if "rear-wheel-drive" in value_lower:
-        drivetrains.append("RWD")
+    if (
+        "front-wheel-drive" in value_lower
+        or "front-wheel drive" in value_lower
+        or "front wheel drive" in value_lower
+    ):
+        _append_unique(
+            drivetrains,
+            "FWD",
+        )
+
+    if (
+        "rear-wheel-drive" in value_lower
+        or "rear-wheel drive" in value_lower
+        or "rear wheel drive" in value_lower
+    ):
+        _append_unique(
+            drivetrains,
+            "RWD",
+        )
 
     if (
         "all-wheel-drive" in value_lower
+        or "all-wheel drive" in value_lower
+        or "all wheel drive" in value_lower
         or "four-wheel-drive" in value_lower
+        or "four-wheel drive" in value_lower
+        or "four wheel drive" in value_lower
         or "4-wheel-drive" in value_lower
+        or "4-wheel drive" in value_lower
+        or "4 wheel drive" in value_lower
         or "xdrive" in value_lower
     ):
-        drivetrains.append("AWD")
+        _append_unique(
+            drivetrains,
+            "AWD",
+        )
 
-    # Abbreviated layouts
+    # ---------------------------------------------------------
+    # Compact layout abbreviations
+    #
+    # IMPORTANT:
+    # These must be matched as standalone tokens.
+    #
+    # Using startswith("fr") would incorrectly interpret:
+    #
+    #     "front-engine..."
+    #
+    # as the abbreviation FR.
+    # ---------------------------------------------------------
+
     abbreviations = {
         "fr": ("Front", "RWD"),
         "ff": ("Front", "FWD"),
@@ -40,16 +124,33 @@ def parse_layout(value: str) -> tuple[list[str], list[str]]:
         "r4": ("Rear", "AWD"),
     }
 
-    stripped = value_lower.strip()
+    for abbreviation, (
+        engine_position,
+        drivetrain,
+    ) in abbreviations.items():
 
-    for abbreviation, (position, drivetrain) in abbreviations.items():
-        if stripped.startswith(abbreviation):
-            if position not in engine_positions:
-                engine_positions.append(position)
+        pattern = rf"\b{re.escape(abbreviation)}\b"
 
-            if drivetrain not in drivetrains:
-                drivetrains.append(drivetrain)
+        if re.search(
+            pattern,
+            value_lower,
+        ):
+            _append_unique(
+                engine_positions,
+                engine_position,
+            )
 
-            break
+            _append_unique(
+                drivetrains,
+                drivetrain,
+            )
 
     return engine_positions, drivetrains
+
+
+def _append_unique(
+    values: list[str],
+    value: str,
+) -> None:
+    if value not in values:
+        values.append(value)

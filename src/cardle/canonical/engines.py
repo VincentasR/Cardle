@@ -1,123 +1,197 @@
 import re
-
+import unicodedata
 from .ids import slugify
 
 
-def parse_engine_usage(value: str) -> tuple[dict | None, dict | None]:
-    """
-    Parse a raw Wikipedia engine string into:
+CYLINDER_TOKEN_PATTERN = re.compile(
+    r"^(?:"
+    r"I\d{1,2}|"
+    r"L\d{1,2}|"
+    r"V\d{1,2}|"
+    r"W\d{1,2}|"
+    r"H\d{1,2}"
+    r")$",
+    re.IGNORECASE,
+)
 
-    1. a canonical EngineFamily
-    2. version-specific engine usage data
+
+ENGINE_CODE_PATTERN = re.compile(
+    r"^[A-Za-zÄÖÜäöü]"
+    r"[A-Za-z0-9ÄÖÜäöü/-]*"
+    r"\d"
+    r"[A-Za-z0-9ÄÖÜäöü/-]*$"
+)
+
+def _normalize_engine_code(
+    value: str,
+) -> str:
+    """
+    Normalize equivalent spellings of an engine code.
 
     Examples:
-        "M30B28 SOHC I6"
-        ->
-        family:
-            {
-                "id": "m30b28",
-                "name": "M30B28",
-                "cylinder_count": 6,
-                "arrangement": "Inline"
-            }
+        M52TÜB28 -> M52TUB28
+        M52TUB28 -> M52TUB28
 
-        usage:
-            {
-                "engine_family_id": "m30b28",
-                "displacement_l": None
-            }
+    Engine codes are identifiers, so using a stable ASCII
+    representation avoids creating different canonical names
+    for the same engine family.
+    """
+
+    value = unicodedata.normalize(
+        "NFKD",
+        value,
+    )
+
+    value = "".join(
+        character
+        for character in value
+        if not unicodedata.combining(character)
+    )
+
+    return value.upper()
+
+def parse_engine_usage(
+    value: str,
+) -> tuple[dict | None, dict | None]:
+    """
+    Parse a raw engine description into:
+
+        EngineFamily
+        Engine usage
+
+    Examples:
+        "3.0 L N52 inline-6"
+            -> N52, 3.0 L
 
         "4.4 L N62 V8"
-        ->
-        family:
-            {
-                "id": "n62",
-                "name": "N62",
-                "cylinder_count": 8,
-                "arrangement": "V"
-            }
+            -> N62, 4.4 L
 
-        usage:
-            {
-                "engine_family_id": "n62",
-                "displacement_l": 4.4
-            }
+        "M30B28 SOHC I6"
+            -> M30B28
+
+        "5.4 L M73TÜB54 V12"
+            -> M73TÜB54, 5.4 L
+
+    Cylinder-layout tokens such as V8, V12 and I6 are
+    deliberately excluded from engine-code detection.
     """
-    value = value.strip()
+
+    if not value:
+        return None, None
 
     engine_code = _parse_engine_code(value)
 
     if engine_code is None:
         return None, None
 
-    displacement = _parse_displacement(value)
-    cylinder_count, arrangement = _parse_cylinders(value)
+    displacement_l = _parse_displacement(value)
 
-    family = {
+    cylinder_count, arrangement = _parse_cylinders(
+        value
+    )
+
+    engine_family = {
         "id": slugify(engine_code),
         "name": engine_code,
         "cylinder_count": cylinder_count,
         "arrangement": arrangement,
     }
 
-    usage = {
-        "engine_family_id": family["id"],
-        "displacement_l": displacement,
+    engine_usage = {
+        "engine_family_id": engine_family["id"],
+        "displacement_l": displacement_l,
     }
 
-    return family, usage
+    return engine_family, engine_usage
 
 
-def _parse_engine_code(value: str) -> str | None:
-    patterns = [
-        # Detailed codes:
-        # M30B28, B48B20M0, N52B30
-        r"\b[A-Z]\d{2}[A-Z]\d{2}[A-Z0-9]*\b",
+def _parse_engine_code(
+    value: str,
+) -> str | None:
+    """
+    Find the first plausible engine code in a raw engine
+    description.
 
-        # Codes such as M88/3
-        r"\b[A-Z]\d{2}/\d+\b",
+    This deliberately rejects cylinder-layout tokens such as:
 
-        # Family-level codes:
-        # N52, N62, S85, M57
-        r"\b[A-Z]\d{2}\b",
-    ]
+        I4
+        I6
+        V8
+        V10
+        V12
+        W12
 
-    for pattern in patterns:
-        match = re.search(
-            pattern,
-            value,
-            flags=re.IGNORECASE,
+    because those describe engine architecture rather than
+    engine identity.
+    """
+
+    tokens = re.split(
+        r"\s+",
+        value.strip(),
+    )
+
+    for token in tokens:
+        token = token.strip(
+            "(),[];"
         )
 
-        if match:
-            return match.group(0).upper()
+        if not token:
+            continue
+
+        # Do not interpret V8/V12/I6/etc. as engine codes.
+        if CYLINDER_TOKEN_PATTERN.fullmatch(token):
+            continue
+
+        if ENGINE_CODE_PATTERN.fullmatch(token):
+            return _normalize_engine_code(token)
 
     return None
 
 
-def _parse_displacement(value: str) -> float | None:
+def _parse_displacement(
+    value: str,
+) -> float | None:
+    """
+    Extract displacement expressed in litres.
+
+    Example:
+        "4.4 L N62 V8"
+            -> 4.4
+    """
+
     match = re.search(
-        r"\b(\d+(?:\.\d+)?)\s*L\b",
+        r"\b(\d+(?:\.\d+)?)\s*[Ll]\b",
         value,
-        flags=re.IGNORECASE,
     )
 
-    if not match:
+    if match is None:
         return None
 
-    return float(match.group(1))
+    return float(
+        match.group(1)
+    )
 
 
 def _parse_cylinders(
     value: str,
 ) -> tuple[int | None, str | None]:
-    value_lower = value.lower()
-    value_upper = value.upper()
+    """
+    Extract cylinder count and canonical arrangement.
 
-    # I6, I4, etc.
+    Examples:
+        I6          -> 6, Inline
+        inline-6    -> 6, Inline
+        straight-6  -> 6, Inline
+        6-cylinder  -> 6, None
+        V8          -> 8, V
+        V12         -> 12, V
+    """
+
+    # I6 / I4 etc.
     match = re.search(
-        r"\bI(\d+)\b",
-        value_upper,
+        r"\bI(\d{1,2})\b",
+        value,
+        flags=re.IGNORECASE,
     )
 
     if match:
@@ -125,8 +199,19 @@ def _parse_cylinders(
 
     # inline-6 / inline 6
     match = re.search(
-        r"\binline[-\s]?(\d+)\b",
-        value_lower,
+        r"\binline[-\s]?(\d{1,2})\b",
+        value,
+        flags=re.IGNORECASE,
+    )
+
+    if match:
+        return int(match.group(1)), "Inline"
+
+    # straight-6 / straight 6
+    match = re.search(
+        r"\bstraight[-\s]?(\d{1,2})\b",
+        value,
+        flags=re.IGNORECASE,
     )
 
     if match:
@@ -134,11 +219,32 @@ def _parse_cylinders(
 
     # V8 / V10 / V12
     match = re.search(
-        r"\bV(\d+)\b",
-        value_upper,
+        r"\bV(\d{1,2})\b",
+        value,
+        flags=re.IGNORECASE,
     )
 
     if match:
         return int(match.group(1)), "V"
+
+    # W12 etc.
+    match = re.search(
+        r"\bW(\d{1,2})\b",
+        value,
+        flags=re.IGNORECASE,
+    )
+
+    if match:
+        return int(match.group(1)), "W"
+
+    # Generic "4-cylinder", where arrangement isn't stated.
+    match = re.search(
+        r"\b(\d{1,2})[-\s]?cylinder\b",
+        value,
+        flags=re.IGNORECASE,
+    )
+
+    if match:
+        return int(match.group(1)), None
 
     return None, None

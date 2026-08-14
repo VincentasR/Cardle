@@ -3,15 +3,61 @@ import re
 from bs4 import BeautifulSoup
 
 
-def get_page_title(soup: BeautifulSoup) -> str | None:
-    """Return the Wikipedia article title without the Wikipedia suffix."""
+# ---------------------------------------------------------
+# Variant-code recognition
+#
+# Intentionally conservative:
+# - must contain at least one letter
+# - must contain at least one digit
+#
+# Examples:
+#     E60
+#     G20
+#     G28
+#     U11
+#     I01
+#     NA0
+#
+# This avoids accidentally treating things such as:
+#     2024
+#     Sedan
+#     Gran Coupé
+#
+# as manufacturer codes.
+# ---------------------------------------------------------
+
+VARIANT_CODE_PATTERN = re.compile(
+    r"(?<![A-Za-z0-9])"
+    r"([A-Za-z]{1,4}\d[A-Za-z0-9-]{0,8})"
+    r"(?![A-Za-z0-9])"
+)
+
+
+BODY_STYLE_KEYS = {
+    "body style",
+    "body styles",
+}
+
+
+def get_page_title(
+    soup: BeautifulSoup,
+) -> str | None:
+    """
+    Return the Wikipedia article title without
+    the Wikipedia suffix.
+    """
 
     if soup.title is None:
         return None
 
-    title = soup.title.get_text(" ", strip=True)
+    title = soup.title.get_text(
+        " ",
+        strip=True,
+    )
 
-    return title.removesuffix(" - Wikipedia").strip()
+    return title.removesuffix(
+        " - Wikipedia"
+    ).strip()
 
 
 def remove_manufacturer_prefix(
@@ -19,101 +65,49 @@ def remove_manufacturer_prefix(
     manufacturer: str,
 ) -> str:
     """
-    Remove the manufacturer from the beginning of a title.
+    Remove the manufacturer from the beginning
+    of a title.
 
     Example:
         BMW 507 -> 507
     """
 
-    if title.casefold().startswith(manufacturer.casefold()):
-        return title[len(manufacturer):].strip()
+    if title.casefold().startswith(
+        manufacturer.casefold()
+    ):
+        return title[
+            len(manufacturer):
+        ].strip()
 
     return title.strip()
 
 
-def split_variant_codes(raw_value: str) -> list[str]:
+def split_variant_codes(
+    raw_value: str,
+) -> list[str]:
     """
-    Split combined variant codes and remove duplicates.
+    Extract manufacturer/body codes from text.
 
     Examples:
         E63/E64
-        -> ["E63", "E64"]
+            -> ["E63", "E64"]
 
         F12/F13/F06
-        -> ["F12", "F13", "F06"]
+            -> ["F12", "F13", "F06"]
 
-        G14/G15/G15
-        -> ["G14", "G15"]
+        G20/G28
+            -> ["G20", "G28"]
+
+        G26, Gran Coupé
+            -> ["G26"]
+
+        G20
+            -> ["G20"]
     """
 
-    values = [
-        part.strip()
-        for part in raw_value.split("/")
-        if part.strip()
-    ]
-
-    return list(dict.fromkeys(values))
-
-
-def looks_like_variant_code(value: str) -> bool:
-    """
-    Roughly recognize chassis/generation codes.
-
-    Examples:
-        E24
-        F39
-        G01
-        U10
-        F74
-        G26
-        XX50
-    """
-
-    return bool(
-        re.fullmatch(
-            r"[A-Z]{1,3}\d{1,3}[A-Z0-9]*",
-            value.strip(),
-            flags=re.IGNORECASE,
-        )
+    return VARIANT_CODE_PATTERN.findall(
+        raw_value
     )
-
-
-def extract_parenthesized_variants(
-    value: str,
-) -> list[str]:
-    """
-    Extract trailing parenthesized variant codes.
-
-    Examples:
-        6 Series (E63/E64)
-        -> ["E63", "E64"]
-
-        X3 (G01)
-        -> ["G01"]
-    """
-
-    match = re.search(
-        r"\(([^()]*)\)\s*$",
-        value,
-    )
-
-    if match is None:
-        return []
-
-    raw_variant = match.group(1).strip()
-
-    # These describe body styles rather than chassis codes.
-    if raw_variant.casefold() in {
-        "sedan",
-        "sedans",
-        "coupé",
-        "coupés",
-        "coupe",
-        "coupes",
-    }:
-        return []
-
-    return split_variant_codes(raw_variant)
 
 
 def extract_variants(
@@ -121,72 +115,140 @@ def extract_variants(
     manufacturer: str,
     discovery_name: str | None = None,
     model: str | None = None,
+    infobox: dict[str, str] | None = None,
 ) -> list[str]:
     """
-    Extract one or more variants.
+    Extract the Variant/body codes represented
+    by a Wikipedia vehicle page.
 
-    Priority:
+    Sources are considered in this order:
 
-    1. Discovery name containing model + variant:
-           6 Series (E63/E64)
-           -> ["E63", "E64"]
+    1. Parenthesized codes in the discovery label.
+    2. Parenthesized codes in the Wikipedia title.
+    3. A bare discovery label when it itself looks
+       like a manufacturer code.
+    4. Explicit body-code annotations in the
+       infobox Body style field.
+    5. For "No Model" vehicles, fall back to the
+       vehicle title/name.
 
-    2. Discovery name containing only a chassis code:
-           G26
-           -> ["G26"]
-
-       This is important when the discovered vehicle points to a
-       broader Wikipedia article such as BMW 4 Series (G22).
-
-    3. Wikipedia article title:
-           BMW 6 Series (E24)
-           -> ["E24"]
-
-    4. No-model vehicles use the vehicle name itself:
-           BMW 507
-           -> ["507"]
+    Important:
+    Body-style fields are only used when they
+    explicitly contain code-like labels. We do
+    not infer missing body codes from body-style
+    words alone.
     """
 
-    page_title = get_page_title(soup)
+    variants: list[str] = []
 
-    # ---------------------------------------------------------
-    # 1. DISCOVERY INFORMATION HAS PRIORITY
-    # ---------------------------------------------------------
+    page_title = get_page_title(
+        soup
+    )
+
+    # -----------------------------------------------------
+    # 1. Discovery label
+    #
+    # Example:
+    #     6 Series (E63/E64)
+    # -----------------------------------------------------
 
     if discovery_name:
-        # Example:
-        # 6 Series (E63/E64)
-        discovery_variants = extract_parenthesized_variants(
-            discovery_name
+        _append_codes_from_trailing_parentheses(
+            variants,
+            discovery_name,
         )
 
-        if discovery_variants:
-            return discovery_variants
-
-        # Example:
-        # G26
-        #
-        # Do this BEFORE looking at the Wikipedia title.
-        if looks_like_variant_code(discovery_name):
-            return [
-                discovery_name.strip()
-            ]
-
-    # ---------------------------------------------------------
-    # 2. FALL BACK TO THE WIKIPEDIA ARTICLE TITLE
-    # ---------------------------------------------------------
+    # -----------------------------------------------------
+    # 2. Wikipedia page title
+    #
+    # Example:
+    #     BMW 4 Series (G22)
+    # -----------------------------------------------------
 
     if page_title:
-        page_variants = extract_parenthesized_variants(
-            page_title
+        _append_codes_from_trailing_parentheses(
+            variants,
+            page_title,
         )
 
-        if page_variants:
-            return page_variants
+    # -----------------------------------------------------
+    # 3. Bare discovery code
+    #
+    # Some discovery records are simply:
+    #
+    #     G45
+    #     U10
+    #     F70
+    #
+    # Use this only when the complete discovery
+    # string itself is a code.
+    # -----------------------------------------------------
 
-    # ---------------------------------------------------------
-    # 3. NO-MODEL VEHICLES
-    # ---------------------------------------------------------
+    if discovery_name:
+        discovery_value = discovery_name.strip()
+
+        if VARIANT_CODE_PATTERN.fullmatch(
+            discovery_value
+        ):
+            _append_unique(
+                variants,
+                discovery_value,
+            )
+
+    # -----------------------------------------------------
+    # 4. Explicit body-code annotations from infobox
+    #
+    # Examples:
+    #
+    # 4-door sedan (G20/G28)
+    # 5-door wagon (G21)
+    #
+    # 2-door coupé (G22)
+    # 2-door convertible (G23)
+    # 5-door liftback (G26, Gran Coupé)
+    #
+    # We only inspect parenthetical groups. This prevents
+    # unrelated numbers elsewhere in the body-style text
+    # from becoming Variants.
+    # -----------------------------------------------------
+
+    if infobox:
+        for label, value in infobox.items():
+            if label.casefold().strip() not in BODY_STYLE_KEYS:
+                continue
+
+            for group in _extract_parenthetical_groups(
+                value
+            ):
+                codes = split_variant_codes(
+                    group
+                )
+
+                for code in codes:
+                    _append_unique(
+                        variants,
+                        code,
+                    )
+
+    # -----------------------------------------------------
+    # If we found actual manufacturer/body codes,
+    # return them now.
+    # -----------------------------------------------------
+
+    if variants:
+        return variants
+
+    # -----------------------------------------------------
+    # 5. Vehicles with no separate Model
+    #
+    # Examples:
+    #     BMW 507
+    #     BMW Z1
+    #     BMW 3/15
+    #
+    # These do not have to match the manufacturer-code
+    # pattern.
+    # -----------------------------------------------------
 
     if model == "No Model":
         fallback = discovery_name
@@ -198,10 +260,12 @@ def extract_variants(
             )
 
         if fallback:
-            # New Class (sedans) etc. should not interpret
-            # "sedans" as a chassis code.
             fallback = re.sub(
-                r"\s+\((?:sedans?|coupés?|coupes?)\)\s*$",
+                r"\s+\((?:"
+                r"sedans?|"
+                r"coupés?|"
+                r"coupes?"
+                r")\)\s*$",
                 "",
                 fallback,
                 flags=re.IGNORECASE,
@@ -210,4 +274,71 @@ def extract_variants(
             if fallback:
                 return [fallback]
 
-    return [] 
+    return []
+
+
+def _append_codes_from_trailing_parentheses(
+    variants: list[str],
+    value: str,
+) -> None:
+    """
+    Extract code-like values from trailing parentheses.
+
+    Examples:
+        "6 Series (E63/E64)"
+        "BMW X3 (G01)"
+    """
+
+    match = re.search(
+        r"\(([^()]*)\)\s*$",
+        value,
+    )
+
+    if match is None:
+        return
+
+    raw_value = match.group(1).strip()
+
+    codes = split_variant_codes(
+        raw_value
+    )
+
+    for code in codes:
+        _append_unique(
+            variants,
+            code,
+        )
+
+
+def _extract_parenthetical_groups(
+    value: str,
+) -> list[str]:
+    """
+    Return every non-nested parenthetical group.
+
+    Example:
+
+        "4-door sedan (G20/G28) "
+        "5-door wagon (G21)"
+
+    becomes:
+
+        ["G20/G28", "G21"]
+    """
+
+    return re.findall(
+        r"\(([^()]*)\)",
+        value,
+    )
+
+
+def _append_unique(
+    values: list[str],
+    value: str,
+) -> None:
+    """
+    Append a value while preserving source order.
+    """
+
+    if value not in values:
+        values.append(value)

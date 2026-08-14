@@ -2,31 +2,198 @@ import re
 
 
 VEHICLE_CLASS_ALIASES = {
-    "grand tourer": "Grand tourer",
-    "sports car": "Sports car",
-    "executive car": "Executive car",
-    "compact executive car": "Compact executive car",
-    "subcompact executive car": "Subcompact executive car",
-    "full-size luxury car": "Full-size luxury car",
-    "mid-size luxury crossover suv": "Mid-size luxury crossover SUV",
-    "compact luxury crossover suv": "Compact luxury crossover SUV",
-    "subcompact luxury crossover suv": "Subcompact luxury crossover SUV",
-    "small family car": "Small family car",
-    "mid-size car": "Mid-size car",
-    "city car": "City car",
-    "luxury car": "Luxury car",
-    "roadster": "Roadster",
+    "Subcompact luxury crossover SUV": [
+        "subcompact luxury crossover suv",
+    ],
+    "Compact luxury crossover SUV": [
+        "compact luxury crossover suv",
+    ],
+    "Mid-size luxury crossover SUV": [
+        "mid-size luxury crossover suv",
+        "midsize luxury crossover suv",
+        "mid size luxury crossover suv",
+    ],
+    "Full-size luxury car": [
+        "full-size luxury car",
+        "full size luxury car",
+    ],
+    "Subcompact executive car": [
+        "subcompact executive car",
+    ],
+    "Compact executive car": [
+        "compact executive car",
+    ],
+    "Small family car": [
+        "small family car",
+    ],
+    "Mid-size car": [
+        "mid-size car",
+        "midsize car",
+        "mid size car",
+    ],
+    "Executive car": [
+        "executive car",
+    ],
+    "Luxury car": [
+        "luxury car",
+    ],
+    "Grand tourer": [
+        "grand tourer",
+        "grand touring",
+        "gt car",
+    ],
+    "Sports car": [
+        "sports car",
+    ],
+    "City car": [
+        "city car",
+    ],
+    "Roadster": [
+        "roadster",
+    ],
 }
 
 
 def parse_vehicle_classes(value: str) -> list[str]:
-    value_lower = value.lower()
+    """
+    Parse raw Wikipedia vehicle-class text into canonical
+    Cardle vehicle classes.
 
-    found = []
+    More specific classes take priority over shorter classes
+    contained inside them.
 
-    for alias, canonical in VEHICLE_CLASS_ALIASES.items():
-        if re.search(rf"\b{re.escape(alias)}\b", value_lower):
-            if canonical not in found:
-                found.append(canonical)
+    Examples:
+        "Compact executive car (D)"
+            -> ["Compact executive car"]
 
-    return found
+        "Subcompact executive car"
+            -> ["Subcompact executive car"]
+
+        "Full-size luxury car (F)"
+            -> ["Full-size luxury car"]
+
+        "Grand tourer Executive car"
+            -> ["Grand tourer", "Executive car"]
+    """
+
+    if not value:
+        return []
+
+    value_lower = _normalize(value)
+
+    matches = []
+
+    # ---------------------------------------------------------
+    # Find every possible alias match.
+    # ---------------------------------------------------------
+
+    for canonical_name, aliases in VEHICLE_CLASS_ALIASES.items():
+        for alias in aliases:
+            alias_normalized = _normalize(alias)
+
+            pattern = (
+                r"(?<![a-z0-9])"
+                + re.escape(alias_normalized)
+                + r"(?![a-z0-9])"
+            )
+
+            for match in re.finditer(
+                pattern,
+                value_lower,
+            ):
+                matches.append(
+                    {
+                        "canonical_name": canonical_name,
+                        "start": match.start(),
+                        "end": match.end(),
+                        "length": match.end() - match.start(),
+                    }
+                )
+
+    # ---------------------------------------------------------
+    # Prefer the longest / most specific matches.
+    #
+    # Example:
+    #
+    #   "compact executive car"
+    #
+    # produces possible matches for:
+    #
+    #   Compact executive car
+    #   Executive car
+    #
+    # We keep only the longer one because their text spans
+    # overlap.
+    # ---------------------------------------------------------
+
+    matches.sort(
+        key=lambda item: (
+            -item["length"],
+            item["start"],
+        )
+    )
+
+    selected = []
+
+    for candidate in matches:
+        overlaps = False
+
+        for existing in selected:
+            if _spans_overlap(
+                candidate["start"],
+                candidate["end"],
+                existing["start"],
+                existing["end"],
+            ):
+                overlaps = True
+                break
+
+        if not overlaps:
+            selected.append(candidate)
+
+    # Restore source-text order.
+    selected.sort(
+        key=lambda item: item["start"]
+    )
+
+    result = []
+
+    for match in selected:
+        canonical_name = match["canonical_name"]
+
+        if canonical_name not in result:
+            result.append(canonical_name)
+
+    return result
+
+
+def _normalize(value: str) -> str:
+    """
+    Normalize text enough for alias matching without changing
+    the meaning of the source value.
+    """
+
+    value = value.lower()
+
+    value = value.replace("–", "-")
+    value = value.replace("—", "-")
+
+    value = re.sub(
+        r"\s+",
+        " ",
+        value,
+    )
+
+    return value.strip()
+
+
+def _spans_overlap(
+    start_a: int,
+    end_a: int,
+    start_b: int,
+    end_b: int,
+) -> bool:
+    return (
+        start_a < end_b
+        and start_b < end_a
+    )
