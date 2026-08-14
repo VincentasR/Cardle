@@ -1,13 +1,15 @@
 # Cardle
 
-Cardle is a daily car guessing game built around an automotive knowledge graph. The game is inspired by Wordle, and the mechanics are quite similar. 
+Cardle is a daily car guessing game built around an automotive knowledge graph. The game is inspired by Wordle, with similar daily guessing mechanics.
 
-Players discover one vehicle per day. Discovered vehicles are added to a persistent visual graph, where relationships such as shared engines, designers, model lineage, and many more, gradualy reveal the structure of the automotive world.
+Players discover one vehicle per day. Discovered vehicles are added to a persistent visual graph, where relationships such as shared engines, designers, model lineage, body styles, and drivetrains gradually reveal the structure of the automotive world.
 
-## CUrrent stage
+## Current stage
 
-The project is currently in the knowledge-model prototyping phase.
+The project has moved from manual graph prototyping to an automated data integration pipeline.
 
-The first prototype uses manually modeled BMW vehicles in Neo4j to explore: vehicle hierarchy, what kind of names/generations/trims/variants would be suited for the final game, versions, engines, body styles, drivertain, designers, successor relationships. 
+Wikipedia vehicle data is scraped into raw JSON and transformed into a canonical automotive schema containing manufacturers, models, variants, versions, engines, body styles, drivetrains, designers, production periods, and vehicle relationships.
 
-The prototype will later be replaced by an automated integration pipeline combining RDF knowledge graphs, structured datasets and scraped web data.
+The current BMW dataset is used as the first complete prototype. The next step is importing the canonical data into Neo4j and building the playable Cardle game on top of the resulting knowledge graph.
+
+Future work includes supporting additional manufacturers, handling less structured sources, and experimenting with lightweight LLM-assisted information extraction.
