@@ -83,3 +83,8 @@ class GuessFeedback:
     power: OrderedFeedback
 
     drivetrain: ColorFeedback
+
+@dataclass(frozen=True)
+class VehicleOption:
+    id: str
+    display_name: str

@@ -1,7 +1,9 @@
 from neo4j import Driver
-
-from .models import GameVehicle, NamedEntity
-
+from .models import (
+    GameVehicle,
+    NamedEntity,
+    VehicleOption,
+)
 
 class VehicleNotFoundError(Exception):
     pass
@@ -17,10 +19,14 @@ class Neo4jVehicleRepository:
         self._database = database
 
     def get_vehicle(
-        self,
-        vehicle_id: str,
-    ) -> GameVehicle:
+    self,
+    vehicle_id: str,
+) -> GameVehicle:
         query = """
+        // =====================================================
+        // Case 1: Version is the guessable car
+        // =====================================================
+
         MATCH (version:Version {id: $vehicle_id})
         MATCH (variant:Variant)-[:HAS_VERSION]->(version)
         MATCH (model:Model)-[:HAS_VARIANT]->(variant)
@@ -103,6 +109,98 @@ class Neo4jVehicleRepository:
             +
             collect(DISTINCT predecessor.id)
                 AS lineage_neighbor_ids
+
+
+        UNION ALL
+
+
+        // =====================================================
+        // Case 2: Variant is guessable because it has no Version
+        // =====================================================
+
+        MATCH (variant:Variant {id: $vehicle_id})
+
+        WHERE NOT EXISTS {
+            MATCH (variant)-[:HAS_VERSION]->(:Version)
+        }
+
+        MATCH (model:Model)-[:HAS_VARIANT]->(variant)
+        MATCH (manufacturer:Manufacturer)-[:PRODUCES]->(model)
+
+        OPTIONAL MATCH
+            (variant)-[:HAS_BODY_STYLE]->(body_style:BodyStyle)
+
+        OPTIONAL MATCH
+            (variant)-[:HAS_CLASS]->(vehicle_class:VehicleClass)
+
+        OPTIONAL MATCH
+            (variant)-[:HAS_DRIVETRAIN]->(drivetrain:Drivetrain)
+
+        OPTIONAL MATCH
+            (variant)-[:USES_ENGINE]->(engine:EngineFamily)
+
+        OPTIONAL MATCH
+            (variant)-[:SUCCEEDED_BY]->(successor:Variant)
+
+        OPTIONAL MATCH
+            (predecessor:Variant)-[:SUCCEEDED_BY]->(variant)
+
+        RETURN
+            variant.id AS vehicle_id,
+
+            manufacturer {
+                .id,
+                .name
+            } AS manufacturer,
+
+            model {
+                .id,
+                .name
+            } AS model,
+
+            variant {
+                .id,
+                .name
+            } AS variant,
+
+            null AS version,
+
+            variant.production_start AS production_start,
+            variant.production_end AS production_end,
+            variant.power_hp AS power_hp,
+
+            collect(
+                DISTINCT body_style {
+                    .id,
+                    .name
+                }
+            ) AS body_styles,
+
+            collect(
+                DISTINCT vehicle_class {
+                    .id,
+                    .name
+                }
+            ) AS vehicle_classes,
+
+            collect(
+                DISTINCT drivetrain {
+                    .id,
+                    .name
+                }
+            ) AS drivetrains,
+
+            collect(
+                DISTINCT engine {
+                    .id,
+                    .name
+                }
+            ) AS engine_families,
+
+            collect(DISTINCT successor.id)
+            +
+            collect(DISTINCT predecessor.id)
+                AS lineage_neighbor_ids
         """
 
         records, _, _ = self._driver.execute_query(
@@ -118,9 +216,16 @@ class Neo4jVehicleRepository:
 
         row = records[0]
 
-        model = self._to_named_entity(row["model"])
+        model = self._to_named_entity(
+            row["model"]
+        )
 
-        if model is not None and model.name == "No Model":
+        # "No Model" is a canonical placeholder,
+        # not a real Model from the game's perspective.
+        if (
+            model is not None
+            and model.name == "No Model"
+        ):
             model = None
 
         return GameVehicle(
@@ -129,10 +234,13 @@ class Neo4jVehicleRepository:
             manufacturer=self._to_named_entity(
                 row["manufacturer"]
             ),
+
             model=model,
+
             variant=self._to_named_entity(
                 row["variant"]
             ),
+
             version=self._to_named_entity(
                 row["version"]
             ),
@@ -144,12 +252,15 @@ class Neo4jVehicleRepository:
             vehicle_classes=self._to_named_entity_set(
                 row["vehicle_classes"]
             ),
+
             body_styles=self._to_named_entity_set(
                 row["body_styles"]
             ),
+
             engine_families=self._to_named_entity_set(
                 row["engine_families"]
             ),
+
             drivetrains=self._to_named_entity_set(
                 row["drivetrains"]
             ),
@@ -160,7 +271,6 @@ class Neo4jVehicleRepository:
                 if value is not None
             ),
         )
-
     @staticmethod
     def _to_named_entity(
         value: dict | None,
@@ -185,3 +295,116 @@ class Neo4jVehicleRepository:
             if (entity := cls._to_named_entity(value))
             is not None
         )
+    
+    def list_guessable_vehicles(
+    self,
+) -> list[VehicleOption]:
+        query = """
+        CALL () {
+            // Normal guessable cars: Versions
+            MATCH (manufacturer:Manufacturer)
+                -[:PRODUCES]->(model:Model)
+                -[:HAS_VARIANT]->(variant:Variant)
+                -[:HAS_VERSION]->(version:Version)
+
+            RETURN
+                version.id AS vehicle_id,
+                manufacturer.name AS manufacturer_name,
+                model.name AS model_name,
+                variant.name AS variant_name,
+                version.name AS version_name
+
+            UNION ALL
+
+            // Variant-only guessable cars
+            MATCH (manufacturer:Manufacturer)
+                -[:PRODUCES]->(model:Model)
+                -[:HAS_VARIANT]->(variant:Variant)
+
+            WHERE NOT EXISTS {
+                MATCH (variant)-[:HAS_VERSION]->(:Version)
+            }
+
+            RETURN
+                variant.id AS vehicle_id,
+                manufacturer.name AS manufacturer_name,
+                model.name AS model_name,
+                variant.name AS variant_name,
+                null AS version_name
+        }
+
+        RETURN
+            vehicle_id,
+            manufacturer_name,
+            model_name,
+            variant_name,
+            version_name
+
+        ORDER BY
+            manufacturer_name,
+            model_name,
+            variant_name,
+            version_name
+        """
+
+        records, _, _ = self._driver.execute_query(
+            query,
+            database_=self._database,
+        )
+
+        result = []
+
+        for row in records:
+            parts = [
+                row["manufacturer_name"],
+            ]
+
+            if row["model_name"] != "No Model":
+                parts.append(row["model_name"])
+
+            parts.append(row["variant_name"])
+
+            if row["version_name"] is not None:
+                parts.append(row["version_name"])
+
+            result.append(
+                VehicleOption(
+                    id=row["vehicle_id"],
+                    display_name=" ".join(parts),
+                )
+            )
+
+        return result
+
+    def search_vehicles(
+        self,
+        search_text: str,
+        limit: int = 20,
+    ) -> list[VehicleOption]:
+        search_text = search_text.strip().lower()
+
+        if not search_text:
+            return []
+
+        vehicles = self.list_guessable_vehicles()
+
+        matches = [
+            vehicle
+            for vehicle in vehicles
+            if search_text in vehicle.display_name.lower()
+        ]
+
+        def rank(vehicle: VehicleOption) -> tuple:
+            name = vehicle.display_name.lower()
+
+            return (
+                0 if name == search_text else 1,
+                0 if name.endswith(search_text) else 1,
+                0 if search_text in name.split() else 1,
+                name,
+            )
+
+        matches.sort(key=rank)
+
+        return matches[:limit]
+

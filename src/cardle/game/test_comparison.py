@@ -6,6 +6,7 @@ from .comparison import VehicleComparer
 from .repository import Neo4jVehicleRepository
 
 
+
 def main():
     uri = os.getenv(
         "NEO4J_URI",
@@ -25,20 +26,53 @@ def main():
         uri,
         auth=(username, password),
     ) as driver:
+
         repository = Neo4jVehicleRepository(
             driver=driver,
             database=database,
         )
 
-        comparer = VehicleComparer()
+        # -----------------------------------------
+        # Test list_guessable_vehicles()
+        # -----------------------------------------
+
+        vehicles = repository.list_guessable_vehicles()
+
+        print(f"Guessable vehicles: {len(vehicles)}")
+        print()
+
+        for vehicle in vehicles[:30]:
+            print(
+                vehicle.id,
+                "->",
+                vehicle.display_name,
+            )
+
+        # -----------------------------------------
+        # Existing comparison test
+        # -----------------------------------------
+        results = [repository.search_vehicles(i) for i in ["635", "x5", "e34", "e46"]]
+        for i in results:
+
+
+            print("SEARCH RESULTS")
+            print()
+
+            for index, vehicle in enumerate(
+                i,
+                start=1,
+            ):
+                print(
+                    f"{index}. {vehicle.display_name}"
+                )
+            comparer = VehicleComparer()
 
         target = repository.get_vehicle(
             "bmw_6_series_e24_635csi"
         )
 
-        # Put the REAL E24 version ID you used earlier here.
         guess = repository.get_vehicle(
-            "bmw_6_series_e63_630i"
+            "bmw_6_series_e24_635csi"
         )
 
         feedback = comparer.compare(
@@ -46,6 +80,7 @@ def main():
             target,
         )
 
+        print()
         print("TARGET")
         print(target.display_name)
 
@@ -55,24 +90,6 @@ def main():
 
         print()
         print("FEEDBACK")
-        print(f"Closeness:        {feedback.closeness.value}")
-        print(f"Manufacturer:     {feedback.manufacturer.value}")
-        print(
-            f"Production start: {feedback.production_start.value}"
-        )
-        print(
-            f"Production end:   {feedback.production_end.value}"
-        )
-        print(
-            f"Vehicle class:    {feedback.vehicle_class.value}"
-        )
-        print(f"Body style:       {feedback.body_style.value}")
-        print(
-            f"Engine family:    {feedback.engine_family.value}"
-        )
-        print(f"Power:            {feedback.power.value}")
-        print(f"Drivetrain:       {feedback.drivetrain.value}")
-
-
+        print(feedback)
 if __name__ == "__main__":
     main()
