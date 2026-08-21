@@ -29,6 +29,25 @@ function orderedArrow(feedback: string) {
     return ''
 }
 
+function productionFeedbackClass(
+    productionStart: string,
+    productionEnd: string,
+): string {
+    const matchingYears = [
+        productionStart,
+        productionEnd,
+    ].filter((feedback) => feedback === 'green').length
+
+    if (matchingYears === 2) {
+        return 'feedback-green'
+    }
+
+    if (matchingYears === 1) {
+        return 'feedback-yellow'
+    }
+
+    return 'ordered-production'
+}
 
 function closenessLabel(closeness: string) {
     return closeness
@@ -124,7 +143,10 @@ function GuessRow({
 
 
                 <div
-                    className="property-cell ordered-production"
+                    className={`property-cell ${productionFeedbackClass(
+                        feedback.production_start,
+                        feedback.production_end,
+                    )}`}
                 >
                     <span className="property-value">
                         {vehicle.production_start ?? 'Unknown'}
