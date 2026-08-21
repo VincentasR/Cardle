@@ -7,6 +7,9 @@ from .models import (
 )
 
 
+MAX_GUESSES = 7
+
+
 @dataclass(frozen=True)
 class GuessResult:
     guess: GameVehicle
@@ -41,8 +44,30 @@ class GameSession:
         return len(self._guesses)
 
     @property
+    def max_guesses(self) -> int:
+        return MAX_GUESSES
+
+    @property
+    def remaining_guesses(self) -> int:
+        return max(
+            0,
+            self.max_guesses - self.guess_count,
+        )
+
+    @property
     def won(self) -> bool:
         return self._won
+
+    @property
+    def lost(self) -> bool:
+        return (
+            not self._won
+            and self.guess_count >= self.max_guesses
+        )
+
+    @property
+    def finished(self) -> bool:
+        return self.won or self.lost
 
     def has_guessed(
         self,
@@ -54,9 +79,9 @@ class GameSession:
         self,
         guess: GameVehicle,
     ) -> GuessResult:
-        if self._won:
+        if self.finished:
             raise RuntimeError(
-                "The game has already been won."
+                "The game has already finished."
             )
 
         if self.has_guessed(guess.id):

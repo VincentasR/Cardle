@@ -1,18 +1,26 @@
-# Virtual environment
-.venv/
-
-# Python cache
+# Python
 __pycache__/
 *.py[cod]
-
-# Packaging
 *.egg-info/
-dist/
-build/
+.pytest_cache/
 
-# Environment variables
+# Virtual environments
+.venv/
+venv/
+
+# Environment variables / secrets
 .env
+.env.*
+!.env.example
 
-# IDE
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# IDE / OS
 .vscode/
 .idea/
+.DS_Store
+
+# Neo4j / credentials
+*.credentials

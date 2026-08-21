@@ -1,14 +1,22 @@
 [project]
 name = "cardle"
 version = "0.1.0"
-description = "A car guessing game"
+description = "A daily car guessing game built on an automotive knowledge graph"
 requires-python = ">=3.14"
 
 dependencies = [
-    "rdflib",
-    "pyshacl",
-    "requests",
+    "fastapi",
     "neo4j",
+    "pydantic",
+    "pyshacl",
+    "rdflib",
+    "requests",
+    "uvicorn",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
 ]
 
 [tool.setuptools.packages.find]
