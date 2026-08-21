@@ -1,6 +1,67 @@
 
 # Development Log
 
+## 2026-08-21
+
+Finished and deployed the first playable web version of Cardle.
+
+### Game lifecycle
+- Added a 7-guess limit to `GameSession`.
+- Added explicit `won`, `lost`, `finished`, and remaining-guess state.
+- Prevented guesses after the game has finished.
+- The target vehicle is only revealed by the API after the game is won or lost.
+
+### Frontend
+- Finished the responsive React/TypeScript game UI.
+- Added automatic vehicle search with debounce.
+- Added loading, empty-search, submission, and server-error states.
+- Added mobile layout and sticky search input.
+- Added win/loss presentation.
+- Added browser persistence with `localStorage`, storing only the current date and guessed vehicle IDs.
+- Verified the complete game flow on both desktop and mobile.
+
+### Backend
+- Added FastAPI lifecycle management for the Neo4j driver.
+- Added Pydantic request/response schemas.
+- Split API schemas and game-state serialization out of `app.py`.
+- Added automated tests for the important game rules and target-hiding behavior.
+- All tests, frontend linting, and the Vite production build pass.
+
+### Deployment
+Deployed the application using:
+
+- **Vercel** — React/Vite frontend
+- **Render** — FastAPI backend
+- **Neo4j AuraDB** — production graph database
+
+Imported the full canonical BMW dataset into AuraDB:
+
+- 1 manufacturer
+- 26 models
+- 125 variants
+- 1059 versions
+- 186 engine families
+- 9 body styles
+- 14 vehicle classes
+- 3 engine positions
+- 3 drivetrains
+- 73 designers
+- 1280 engine usages
+
+The complete production path is now:
+
+`Browser → Vercel → Render/FastAPI → Neo4j AuraDB`
+
+Cardle is now publicly playable and no longer depends on any locally running services.
+
+### What is to be done in the near and not so near future
+
+First fixes will be adding colour if both production years match and yellow if only one does. Another thing is fixing the engine families to include actually all the engines tha are in the engine family (like B48 includes B48B20M0. B48A20 and so on...). The design will be improved by adding explanation of what which feld and colour mean.
+
+After polishing these things (either today or tomorrow) I will tackle the users streak, stats (no log in yet). I will then be working on another (in my opinion most important feature) adding the whole graph of unlockable cars and making the whole automotive universe. 
+
+Then after that, cars manufactured by other manufacturers will be included, depending on how good the current BMW scraper generalizes for different manufacturers. I will also be trying to use different approaches, mainly: merging sources, utilizing different languages in wikipedia and trying to extract data from non structured paragraphs (I already saw that some Audis have like a 200 word paragraph that just tells the story about all cars versions and variants, in German, so if the pattern repeats it will probably be possible to just scrape that paragraph and feed it to a small LLM and extract the data).
+
 ## 2026-08-18
 
 Skipped couple of days again (I need to make writing this a habit). Everything is going according to plan, CLI version is done and I am starting to work on the UI.
