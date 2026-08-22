@@ -579,3 +579,156 @@ main {
 .game-result strong {
     font-size: 18px;
 }
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-rules {
+    font-weight: 700;
+}
+
+.rules-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.rules-modal {
+    width: min(100%, 520px);
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+
+    background: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 12px;
+
+    padding: 24px;
+}
+
+.rules-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.rules-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.rules-close {
+    width: 40px;
+    height: 40px;
+
+    border: 0;
+    background: transparent;
+
+    font-size: 1.8rem;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.rules-content {
+    line-height: 1.5;
+}
+
+.rules-content section {
+    margin-top: 24px;
+}
+
+.rules-content h3 {
+    margin: 0 0 10px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+}
+
+.rules-content p {
+    margin: 8px 0;
+}
+
+.rule-color {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 8px 0;
+}
+
+.rule-swatch {
+    flex-shrink: 0;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 3px;
+}
+
+.rules-confirm {
+    width: 100%;
+
+    margin-top: 28px;
+    padding: 12px;
+
+    border: 1px solid #222;
+    border-radius: 6px;
+
+    background: #222;
+    color: white;
+
+    font: inherit;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-rules {
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid #d9d9d9;
+    border-radius: 50%;
+
+    background: white;
+
+    font: inherit;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .rules-backdrop {
+        padding: 0;
+        background: white;
+    }
+
+    .rules-modal {
+        width: 100%;
+        max-height: none;
+        min-height: 100%;
+
+        border: 0;
+        border-radius: 0;
+
+        padding: 20px;
+    }
+}

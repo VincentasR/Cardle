@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import GuessBoard from './components/GuessBoard'
 import VehicleSearch from './components/VehicleSearch'
-
+import HowToPlay from './components/HowToPlay'
 import type {
     GameState,
     SavedGame,
@@ -26,7 +26,7 @@ function App() {
 
     const [error, setError] = useState<string | null>(null)
 
-
+    const [showRules, setShowRules] = useState(false)
     /*
      * Restore today's game when the page first loads.
      */
@@ -262,7 +262,7 @@ function App() {
 
     return (
         <>
-            <Header />
+            <Header onOpenRules={() => setShowRules(true)} />
 
             <main>
                 {isLoadingGame ? (
@@ -293,12 +293,19 @@ function App() {
                                 onGuess={submitGuess}
                             />
                         )}
+                        
                     </>
                 )}
             </main>
+            {showRules && (
+                <HowToPlay
+                    onClose={() => setShowRules(false)}
+                />
+            )}
         </>
     )
 }
+
 
 
 export default App
