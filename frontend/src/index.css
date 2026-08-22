@@ -731,4 +731,25 @@ main {
 
         padding: 20px;
     }
+
+    .rules-header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+
+        background: white;
+
+        padding: 12px 0;
+        margin-bottom: 16px;
+    }
+
+    .rules-close {
+        width: 48px;
+        height: 48px;
+
+        border: 1px solid #d9d9d9;
+        border-radius: 50%;
+
+        font-size: 2rem;
+    }
 }
