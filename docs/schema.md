@@ -1,13 +1,14 @@
-# Cardle Canonical Automotive Schema — v1
+# Cardle Canonical Automotive Schema — v1.1
 
-**Status:** Frozen for the playable BMW Cardle prototype  
-**Date frozen:** 2026-08-14
+**Status:** Current schema for the playable BMW Cardle prototype  
+**v1 frozen:** 2026-08-14  
+**v1.1 engine hierarchy refinement:** 2026-08-22
 
 ---
 
 ## 1. Purpose
 
-The canonical layer converts inconsistent Wikipedia-derived data into a stable, normalized representation that can be consumed by the rest of Cardle.
+The canonical layer converts inconsistent Wikipedia-derived data into a stable, normalized representation consumed by the rest of Cardle.
 
 ```text
 Wikipedia
@@ -16,7 +17,7 @@ Raw extraction JSON
     ↓
 Canonicalization
     ↓
-Canonical JSON v1
+Canonical JSON v1.1
     ↓
 Neo4j / Cardle
 ```
@@ -25,44 +26,71 @@ The **raw JSON preserves extracted source information**. The **canonical JSON is
 
 The canonical layer does **not** attempt to reconstruct facts that are not clearly supported by the source.
 
+v1.1 keeps the original vehicle hierarchy intact and refines engine modeling so that broad engine series, comparison-friendly engine families, and exact engine codes are no longer conflated.
+
 ---
 
 ## 2. Core hierarchy
 
-The primary automotive hierarchy is:
+The primary vehicle hierarchy is:
 
 ```text
 Manufacturer
-     │
-     ▼
+     ↓
    Model
-     │
-     ▼
+     ↓
   Variant
-     │
-     ▼
+     ↓
   Version
-     │
-     ▼
+```
+
+The reusable engine hierarchy is:
+
+```text
+Manufacturer
+     ↓
+EngineSeries
+     ↓
 EngineFamily
+     ↓
+   Engine
+```
+
+A Version references the most precise engine identity supported by the source.
+
+```text
+Exact engine known:
+
+Version ──USES_ENGINE──► Engine
+                          ▲
+                          │ HAS_ENGINE
+                    EngineFamily
+                          ▲
+                          │ HAS_ENGINE_FAMILY
+                    EngineSeries
+```
+
+```text
+Only family known:
+
+Version ──USES_ENGINE_FAMILY──► EngineFamily
 ```
 
 Example:
 
 ```text
 BMW
-└── 6 Series
-    └── E24
-        ├── 628CSi
-        ├── 630CS
-        ├── 635CSi
-        ├── M635CSi
-        └── M6
+└── B
+    └── B48
+        ├── B48B20M0
+        └── B48B20O1
 ```
 
-A **Variant** represents a chassis, generation, or equivalent vehicle-level variant such as `E24`, `E39`, `F10`, `G20`, etc.
+If the source only states `B48`, Cardle stores `B` and `B48` but does **not** invent a specific Engine.
 
-A **Version** represents the marketed/configuration-level vehicle designation such as `635CSi`, `325i`, `M5`, `530d xDrive`, etc.
+A **Variant** represents a chassis/generation such as `E24`, `E39`, `F10`, or `G20`.
+
+A **Version** represents a marketed/configuration-level designation such as `635CSi`, `325i`, `M5`, or `530d xDrive`.
 
 ---
 
@@ -70,14 +98,10 @@ A **Version** represents the marketed/configuration-level vehicle designation su
 
 ### Manufacturer
 
-Represents a vehicle manufacturer.
-
 | Property | Type | Meaning |
 |---|---|---|
 | `id` | string | Stable canonical identifier |
 | `name` | string | Canonical manufacturer name |
-
-Example:
 
 ```json
 {
@@ -86,19 +110,13 @@ Example:
 }
 ```
 
----
-
 ### Model
-
-Represents a named vehicle family within a manufacturer.
 
 | Property | Type | Meaning |
 |---|---|---|
 | `id` | string | Stable canonical identifier |
 | `name` | string | Model name |
 | `manufacturer_id` | string | Owning Manufacturer |
-
-Example:
 
 ```json
 {
@@ -108,26 +126,9 @@ Example:
 }
 ```
 
-`No Model` is currently permitted as a placeholder for vehicles for which the present extraction/modeling rules do not identify a meaningful higher-level Model.
-
-This is an accepted v1 limitation rather than a blocker.
-
----
+`No Model` remains permitted as a canonical placeholder when no meaningful higher-level Model is identified.
 
 ### Variant
-
-Represents a chassis, generation, or equivalent vehicle-level variant.
-
-Examples:
-
-```text
-E24
-E39
-F10
-G20
-G21
-G28
-```
 
 | Property | Type | Meaning |
 |---|---|---|
@@ -136,7 +137,7 @@ G28
 | `model_id` | string | Parent Model |
 | `source_url` | string/null | Wikipedia source page |
 | `production_start` | integer/null | First production year |
-| `production_end` | integer/null | Final production year; null may mean ongoing/unknown |
+| `production_end` | integer/null | Final production year |
 | `body_style_ids` | list[string] | Associated body styles |
 | `vehicle_class_ids` | list[string] | Associated vehicle classes |
 | `engine_position_ids` | list[string] | Engine positions |
@@ -145,7 +146,7 @@ G28
 | `predecessors` | list[object] | Extracted predecessor relationships |
 | `successors` | list[object] | Extracted successor relationships |
 
-A relationship record currently contains:
+A relationship record can contain:
 
 ```json
 {
@@ -157,97 +158,165 @@ A relationship record currently contains:
 
 `target_id` may remain `null` when the target cannot be resolved confidently.
 
-That is intentional.
-
----
-
 ### Version
-
-Represents a marketed vehicle configuration/designation belonging to a Variant.
 
 | Property | Type | Meaning |
 |---|---|---|
 | `id` | string | Stable canonical identifier |
 | `name` | string | Canonical version designation |
 | `variant_id` | string | Parent Variant |
-| `power_hp` | integer/null | Representative power in horsepower |
+| `power_hp` | integer/null | Representative Version-level power |
 | `engines` | list[object] | Engine usages associated with this Version |
 
-Example:
+Exact-engine example:
 
 ```json
 {
-  "id": "bmw_6_series_e24_635csi",
-  "name": "635CSi",
-  "variant_id": "bmw_6_series_e24",
-  "power_hp": 208,
+  "id": "bmw_4_series_g22_430i_430i_xdrive",
+  "name": "430i 430i xDrive",
+  "variant_id": "bmw_4_series_g22",
+  "power_hp": 255,
   "engines": [
     {
-      "engine_family_id": "m30b34",
-      "displacement_l": null
-    },
-    {
-      "engine_family_id": "m30b35",
-      "displacement_l": null
+      "engine_series_id": "bmw_b",
+      "engine_family_id": "bmw_b48",
+      "engine_id": "bmw_b48b20o1",
+      "displacement_l": 2.0,
+      "cylinder_count": 4,
+      "arrangement": "Inline"
     }
   ]
 }
 ```
 
-A Version may use more than one EngineFamily over its lifetime.
+Family-only example:
 
-Power is deliberately represented as a **single representative value** in v1 rather than modeling every historical power revision.
+```json
+{
+  "engine_series_id": "bmw_b",
+  "engine_family_id": "bmw_b48",
+  "engine_id": null,
+  "displacement_l": 2.0,
+  "cylinder_count": 4,
+  "arrangement": "Inline"
+}
+```
 
----
+A Version may have more than one engine usage. Power remains a representative Version-level value rather than an Engine property.
 
-### EngineFamily
+### EngineSeries
 
-Represents a reusable engine family/code.
+Represents a broad manufacturer-specific engine series.
+
+Examples for BMW:
+
+```text
+B
+M
+N
+S
+```
 
 | Property | Type | Meaning |
 |---|---|---|
-| `id` | string | Stable normalized engine identifier |
-| `name` | string | Canonical engine family/code |
-| `cylinder_count` | integer/null | Number of cylinders |
-| `arrangement` | string/null | Cylinder arrangement |
-
-Example:
+| `id` | string | Stable manufacturer-scoped identifier |
+| `name` | string | Series designation |
+| `manufacturer_id` | string | Owning Manufacturer |
 
 ```json
 {
-  "id": "n62",
-  "name": "N62",
-  "cylinder_count": 8,
-  "arrangement": "V"
+  "id": "bmw_b",
+  "name": "B",
+  "manufacturer_id": "bmw"
 }
 ```
 
-#### Why displacement is not an EngineFamily property
+### EngineFamily
 
-Displacement belongs to the **Version → EngineFamily usage**, not necessarily the EngineFamily itself.
+Represents a reusable, comparison-friendly engine family.
+
+Examples:
 
 ```text
-Version ──USES_ENGINE──> EngineFamily
-              │
-              └── displacement_l
+B48
+B58
+N55
+M30
+S63
 ```
 
-Example:
+| Property | Type | Meaning |
+|---|---|---|
+| `id` | string | Stable manufacturer-scoped identifier |
+| `name` | string | Canonical family designation |
+| `engine_series_id` | string/null | Parent EngineSeries when known |
 
 ```json
 {
-  "engine_family_id": "n62",
-  "displacement_l": 4.8
+  "id": "bmw_b48",
+  "name": "B48",
+  "engine_series_id": "bmw_b"
 }
 ```
 
-This avoids incorrectly forcing one displacement onto an entire reusable engine family.
+EngineFamily is the level currently used by the Cardle engine-family comparison clue.
+
+### Engine
+
+Represents the most specific engine code explicitly supported by the source.
+
+Examples:
+
+```text
+B48B20M0
+B48B20O1
+B58B30O1
+M30B35
+N55B30M0
+```
+
+| Property | Type | Meaning |
+|---|---|---|
+| `id` | string | Stable manufacturer-scoped identifier |
+| `code` | string | Exact normalized engine code |
+| `engine_family_id` | string/null | Parent EngineFamily when known |
+
+```json
+{
+  "id": "bmw_b48b20o1",
+  "code": "B48B20O1",
+  "engine_family_id": "bmw_b48"
+}
+```
+
+Specific Engine nodes are created only when the source provides more detail than the family itself.
+
+```text
+Source says B48B20O1
+→ B → B48 → B48B20O1
+
+Source says B48
+→ B → B48 → no specific Engine
+```
+
+### Engine usage properties
+
+Application-specific values remain on the Version's engine usage:
+
+| Property | Type | Meaning |
+|---|---|---|
+| `engine_series_id` | string/null | Series identity when known |
+| `engine_family_id` | string/null | Family identity when known |
+| `engine_id` | string/null | Exact engine identity when known |
+| `displacement_l` | number/null | Reported displacement |
+| `cylinder_count` | integer/null | Reported cylinder count |
+| `arrangement` | string/null | Reported cylinder arrangement |
+
+This avoids forcing source/application-specific data onto reusable engine entities.
 
 ---
 
 ## 4. Controlled vocabulary entities
-
-The following concepts are represented as reusable canonical entities rather than repeated free text:
 
 | Entity | Example values |
 |---|---|
@@ -257,7 +326,7 @@ The following concepts are represented as reusable canonical entities rather tha
 | `Drivetrain` | FWD, RWD, AWD |
 | `Designer` | Paul Bracq, Chris Bangle, Joji Nagashima |
 
-Each currently has the simple structure:
+Each uses a simple reusable structure such as:
 
 ```json
 {
@@ -266,122 +335,115 @@ Each currently has the simple structure:
 }
 ```
 
-This lets many Variants reuse the same canonical entity rather than storing inconsistent strings repeatedly.
-
 ---
 
-## 5. Conceptual relationships
-
-The schema can be represented graphically as:
+## 5. Conceptual / Neo4j relationships
 
 ```text
 (:Manufacturer)
       │
-      │ PRODUCES
-      ▼
-   (:Model)
+      ├── PRODUCES ───────────────► (:Model)
+      │                                │
+      │                                └── HAS_VARIANT ──► (:Variant)
+      │                                                     │
+      │                                                     ├── HAS_VERSION ──► (:Version)
+      │                                                     │                     │
+      │                                                     │                     ├── USES_ENGINE ───────► (:Engine)
+      │                                                     │                     └── USES_ENGINE_FAMILY ► (:EngineFamily)
+      │                                                     │
+      │                                                     ├── HAS_BODY_STYLE ─────► (:BodyStyle)
+      │                                                     ├── HAS_CLASS ──────────► (:VehicleClass)
+      │                                                     ├── HAS_ENGINE_POSITION ► (:EnginePosition)
+      │                                                     ├── HAS_DRIVETRAIN ─────► (:Drivetrain)
+      │                                                     ├── DESIGNED_BY ────────► (:Designer)
+      │                                                     └── SUCCEEDED_BY ───────► (:Variant)
       │
-      │ HAS_VARIANT
-      ▼
-  (:Variant)
-      │
-      ├──────── HAS_VERSION ──────────────► (:Version)
-      │                                         │
-      │                                         │ USES_ENGINE
-      │                                         ▼
-      │                                   (:EngineFamily)
-      │
-      ├──────── HAS_BODY_STYLE ───────────► (:BodyStyle)
-      │
-      ├──────── HAS_CLASS ────────────────► (:VehicleClass)
-      │
-      ├──────── HAS_ENGINE_POSITION ──────► (:EnginePosition)
-      │
-      ├──────── HAS_DRIVETRAIN ───────────► (:Drivetrain)
-      │
-      ├──────── DESIGNED_BY ──────────────► (:Designer)
-      │
-      └──────── SUCCEEDED_BY / PRECEDED_BY ► (:Variant)
+      └── HAS_ENGINE_SERIES ──────► (:EngineSeries)
+                                        │
+                                        └── HAS_ENGINE_FAMILY ──► (:EngineFamily)
+                                                                      │
+                                                                      └── HAS_ENGINE ──► (:Engine)
 ```
 
-The exact Neo4j relationship names can still be chosen when implementing the importer.
+`USES_ENGINE` means an exact Engine is known.
 
-**The semantics above are what are frozen**, not necessarily the spelling of every Cypher relationship type.
+`USES_ENGINE_FAMILY` means the source supports only an EngineFamily.
+
+No fake Engine node is created merely to force both cases into the same graph shape.
 
 ---
 
 ## 6. Stable ID policy
 
-Every entity receives a deterministic canonical ID.
-
-Examples:
+Vehicle examples:
 
 ```text
-BMW
-→ bmw
-
-6 Series
-→ bmw_6_series
-
-E24
-→ bmw_6_series_e24
-
-M6
-→ bmw_6_series_e24_m6
-
-Paul Bracq
-→ paul_bracq
+BMW → bmw
+6 Series → bmw_6_series
+E24 → bmw_6_series_e24
+M6 → bmw_6_series_e24_m6
+Paul Bracq → paul_bracq
 ```
 
-Vehicle IDs include their hierarchy so that identical names in different contexts do not collide.
+Engine IDs are manufacturer-scoped:
+
+```text
+BMW B series → bmw_b
+BMW B48 family → bmw_b48
+BMW B48B20O1 engine → bmw_b48b20o1
+```
 
 Conceptually:
 
 ```text
-Manufacturer:
-    manufacturer
-
-Model:
-    manufacturer + model
-
-Variant:
-    manufacturer + model + variant
-
-Version:
-    manufacturer + model + variant + version
+Manufacturer: manufacturer
+Model: manufacturer + model
+Variant: manufacturer + model + variant
+Version: manufacturer + model + variant + version
+EngineSeries: manufacturer + series
+EngineFamily: manufacturer + family
+Engine: manufacturer + exact engine code
 ```
 
-IDs are normalized using slugification and Unicode-aware transliteration.
+IDs use deterministic slugification and Unicode-aware normalization.
 
-### v1 freeze rule
-
-From this point onward, existing ID-generation behavior should not be changed casually.
-
-Once Neo4j starts using these IDs, changing them becomes a data migration rather than a simple parser cleanup.
+Once persisted, changing ID semantics is a migration rather than a parser cleanup.
 
 ---
 
 ## 7. Canonicalization rules
 
-Canonicalization follows several general principles:
+- **Normalize structure, not history.**
+- **Reuse canonical entities.**
+- **Never invent missing facts.**
+- **Preserve source precision.** Family-only data stays family-only.
+- **Prefer conservative relationships.**
+- **Preserve meaningful distinctions** such as market qualifiers.
+- **Normalize obvious presentation noise** such as footnote markers.
+- **Allow multiple values where reality requires them.**
+- **Allow multiple engine usages per Version.**
+- **Treat missing source data as valid canonical data.**
+- **Keep the schema generic but parsing rules manufacturer-aware.**
 
-- **Normalize structure, not history.** The canonicalizer converts extracted values into a consistent schema; it does not attempt to become an automotive-history inference engine.
-- **Reuse entities.** Identical manufacturers, models, engines, body styles, designers, etc. should resolve to the same canonical entity.
-- **Never invent missing facts.** Unknown or ambiguous information remains `null`, `[]`, or unresolved.
-- **Prefer conservative relationships.** A predecessor/successor is resolved only when a target can be identified confidently.
-- **Preserve meaningful distinctions.** Market qualifiers such as `(US)` or `(EU)` are not blindly removed.
-- **Normalize obvious presentation noise.** Wikipedia footnote markers and similar annotations may be removed from canonical names.
-- **Allow multiple values where reality requires them.** Variants may have multiple body styles, drivetrains, designers, classes, predecessors, successors, etc.
-- **Allow multiple engines per Version.** A marketed Version can use several engine families during its production life.
-- **Missing source data is valid canonical data.** An empty field is preferable to a fabricated one.
+Engine hierarchy resolution is deliberately manufacturer-specific. For BMW, common codes can often be resolved structurally:
+
+```text
+B48B20O1 → B → B48 → B48B20O1
+N55B30M0 → N → N55 → N55B30M0
+M30B35   → M → M30 → M30B35
+```
+
+Historical or ambiguous codes are handled conservatively rather than through blind prefix truncation.
+
+Manufacturers whose exact codes do not encode their family may require explicit mappings or source associations.
 
 ---
 
 ## 8. Variant ↔ Version policy
 
-Wikipedia frequently provides one version/engine table for several closely related chassis variants.
+Wikipedia often provides one version/engine table for several closely related chassis variants.
 
-v1 deliberately does **not** attempt to reconstruct exact body-style-specific availability when Wikipedia does not explicitly provide it.
+Cardle does not reconstruct exact body-style-specific availability unless the source supports it explicitly.
 
 For example:
 
@@ -390,9 +452,9 @@ G20 = sedan
 G21 = wagon
 ```
 
-may share generic Version records extracted from the same Wikipedia table.
+may share generic Version records from the same source table.
 
-Explicit BMW long-wheelbase distinctions are handled where the source makes them obvious, such as:
+Explicit BMW long-wheelbase distinctions are handled when clear, such as:
 
 ```text
 318i / 320Li
@@ -400,9 +462,7 @@ Explicit BMW long-wheelbase distinctions are handled where the source makes them
 320d / 320Ld
 ```
 
-The LWB chassis can receive the explicit `Li`/`Ld` designation, while ambiguous generic availability is allowed to remain shared.
-
-This is an intentional v1 simplification.
+Ambiguous generic availability may remain shared.
 
 ---
 
@@ -410,25 +470,15 @@ This is an intentional v1 simplification.
 
 Wikipedia is currently the primary extraction source.
 
-The raw dataset preserves source-oriented information, while canonical Variant entities retain:
-
-```text
-source_url
-```
-
-for traceability.
-
-Canonicalization does not overwrite the raw data. Therefore the whole canonical dataset can be regenerated later if the schema changes.
+Raw data is preserved, while canonical Variants retain `source_url` for traceability.
 
 ```text
 Wikipedia
     ↓
-raw JSON          ← preserved
+raw JSON          ← preserved evidence
     ↓
-canonical JSON    ← regeneratable
+canonical JSON    ← regeneratable interpretation
 ```
-
-This distinction is important:
 
 > **Raw data is evidence; canonical data is Cardle's interpretation of that evidence.**
 
@@ -436,64 +486,77 @@ This distinction is important:
 
 ## 10. Validation policy
 
-Before producing the final canonical dataset, the pipeline checks structural integrity.
-
 Important invariants include:
 
 ```text
 IDs must be unique.
 
 Every Model must reference an existing Manufacturer.
-
 Every Variant must reference an existing Model.
-
 Every Version must reference an existing Variant.
 
-Every engine usage must reference an existing EngineFamily.
+Every EngineSeries must reference an existing Manufacturer.
+Every EngineFamily.engine_series_id, when present,
+must reference an existing EngineSeries.
+Every Engine.engine_family_id, when present,
+must reference an existing EngineFamily.
 
-Vocabulary references must point to existing canonical entities.
+Every Version engine usage must identify at least an
+EngineFamily or an exact Engine.
 
+Engine usage references must point to existing entities.
+
+If a usage contains series/family/engine IDs,
+their hierarchy must be mutually consistent.
+
+Vocabulary references must point to existing entities.
 Resolved predecessor/successor target IDs must point to existing Variants.
-
-Duplicate canonical entities with conflicting data are rejected.
+Contradictory duplicate canonical entities are rejected.
 ```
 
-The pipeline should fail on contradictory duplicate canonical entities rather than silently merging them.
+Usage-level values are validated conservatively:
+
+```text
+displacement_l > 0 when present
+cylinder_count > 0 when present
+arrangement is string/null
+```
 
 ---
 
-## 11. Explicit v1 limitations
+## 11. Explicit v1.1 limitations
 
-These are **known limitations, not unfinished Day-1 tasks**.
-
-| Limitation | v1 decision |
+| Limitation | v1.1 decision |
 |---|---|
 | Some vehicles appear under `No Model` | Accepted |
-| Facelifts are not consistently modeled as separate Variants | Deferred |
+| Facelifts are not consistently separate Variants | Deferred |
 | Some Wikipedia fields are missing/ambiguous | Leave null/empty |
-| Exact Version availability by body style is sometimes unknown | Share page-level data conservatively |
+| Exact Version availability by body style is sometimes unknown | Share conservatively |
 | Some predecessor/successor targets remain unresolved | Keep `target_id: null` |
 | Version production periods are not modeled canonically | Deferred |
-| Detailed historical power changes are not modeled | One representative power value |
-| Electric motor architecture is not modeled like combustion EngineFamily | Deferred |
-| Toyota/Audi-style multi-generation pages are not generalized yet | Future scraper work |
-| Prose-only extraction using LLMs | Future ingestion extension |
+| Detailed historical power changes are not modeled | One representative Version-level value |
+| Some source rows expose only EngineFamily | Preserve family-only knowledge |
+| Historical BMW engine hierarchy has ambiguous/special cases | Keep conservative; explicit mappings only when justified |
+| Engine-family inference outside BMW is incomplete | Add brand-specific resolvers as needed |
+| Electric motor architecture is not modeled like combustion engines | Deferred |
+| Multi-generation model-page extraction is not generalized yet | Future scraper work |
+| Prose-only LLM extraction | Future ingestion extension |
 | RDF/SHACL representation | Future semantic extension |
 
-None of these prevents the BMW Cardle prototype from being built.
-
 ---
 
-## 12. What is frozen in v1
+## 12. What is stable in v1.1
 
-From this point forward, the following conceptual schema is considered stable:
+Current entities:
 
 ```text
 Manufacturer
 Model
 Variant
 Version
+EngineSeries
 EngineFamily
+Engine
 BodyStyle
 VehicleClass
 EnginePosition
@@ -501,7 +564,7 @@ Drivetrain
 Designer
 ```
 
-with the primary hierarchy:
+Vehicle hierarchy:
 
 ```text
 Manufacturer
@@ -511,52 +574,79 @@ Model
 Variant
    ↓
 Version
+```
+
+Engine hierarchy:
+
+```text
+Manufacturer
+   ↓
+EngineSeries
    ↓
 EngineFamily
+   ↓
+Engine
 ```
 
-and Variant-level descriptive relationships for:
+Version engine usage preserves source precision:
 
 ```text
-BodyStyle
-VehicleClass
-EnginePosition
-Drivetrain
-Designer
-Predecessor
-Successor
+Version → Engine
 ```
 
-New information can be added later, but **existing meanings should not be changed unless a genuine structural problem is discovered**.
-
-> **Canonical Schema v1 is now frozen for the playable BMW Cardle prototype.**
-
-The next development step should consume this schema rather than continue redesigning it:
+when an exact engine is known, or:
 
 ```text
-Canonical JSON v1
-       ↓
-     Neo4j
-       ↓
-     Cardle
+Version → EngineFamily
 ```
+
+when only a family is known.
+
+> **Canonical Schema v1.1 is the current schema for the playable BMW Cardle prototype.**
 
 ---
 
-## 13. Future extensions
+## 13. Cardle game interpretation
 
-The following are intentionally outside the v1 freeze and can be added later without invalidating the current schema:
+The knowledge graph stores more engine detail than the current game needs.
 
-- More manufacturers and cross-brand generalization
+The graph can distinguish:
+
+```text
+B → B48 → B48B20M0
+B → B48 → B48B20O1
+```
+
+while the current game compares both at:
+
+```text
+EngineFamily = B48
+```
+
+The repository resolves both exact-engine and family-only graph paths into:
+
+```text
+GameVehicle.engine_families
+```
+
+This preserves rich graph semantics without complicating the current comparer.
+
+---
+
+## 14. Future extensions
+
+- More manufacturers and brand-specific engine resolvers
+- Explicit mappings for ambiguous historical engine codes
 - Multi-generation model-page extraction
 - Lightweight LLM-assisted prose extraction
 - More detailed version-production histories
 - More detailed EV/motor modeling
 - Facelift-specific modeling
+- Exact-engine clues or richer engine similarity
 - RDF export
 - SHACL validation
 - External knowledge graph linking
 - SPARQL support
 - Additional provenance metadata
 
-These are extensions to the system, not prerequisites for the playable BMW Cardle prototype.
+These are extensions, not prerequisites for the playable BMW Cardle prototype.

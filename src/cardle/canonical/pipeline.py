@@ -35,7 +35,9 @@ def _merge_canonical_pages(canonical_pages: list[dict]) -> dict:
     manufacturers = {}
     models = {}
 
+    engine_series = {}
     engine_families = {}
+    engines = {}
     body_styles = {}
     vehicle_classes = {}
     engine_positions = {}
@@ -63,10 +65,22 @@ def _merge_canonical_pages(canonical_pages: list[dict]) -> dict:
             model,
         )
 
+        for series in page.get("engine_series", []):
+            _add_unique(
+                engine_series,
+                series,
+            )
+
         for engine_family in page.get("engine_families", []):
-            _merge_engine_family(
+            _add_unique(
                 engine_families,
                 engine_family,
+            )
+
+        for engine in page.get("engines", []):
+            _add_unique(
+                engines,
+                engine,
             )
 
         for variant in page.get("variants", []):
@@ -200,8 +214,14 @@ def _merge_canonical_pages(canonical_pages: list[dict]) -> dict:
         "versions": list(
             versions.values()
         ),
+        "engine_series": list(
+            engine_series.values()
+        ),
         "engine_families": list(
             engine_families.values()
+        ),
+        "engines": list(
+            engines.values()
         ),
         "body_styles": list(
             body_styles.values()
@@ -247,52 +267,3 @@ def _add_unique(
             f"existing={existing}\n"
             f"incoming={entity}"
         )
-
-
-def _merge_engine_family(
-    registry: dict,
-    engine_family: dict,
-) -> None:
-    """
-    Merge repeated EngineFamily entities.
-
-    Missing properties may be filled by another page, but
-    contradictory non-null properties cause an error.
-    """
-
-    engine_id = engine_family["id"]
-
-    existing = registry.get(engine_id)
-
-    if existing is None:
-        registry[engine_id] = engine_family.copy()
-        return
-
-    if existing["name"] != engine_family["name"]:
-        raise ValueError(
-            f"Conflicting engine family names for "
-            f"{engine_id!r}: "
-            f"{existing['name']!r} vs "
-            f"{engine_family['name']!r}"
-        )
-
-    for field in (
-        "cylinder_count",
-        "arrangement",
-    ):
-        old_value = existing.get(field)
-        new_value = engine_family.get(field)
-
-        if old_value is None and new_value is not None:
-            existing[field] = new_value
-
-        elif (
-            old_value is not None
-            and new_value is not None
-            and old_value != new_value
-        ):
-            raise ValueError(
-                f"Conflicting {field} for engine family "
-                f"{engine_id!r}: "
-                f"{old_value!r} vs {new_value!r}"
-            )

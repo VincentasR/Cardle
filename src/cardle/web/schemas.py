@@ -32,7 +32,10 @@ class GuessVehicleResponse(BaseModel):
 
     vehicle_classes: list[str]
     body_styles: list[str]
+
+    engine_series: list[str]
     engine_families: list[str]
+    engines: list[str]
 
     power_hp: int | None
 

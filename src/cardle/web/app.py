@@ -140,6 +140,7 @@ def game_state(
         day=today,
     )
 
+
     target = repository.get_vehicle(
         selected.id
     )

@@ -68,9 +68,14 @@ def serialize_guess(
                 for entity in guess.body_styles
             ),
 
+            engine_series=sorted(
+                entity.name for entity in guess.engine_series
+            ),
             engine_families=sorted(
-                entity.name
-                for entity in guess.engine_families
+                entity.name for entity in guess.engine_families
+            ),
+            engines=sorted(
+                entity.name for entity in guess.engines
             ),
 
             power_hp=guess.power_hp,

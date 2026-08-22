@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
+
 @dataclass(frozen=True)
 class NamedEntity:
     id: str
@@ -27,6 +28,18 @@ class GameVehicle:
 
     lineage_neighbor_ids: frozenset[str]
 
+    # Richer engine hierarchy used by the engine clue.
+    #
+    # Defaults keep older tests / callers that manually construct
+    # GameVehicle objects from breaking immediately.
+    engine_series: frozenset[NamedEntity] = frozenset()
+    engines: frozenset[NamedEntity] = frozenset()
+
+    # What should be shown to the player for this vehicle:
+    # exact Engine codes when known, otherwise directly stated
+    # EngineFamily values.
+    engine_labels: frozenset[NamedEntity] = frozenset()
+
     @property
     def display_name(self) -> str:
         parts = [self.manufacturer.name]
@@ -41,7 +54,24 @@ class GameVehicle:
 
         return " ".join(parts)
 
+    @property
+    def display_engines(self) -> frozenset[NamedEntity]:
+        """
+        Return the most source-precise engine labels available.
 
+        Repository-loaded vehicles normally populate engine_labels.
+        The fallbacks make manually constructed/test vehicles useful too.
+        """
+        if self.engine_labels:
+            return self.engine_labels
+
+        if self.engines:
+            return self.engines
+
+        if self.engine_families:
+            return self.engine_families
+
+        return self.engine_series
 
 
 class Closeness(str, Enum):
@@ -67,6 +97,7 @@ class OrderedFeedback(str, Enum):
     DOWN = "down"
     UNKNOWN = "unknown"
 
+
 @dataclass(frozen=True)
 class GuessFeedback:
     closeness: Closeness
@@ -78,11 +109,18 @@ class GuessFeedback:
 
     vehicle_class: ColorFeedback
     body_style: ColorFeedback
+
+    # Kept as "engine_family" for API/frontend compatibility.
+    # Semantics are now the full engine hierarchy:
+    # exact Engine -> GREEN
+    # EngineFamily -> YELLOW
+    # EngineSeries -> ORANGE
     engine_family: ColorFeedback
 
     power: OrderedFeedback
 
     drivetrain: ColorFeedback
+
 
 @dataclass(frozen=True)
 class VehicleOption:

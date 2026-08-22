@@ -77,9 +77,11 @@ def canonicalize_vehicle(
 
     variants = []
 
-    # Deduplicated EngineFamily entities used by this
+    # Deduplicated engine hierarchy entities used by this
     # vehicle/page.
+    canonical_engine_series = {}
     canonical_engine_families = {}
+    canonical_engines = {}
 
     # --------------------------------------------------------
     # Build all Variant IDs represented by this Wikipedia page.
@@ -550,21 +552,32 @@ def canonicalize_vehicle(
                     continue
 
                 (
+                    engine_series,
                     engine_family,
+                    engine,
                     engine_usage,
                 ) = parse_engine_usage(
-                    raw_engine
+                    raw_engine,
+                    manufacturer_name,
                 )
 
-                if (
-                    engine_family is None
-                    or engine_usage is None
-                ):
+                if engine_usage is None:
                     continue
 
-                canonical_engine_families[
-                    engine_family["id"]
-                ] = engine_family
+                if engine_series is not None:
+                    canonical_engine_series[
+                        engine_series["id"]
+                    ] = engine_series
+
+                if engine_family is not None:
+                    canonical_engine_families[
+                        engine_family["id"]
+                    ] = engine_family
+
+                if engine is not None:
+                    canonical_engines[
+                        engine["id"]
+                    ] = engine
 
                 if (
                     engine_usage
@@ -650,8 +663,14 @@ def canonicalize_vehicle(
     return {
         "manufacturer": manufacturer,
         "model": model,
+        "engine_series": list(
+            canonical_engine_series.values()
+        ),
         "engine_families": list(
             canonical_engine_families.values()
+        ),
+        "engines": list(
+            canonical_engines.values()
         ),
         "variants": variants,
     }

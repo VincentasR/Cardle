@@ -50,9 +50,9 @@ class VehicleComparer:
                 target.body_styles,
             ),
 
-            engine_family=self._compare_sets(
-                guess.engine_families,
-                target.engine_families,
+            engine_family=self._compare_engine_hierarchy(
+                guess,
+                target,
             ),
 
             power=self._compare_ordered(
@@ -100,7 +100,6 @@ class VehicleComparer:
         guess: GameVehicle,
         target: GameVehicle,
     ) -> ColorFeedback:
-        # Exact manufacturer
         if guess.manufacturer.id == target.manufacturer.id:
             return ColorFeedback.GREEN
 
@@ -111,16 +110,12 @@ class VehicleComparer:
             target.manufacturer.id
         )
 
-        # Missing metadata should never accidentally become
-        # gameplay information.
         if guess_origin is None or target_origin is None:
             return ColorFeedback.UNKNOWN
 
-        # Different manufacturers from the same country.
         if guess_origin.country == target_origin.country:
             return ColorFeedback.YELLOW
 
-        # Different countries from the same continent.
         if guess_origin.continent == target_origin.continent:
             return ColorFeedback.ORANGE
 
@@ -141,6 +136,74 @@ class VehicleComparer:
             return OrderedFeedback.UP
 
         return OrderedFeedback.DOWN
+
+    @staticmethod
+    def _entity_ids(
+        entities: frozenset[NamedEntity],
+    ) -> set[str]:
+        return {
+            entity.id
+            for entity in entities
+        }
+
+    @classmethod
+    def _compare_engine_hierarchy(
+        cls,
+        guess: GameVehicle,
+        target: GameVehicle,
+    ) -> ColorFeedback:
+        """
+        Compare engines by the deepest shared engine hierarchy level.
+
+        GREEN:
+            at least one exact Engine is shared
+
+        YELLOW:
+            no exact Engine is shared, but at least one EngineFamily is
+
+        ORANGE:
+            no exact Engine/Family is shared, but an EngineSeries is
+
+        BLACK:
+            both vehicles have engine information, but no level matches
+
+        UNKNOWN:
+            either vehicle has no usable engine identity information
+        """
+
+        guess_has_engine_info = bool(
+            guess.engines
+            or guess.engine_families
+            or guess.engine_series
+        )
+        target_has_engine_info = bool(
+            target.engines
+            or target.engine_families
+            or target.engine_series
+        )
+
+        if not guess_has_engine_info or not target_has_engine_info:
+            return ColorFeedback.UNKNOWN
+
+        if (
+            cls._entity_ids(guess.engines)
+            & cls._entity_ids(target.engines)
+        ):
+            return ColorFeedback.GREEN
+
+        if (
+            cls._entity_ids(guess.engine_families)
+            & cls._entity_ids(target.engine_families)
+        ):
+            return ColorFeedback.YELLOW
+
+        if (
+            cls._entity_ids(guess.engine_series)
+            & cls._entity_ids(target.engine_series)
+        ):
+            return ColorFeedback.ORANGE
+
+        return ColorFeedback.BLACK
 
     @staticmethod
     def _compare_sets(
@@ -186,8 +249,6 @@ class VehicleComparer:
             for entity in target
         }
 
-        # Unlike body styles / engines / drivetrains,
-        # one exact class in common is enough for GREEN.
         if guess_ids & target_ids:
             return ColorFeedback.GREEN
 
@@ -201,8 +262,6 @@ class VehicleComparer:
             for entity in target
         }
 
-        # The best relationship between any guessed class
-        # and any target class determines the result.
         for guess_name in guess_names:
             for target_name in target_names:
                 pair = frozenset({

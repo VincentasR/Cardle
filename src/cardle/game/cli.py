@@ -19,10 +19,6 @@ from .target_selection import DailyTargetSelector
 def main():
     args = _parse_args()
 
-    # ---------------------------------------------------------
-    # Neo4j configuration
-    # ---------------------------------------------------------
-
     uri = os.getenv(
         "NEO4J_URI",
         "bolt://127.0.0.1:7687",
@@ -49,10 +45,6 @@ def main():
 
     today = date.today()
 
-    # ---------------------------------------------------------
-    # Connect to Neo4j
-    # ---------------------------------------------------------
-
     with GraphDatabase.driver(
         uri,
         auth=(username, password),
@@ -65,33 +57,16 @@ def main():
 
         comparer = VehicleComparer()
 
-        # -----------------------------------------------------
-        # Select target
-        # -----------------------------------------------------
-
         target = _choose_target(
             repository=repository,
             target_id=args.target,
             day=today,
         )
 
-        # -----------------------------------------------------
-        # Create game session
-        # -----------------------------------------------------
-
         game = GameSession(
             target=target,
             comparer=comparer,
         )
-
-        # -----------------------------------------------------
-        # Persistence
-        #
-        # Only normal daily games are persisted.
-        #
-        # --target is a developer/testing mode and should not
-        # interfere with the player's real daily session.
-        # -----------------------------------------------------
 
         store = None
 
@@ -109,10 +84,6 @@ def main():
                     game.submit_guess(
                         guess
                     )
-
-        # -----------------------------------------------------
-        # Play
-        # -----------------------------------------------------
 
         _run_game(
             repository=repository,
@@ -140,18 +111,12 @@ def _parse_args():
     return parser.parse_args()
 
 
-# =============================================================
-# Target selection
-# =============================================================
-
-
 def _choose_target(
     repository: Neo4jVehicleRepository,
     target_id: str | None,
     day: date,
 ) -> GameVehicle:
 
-    # Developer/testing override.
     if target_id is not None:
         return repository.get_vehicle(
             target_id
@@ -176,11 +141,6 @@ def _choose_target(
     )
 
 
-# =============================================================
-# Main game loop
-# =============================================================
-
-
 def _run_game(
     repository: Neo4jVehicleRepository,
     game: GameSession,
@@ -196,16 +156,11 @@ def _run_game(
     print("Type 'quit' to exit.")
     print()
 
-    # ---------------------------------------------------------
-    # Restore/display previous guesses
-    # ---------------------------------------------------------
-
     _print_guess_history(
         game
     )
 
-    # The saved game may already have been completed.
-    if game.finished:
+    if game.won:
         print("==============================")
         print("Today's Cardle is complete!")
         print(
@@ -217,11 +172,7 @@ def _run_game(
         print("==============================")
         return
 
-    # ---------------------------------------------------------
-    # Guess loop
-    # ---------------------------------------------------------
-
-    while not game.finished:
+    while not game.won:
         print(
             f"--- Guess {game.guess_count + 1} ---"
         )
@@ -231,7 +182,6 @@ def _run_game(
             game=game,
         )
 
-        # Player typed quit.
         if guess is None:
             print()
 
@@ -246,17 +196,9 @@ def _run_game(
 
             return
 
-        # -----------------------------------------------------
-        # Submit guess
-        # -----------------------------------------------------
-
         result = game.submit_guess(
             guess
         )
-
-        # -----------------------------------------------------
-        # Save daily progress
-        # -----------------------------------------------------
 
         if store is not None:
             store.save(
@@ -267,10 +209,6 @@ def _run_game(
                 ],
             )
 
-        # -----------------------------------------------------
-        # Display feedback
-        # -----------------------------------------------------
-
         print()
 
         _print_feedback(
@@ -279,10 +217,6 @@ def _run_game(
         )
 
         print()
-
-    # ---------------------------------------------------------
-    # Win
-    # ---------------------------------------------------------
 
     print("==============================")
     print("Correct!")
@@ -293,11 +227,6 @@ def _run_game(
         f"Guesses: {game.guess_count}"
     )
     print("==============================")
-
-
-# =============================================================
-# Vehicle selection/search
-# =============================================================
 
 
 def _choose_vehicle(
@@ -352,7 +281,6 @@ def _choose_vehicle(
             "(or press Enter to search again): "
         ).strip()
 
-        # Search again.
         if not selection:
             print()
             continue
@@ -387,11 +315,6 @@ def _choose_vehicle(
         )
 
 
-# =============================================================
-# Guess history
-# =============================================================
-
-
 def _print_guess_history(
     game: GameSession,
 ) -> None:
@@ -413,11 +336,6 @@ def _print_guess_history(
         )
 
         print()
-
-
-# =============================================================
-# Feedback display
-# =============================================================
 
 
 def _print_feedback(
@@ -463,8 +381,8 @@ def _print_feedback(
     )
 
     print(
-        "Engine family:  "
-        f"{_display_entities(guess.engine_families)} "
+        "Engine:         "
+        f"{_display_entities(guess.display_engines)} "
         f"[{feedback.engine_family.value}]"
     )
 
@@ -485,11 +403,6 @@ def _print_feedback(
         f"{_display_entities(guess.drivetrains)} "
         f"[{feedback.drivetrain.value}]"
     )
-
-
-# =============================================================
-# Display helpers
-# =============================================================
 
 
 def _display_entities(
@@ -515,9 +428,6 @@ def _display_value(
         return "Unknown"
 
     return str(value)
-
-
-# =============================================================
 
 
 if __name__ == "__main__":

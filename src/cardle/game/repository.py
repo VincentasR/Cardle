@@ -1,9 +1,11 @@
 from neo4j import Driver
+
 from .models import (
     GameVehicle,
     NamedEntity,
     VehicleOption,
 )
+
 
 class VehicleNotFoundError(Exception):
     pass
@@ -19,9 +21,9 @@ class Neo4jVehicleRepository:
         self._database = database
 
     def get_vehicle(
-    self,
-    vehicle_id: str,
-) -> GameVehicle:
+        self,
+        vehicle_id: str,
+    ) -> GameVehicle:
         query = """
         // =====================================================
         // Case 1: Version is the guessable car
@@ -41,8 +43,29 @@ class Neo4jVehicleRepository:
         OPTIONAL MATCH
             (variant)-[:HAS_DRIVETRAIN]->(drivetrain:Drivetrain)
 
+        // Exact-engine usage:
+        //
+        // Version -> Engine
+        // EngineFamily -> Engine
+        // EngineSeries -> EngineFamily
         OPTIONAL MATCH
-            (version)-[:USES_ENGINE]->(engine:EngineFamily)
+            (version)-[:USES_ENGINE]->(specific_engine:Engine)
+
+        OPTIONAL MATCH
+            (specific_engine)<-[:HAS_ENGINE]-(exact_engine_family:EngineFamily)
+
+        OPTIONAL MATCH
+            (exact_engine_family)<-[:HAS_ENGINE_FAMILY]-(exact_engine_series:EngineSeries)
+
+        // Family-only usage:
+        //
+        // Version -> EngineFamily
+        // EngineSeries -> EngineFamily
+        OPTIONAL MATCH
+            (version)-[:USES_ENGINE_FAMILY]->(direct_engine_family:EngineFamily)
+
+        OPTIONAL MATCH
+            (direct_engine_family)<-[:HAS_ENGINE_FAMILY]-(direct_engine_series:EngineSeries)
 
         OPTIONAL MATCH
             (variant)-[:SUCCEEDED_BY]->(successor:Variant)
@@ -99,11 +122,65 @@ class Neo4jVehicleRepository:
             ) AS drivetrains,
 
             collect(
-                DISTINCT engine {
+                DISTINCT exact_engine_series {
+                    .id,
+                    .name
+                }
+            )
+            +
+            collect(
+                DISTINCT direct_engine_series {
+                    .id,
+                    .name
+                }
+            ) AS engine_series,
+
+            collect(
+                DISTINCT exact_engine_family {
+                    .id,
+                    .name
+                }
+            )
+            +
+            collect(
+                DISTINCT direct_engine_family {
                     .id,
                     .name
                 }
             ) AS engine_families,
+
+            collect(
+                DISTINCT CASE
+                    WHEN specific_engine IS NULL
+                    THEN null
+                    ELSE {
+                        id: specific_engine.id,
+                        name: specific_engine.code
+                    }
+                END
+            ) AS engines,
+
+            // Display exactly what the source gave us at its
+            // most precise level:
+            // exact code for USES_ENGINE,
+            // family for USES_ENGINE_FAMILY.
+            collect(
+                DISTINCT CASE
+                    WHEN specific_engine IS NULL
+                    THEN null
+                    ELSE {
+                        id: specific_engine.id,
+                        name: specific_engine.code
+                    }
+                END
+            )
+            +
+            collect(
+                DISTINCT direct_engine_family {
+                    .id,
+                    .name
+                }
+            ) AS engine_labels,
 
             collect(DISTINCT successor.id)
             +
@@ -135,9 +212,6 @@ class Neo4jVehicleRepository:
 
         OPTIONAL MATCH
             (variant)-[:HAS_DRIVETRAIN]->(drivetrain:Drivetrain)
-
-        OPTIONAL MATCH
-            (variant)-[:USES_ENGINE]->(engine:EngineFamily)
 
         OPTIONAL MATCH
             (variant)-[:SUCCEEDED_BY]->(successor:Variant)
@@ -190,12 +264,10 @@ class Neo4jVehicleRepository:
                 }
             ) AS drivetrains,
 
-            collect(
-                DISTINCT engine {
-                    .id,
-                    .name
-                }
-            ) AS engine_families,
+            [] AS engine_series,
+            [] AS engine_families,
+            [] AS engines,
+            [] AS engine_labels,
 
             collect(DISTINCT successor.id)
             +
@@ -220,8 +292,6 @@ class Neo4jVehicleRepository:
             row["model"]
         )
 
-        # "No Model" is a canonical placeholder,
-        # not a real Model from the game's perspective.
         if (
             model is not None
             and model.name == "No Model"
@@ -270,7 +340,20 @@ class Neo4jVehicleRepository:
                 for value in row["lineage_neighbor_ids"]
                 if value is not None
             ),
+
+            engine_series=self._to_named_entity_set(
+                row["engine_series"]
+            ),
+
+            engines=self._to_named_entity_set(
+                row["engines"]
+            ),
+
+            engine_labels=self._to_named_entity_set(
+                row["engine_labels"]
+            ),
         )
+
     @staticmethod
     def _to_named_entity(
         value: dict | None,
@@ -295,10 +378,10 @@ class Neo4jVehicleRepository:
             if (entity := cls._to_named_entity(value))
             is not None
         )
-    
+
     def list_guessable_vehicles(
-    self,
-) -> list[VehicleOption]:
+        self,
+    ) -> list[VehicleOption]:
         query = """
         CALL () {
             // Normal guessable cars: Versions
@@ -407,4 +490,3 @@ class Neo4jVehicleRepository:
         matches.sort(key=rank)
 
         return matches[:limit]
-

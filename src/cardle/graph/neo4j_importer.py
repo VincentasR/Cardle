@@ -17,7 +17,9 @@ EXPECTED_COLLECTIONS = {
     "models",
     "variants",
     "versions",
+    "engine_series",
     "engine_families",
+    "engines",
     "body_styles",
     "vehicle_classes",
     "engine_positions",
@@ -52,8 +54,18 @@ CONSTRAINTS = [
     REQUIRE n.id IS UNIQUE
     """,
     """
+    CREATE CONSTRAINT engine_series_id_unique IF NOT EXISTS
+    FOR (n:EngineSeries)
+    REQUIRE n.id IS UNIQUE
+    """,
+    """
     CREATE CONSTRAINT engine_family_id_unique IF NOT EXISTS
     FOR (n:EngineFamily)
+    REQUIRE n.id IS UNIQUE
+    """,
+    """
+    CREATE CONSTRAINT engine_id_unique IF NOT EXISTS
+    FOR (n:Engine)
     REQUIRE n.id IS UNIQUE
     """,
     """
@@ -121,13 +133,25 @@ NODE_QUERIES = {
             n.power_hp = row.power_hp
     """,
 
+    "engine_series": """
+        UNWIND $rows AS row
+
+        MERGE (n:EngineSeries {id: row.id})
+        SET n.name = row.name
+    """,
+
     "engine_families": """
         UNWIND $rows AS row
 
         MERGE (n:EngineFamily {id: row.id})
-        SET n.name = row.name,
-            n.cylinder_count = row.cylinder_count,
-            n.arrangement = row.arrangement
+        SET n.name = row.name
+    """,
+
+    "engines": """
+        UNWIND $rows AS row
+
+        MERGE (n:Engine {id: row.id})
+        SET n.code = row.code
     """,
 
     "body_styles": """
@@ -168,7 +192,7 @@ NODE_QUERIES = {
 
 
 # ---------------------------------------------------------------------
-# HIERARCHY
+# VEHICLE HIERARCHY
 # ---------------------------------------------------------------------
 
 MODEL_RELATIONSHIP_QUERY = """
@@ -198,6 +222,46 @@ VERSION_RELATIONSHIP_QUERY = """
     MATCH (version:Version {id: row.id})
 
     MERGE (variant)-[:HAS_VERSION]->(version)
+"""
+
+
+# ---------------------------------------------------------------------
+# ENGINE HIERARCHY
+# ---------------------------------------------------------------------
+
+ENGINE_SERIES_RELATIONSHIP_QUERY = """
+    UNWIND $rows AS row
+
+    MATCH (manufacturer:Manufacturer {id: row.manufacturer_id})
+    MATCH (series:EngineSeries {id: row.id})
+
+    MERGE (manufacturer)-[:HAS_ENGINE_SERIES]->(series)
+"""
+
+
+ENGINE_FAMILY_RELATIONSHIP_QUERY = """
+    UNWIND $rows AS row
+
+    WITH row
+    WHERE row.engine_series_id IS NOT NULL
+
+    MATCH (series:EngineSeries {id: row.engine_series_id})
+    MATCH (family:EngineFamily {id: row.id})
+
+    MERGE (series)-[:HAS_ENGINE_FAMILY]->(family)
+"""
+
+
+ENGINE_RELATIONSHIP_QUERY = """
+    UNWIND $rows AS row
+
+    WITH row
+    WHERE row.engine_family_id IS NOT NULL
+
+    MATCH (family:EngineFamily {id: row.engine_family_id})
+    MATCH (engine:Engine {id: row.id})
+
+    MERGE (family)-[:HAS_ENGINE]->(engine)
 """
 
 
@@ -254,11 +318,11 @@ PREDECESSOR_QUERY = """
 # ENGINE USAGE
 # ---------------------------------------------------------------------
 
-ENGINE_USAGE_QUERY = """
+SPECIFIC_ENGINE_USAGE_QUERY = """
     UNWIND $rows AS row
 
     MATCH (version:Version {id: row.version_id})
-    MATCH (engine:EngineFamily {id: row.engine_family_id})
+    MATCH (engine:Engine {id: row.engine_id})
 
     MERGE (
         version
@@ -266,7 +330,27 @@ ENGINE_USAGE_QUERY = """
         engine
     )
 
-    SET usage.displacement_l = row.displacement_l
+    SET usage.displacement_l = row.displacement_l,
+        usage.cylinder_count = row.cylinder_count,
+        usage.arrangement = row.arrangement
+"""
+
+
+FAMILY_ENGINE_USAGE_QUERY = """
+    UNWIND $rows AS row
+
+    MATCH (version:Version {id: row.version_id})
+    MATCH (family:EngineFamily {id: row.engine_family_id})
+
+    MERGE (
+        version
+    )-[usage:USES_ENGINE_FAMILY {usage_key: row.usage_key}]->(
+        family
+    )
+
+    SET usage.displacement_l = row.displacement_l,
+        usage.cylinder_count = row.cylinder_count,
+        usage.arrangement = row.arrangement
 """
 
 
@@ -389,41 +473,98 @@ def variant_reference_query(
 # ENGINE USAGE PREPARATION
 # ---------------------------------------------------------------------
 
+def _usage_value_key(value: Any) -> str:
+    if value is None:
+        return "unknown"
+
+    return str(value)
+
+
 def build_engine_usage_rows(
     data: dict[str, Any],
-) -> list[dict[str, Any]]:
+) -> tuple[
+    list[dict[str, Any]],
+    list[dict[str, Any]],
+]:
+    """
+    Split Version engine usages into:
 
-    rows = []
+        1. exact-engine usages
+        2. family-only usages
+
+    If engine_id exists, the Version connects to the specific Engine.
+    Its family and series remain reachable through the engine hierarchy.
+
+    If engine_id is missing but engine_family_id exists, the Version
+    connects directly to the EngineFamily instead of inventing a fake
+    specific Engine node.
+    """
+
+    specific_engine_rows = []
+    family_only_rows = []
 
     for version in data["versions"]:
 
-        for engine in version["engines"]:
+        for usage in version.get("engines", []):
 
-            displacement = engine.get("displacement_l")
-
-            displacement_key = (
-                "unknown"
-                if displacement is None
-                else str(displacement)
+            engine_id = usage.get("engine_id")
+            engine_family_id = usage.get(
+                "engine_family_id"
             )
 
-            usage_key = (
-                f"{version['id']}|"
-                f"{engine['engine_family_id']}|"
-                f"{displacement_key}"
+            displacement_l = usage.get(
+                "displacement_l"
+            )
+            cylinder_count = usage.get(
+                "cylinder_count"
+            )
+            arrangement = usage.get(
+                "arrangement"
             )
 
-            rows.append(
-                {
-                    "version_id": version["id"],
-                    "engine_family_id":
-                        engine["engine_family_id"],
-                    "displacement_l": displacement,
-                    "usage_key": usage_key,
-                }
+            if engine_id is not None:
+                target_kind = "engine"
+                target_id = engine_id
+            elif engine_family_id is not None:
+                target_kind = "family"
+                target_id = engine_family_id
+            else:
+                raise ValueError(
+                    f"Version {version['id']!r} contains an "
+                    f"engine usage with neither engine_id nor "
+                    f"engine_family_id."
+                )
+
+            usage_key = "|".join(
+                (
+                    version["id"],
+                    target_kind,
+                    target_id,
+                    _usage_value_key(displacement_l),
+                    _usage_value_key(cylinder_count),
+                    _usage_value_key(arrangement),
+                )
             )
 
-    return rows
+            row = {
+                "version_id": version["id"],
+                "engine_id": engine_id,
+                "engine_family_id": engine_family_id,
+                "displacement_l": displacement_l,
+                "cylinder_count": cylinder_count,
+                "arrangement": arrangement,
+                "usage_key": usage_key,
+            }
+
+            if engine_id is not None:
+                specific_engine_rows.append(row)
+            else:
+                family_only_rows.append(row)
+
+    return (
+        specific_engine_rows,
+        family_only_rows,
+    )
 
 
 # ---------------------------------------------------------------------
@@ -458,6 +599,30 @@ def import_relationships(
         database,
         VERSION_RELATIONSHIP_QUERY,
         data["versions"],
+    )
+
+    # Manufacturer -> EngineSeries
+    run_batched(
+        driver,
+        database,
+        ENGINE_SERIES_RELATIONSHIP_QUERY,
+        data["engine_series"],
+    )
+
+    # EngineSeries -> EngineFamily
+    run_batched(
+        driver,
+        database,
+        ENGINE_FAMILY_RELATIONSHIP_QUERY,
+        data["engine_families"],
+    )
+
+    # EngineFamily -> Engine
+    run_batched(
+        driver,
+        database,
+        ENGINE_RELATIONSHIP_QUERY,
+        data["engines"],
     )
 
     # Variant descriptive relationships
@@ -495,19 +660,34 @@ def import_relationships(
         data["variants"],
     )
 
-    # Version -> EngineFamily
-    engine_usage_rows = build_engine_usage_rows(data)
+    # Version -> Engine / EngineFamily
+    (
+        specific_engine_rows,
+        family_only_rows,
+    ) = build_engine_usage_rows(data)
 
     run_batched(
         driver,
         database,
-        ENGINE_USAGE_QUERY,
-        engine_usage_rows,
+        SPECIFIC_ENGINE_USAGE_QUERY,
+        specific_engine_rows,
+    )
+
+    run_batched(
+        driver,
+        database,
+        FAMILY_ENGINE_USAGE_QUERY,
+        family_only_rows,
     )
 
     print(
-        f"Imported {len(engine_usage_rows):>4} "
-        f"engine usages"
+        f"Imported {len(specific_engine_rows):>4} "
+        f"specific engine usages"
+    )
+
+    print(
+        f"Imported {len(family_only_rows):>4} "
+        f"family-only engine usages"
     )
 
 
