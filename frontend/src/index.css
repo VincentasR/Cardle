@@ -741,34 +741,6 @@ main {
     }
 
     .rules-header {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        background: white;
-
-        padding: 8px 0 12px;
         margin-bottom: 16px;
-    }
-
-    .rules-close {
-        flex-shrink: 0;
-
-        width: 48px;
-        height: 48px;
-
-        border: 1px solid #d9d9d9;
-        border-radius: 50%;
-
-        background: white;
-
-        font-size: 2rem;
-        line-height: 1;
-
-        cursor: pointer;
     }
 }

@@ -33,15 +33,6 @@ function HowToPlay({ onClose }: HowToPlayProps) {
             >
                 <div className="rules-header">
                     <h2 id="rules-title">HOW TO PLAY</h2>
-
-                    <button
-                        className="rules-close"
-                        type="button"
-                        onClick={onClose}
-                        aria-label="Close rules"
-                    >
-                        ×
-                    </button>
                 </div>
 
                 <div className="rules-content">
