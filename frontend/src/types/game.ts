@@ -13,16 +13,16 @@ export type GuessVehicle = {
     id: string
     display_name: string
     manufacturer: string
-
     production_start: number | null
     production_end: number | null
-
     vehicle_classes: string[]
     body_styles: string[]
+
+    engine_series: string[]
     engine_families: string[]
+    engines: string[]
 
     power_hp: number | null
-
     drivetrains: string[]
 }
 

@@ -1,4 +1,4 @@
-import type { GuessResult } from '../types/game'
+import type { GuessResult, GuessVehicle } from '../types/game'
 
 
 type GuessRowProps = {
@@ -14,6 +14,21 @@ function displayList(values: string[]) {
     return values.join(', ')
 }
 
+function displayEngine(vehicle: GuessVehicle): string {
+    if (vehicle.engines.length > 0) {
+        return vehicle.engines.join(', ')
+    }
+
+    if (vehicle.engine_families.length > 0) {
+        return vehicle.engine_families.join(', ')
+    }
+
+    if (vehicle.engine_series.length > 0) {
+        return vehicle.engine_series.join(', ')
+    }
+
+    return 'Unknown'
+}
 
 
 
@@ -198,8 +213,8 @@ function GuessRow({
                     className={`property-cell feedback-${feedback.engine_family}`}
                 >
                     <span className="property-value">
-                        {displayList(
-                            vehicle.engine_families,
+                        {displayEngine(
+                            vehicle
                         )}
                     </span>
 
