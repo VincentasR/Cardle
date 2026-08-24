@@ -1,10 +1,24 @@
 type HeaderProps = {
     onOpenRules: () => void
+    onOpenGraph: () => void
+    onOpenGame: () => void
+    graphView: boolean
 }
 
-function Header({ onOpenRules }: HeaderProps) {
+function Header({
+    onOpenRules,
+    onOpenGraph,
+    onOpenGame,
+    graphView,
+}: HeaderProps) {
     return (
-        <header className="site-header">
+        <header
+            className={
+                graphView
+                    ? 'site-header site-header-dark'
+                    : 'site-header'
+            }
+        >
             <button
                 className="header-action header-profile"
                 aria-label="Profile"
@@ -17,6 +31,7 @@ function Header({ onOpenRules }: HeaderProps) {
             <button
                 className="cardle-logo"
                 aria-label="Today's Cardle"
+                onClick={onOpenGame}
             >
                 CARDLE
             </button>
@@ -33,6 +48,12 @@ function Header({ onOpenRules }: HeaderProps) {
                 <button
                     className="header-action header-graph"
                     aria-label="Automotive universe"
+                    aria-current={
+                        graphView
+                            ? 'page'
+                            : undefined
+                    }
+                    onClick={onOpenGraph}
                 >
                     Graph
                 </button>
