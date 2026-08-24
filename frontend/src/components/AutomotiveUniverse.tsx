@@ -58,9 +58,12 @@ type GraphActions = {
     clearConnectionView: () => void
 }
 
-const VERSION_DISTANCE = 165
-const VERSION_RADIAL_GAP = 96
-const VERSION_LANE_WOBBLE = 12
+const VERSION_RING_START = 170
+const VERSION_RING_GAP = 112
+const VERSION_MIN_SPACING = 106
+const VERSION_MAX_HALF_SECTOR_DEGREES = 72
+const VERSION_SECTOR_SAFETY_RATIO = 0.08
+const VERSION_VARIANT_WEIGHT = 0.62
 const NODE_GAP = 14
 const MAX_SHORTEST_ROUTES = 50
 
@@ -168,6 +171,50 @@ function calculateLayout(
                 ],
             ),
         )
+
+    const versionCountByVariant =
+        new Map<string, number>()
+
+    for (const node of
+        graph.nodes) {
+        if (
+            node.type !==
+                'version' ||
+            node.parent_variant_id ===
+                null
+        ) {
+            continue
+        }
+
+        versionCountByVariant.set(
+            node.parent_variant_id,
+            (versionCountByVariant.get(
+                node.parent_variant_id,
+            ) ?? 0) + 1,
+        )
+    }
+
+    function variantLayoutWeight(
+        variantId: string,
+    ): number {
+        const versionCount =
+            versionCountByVariant.get(
+                variantId,
+            ) ?? 0
+
+        /*
+         * Logarithmic growth keeps a 15-Version Variant meaningfully
+         * wider than a 1-Version Variant without allowing one huge
+         * branch to consume the entire Manufacturer circle.
+         */
+        return (
+            1 +
+            Math.log2(
+                versionCount + 1,
+            ) *
+                VERSION_VARIANT_WEIGHT
+        )
+    }
 
     const manufacturers =
         graph.nodes
@@ -378,6 +425,25 @@ function calculateLayout(
                 ),
             ]
 
+            const branchWeight = (
+                branch:
+                    (typeof branches)[number],
+            ): number =>
+                Math.max(
+                    1,
+                    branch.variants.reduce(
+                        (
+                            sum,
+                            variant,
+                        ) =>
+                            sum +
+                            variantLayoutWeight(
+                                variant.id,
+                            ),
+                        0,
+                    ),
+                )
+
             const totalWeight =
                 Math.max(
                     1,
@@ -387,11 +453,8 @@ function calculateLayout(
                             branch,
                         ) =>
                             sum +
-                            Math.max(
-                                1,
-                                branch
-                                    .variants
-                                    .length,
+                            branchWeight(
+                                branch,
                             ),
                         0,
                     ),
@@ -402,10 +465,8 @@ function calculateLayout(
             for (const branch of
                 branches) {
                 const weight =
-                    Math.max(
-                        1,
-                        branch.variants
-                            .length,
+                    branchWeight(
+                        branch,
                     )
 
                 const span =
@@ -449,10 +510,6 @@ function calculateLayout(
                     continue
                 }
 
-                const count =
-                    branch.variants
-                        .length
-
                 const padding =
                     Math.min(
                         12,
@@ -466,43 +523,66 @@ function calculateLayout(
                             padding * 2,
                     )
 
-                branch.variants
-                    .sort(
+                const sortedVariants =
+                    [...branch.variants].sort(
                         (a, b) =>
                             a.label.localeCompare(
                                 b.label,
                             ),
                     )
-                    .forEach(
-                        (
+
+                const variantWeights =
+                    sortedVariants.map(
+                        (variant) => ({
                             variant,
-                            index,
-                        ) => {
-                            let angle =
-                                centerAngle
 
-                            if (
-                                count > 1
-                            ) {
-                                angle =
-                                    cursor +
-                                    padding +
-                                    (usableSpan *
-                                        index) /
-                                        (count -
-                                            1)
-                            }
-
-                            positions.set(
-                                variant.id,
-                                polar(
-                                    center,
-                                    variantRadius,
-                                    angle,
+                            weight:
+                                variantLayoutWeight(
+                                    variant.id,
                                 ),
-                            )
-                        },
+                        }),
                     )
+
+                const totalVariantWeight =
+                    Math.max(
+                        1,
+                        variantWeights.reduce(
+                            (
+                                sum,
+                                entry,
+                            ) =>
+                                sum +
+                                entry.weight,
+                            0,
+                        ),
+                    )
+
+                let variantCursor =
+                    cursor + padding
+
+                for (const entry of
+                    variantWeights) {
+                    const localSpan =
+                        usableSpan *
+                        (entry.weight /
+                            totalVariantWeight)
+
+                    const angle =
+                        variantCursor +
+                        localSpan / 2
+
+                    positions.set(
+                        entry.variant.id,
+                        polar(
+                            center,
+                            variantRadius,
+                            angle,
+                        ),
+                    )
+
+                    variantCursor +=
+                        localSpan
+                }
 
                 cursor += span
             }
@@ -595,74 +675,348 @@ function calculateLayout(
         const directionY =
             dy / length
 
-        const perpendicularX =
-            -directionY
+        const baseAngle =
+            Math.atan2(
+                directionY,
+                directionX,
+            )
 
-        const perpendicularY =
-            directionX
+        const siblingVariants =
+            graph.nodes
+                .filter(
+                    (node) =>
+                        node.type ===
+                            'variant' &&
+                        node.manufacturer_id ===
+                            variant.manufacturer_id,
+                )
+                .map(
+                    (sibling) => {
+                        const siblingPosition =
+                            positions.get(
+                                sibling.id,
+                            )
 
-        /*
-         * Versions live in a narrow radial "lane" behind their Variant.
-         *
-         * The old layout placed every Version at the same radial distance
-         * and spread them sideways. That looks great when only one Variant
-         * exists, but in a dense manufacturer island the fan crosses the
-         * neighbouring Variant lanes.
-         *
-         * Here every Version moves progressively farther away from the
-         * manufacturer in the same direction as its parent Variant. A tiny
-         * alternating wobble keeps the edges from sitting perfectly on top
-         * of each other without letting the Versions spill into neighbouring
-         * Variant lanes.
-         */
-        versions
-            .sort(
+                        if (
+                            siblingPosition ===
+                            undefined
+                        ) {
+                            return null
+                        }
+
+                        return {
+                            id:
+                                sibling.id,
+
+                            angle:
+                                Math.atan2(
+                                    siblingPosition.y -
+                                        manufacturerPosition.y,
+                                    siblingPosition.x -
+                                        manufacturerPosition.x,
+                                ),
+                        }
+                    },
+                )
+                .filter(
+                    (
+                        value,
+                    ): value is {
+                        id: string
+                        angle: number
+                    } =>
+                        value !==
+                        null,
+                )
+                .sort(
+                    (
+                        left,
+                        right,
+                    ) =>
+                        left.angle -
+                        right.angle,
+                )
+
+        function positiveAngleDelta(
+            from: number,
+            to: number,
+        ): number {
+            const fullTurn =
+                Math.PI * 2
+
+            return (
+                (to -
+                    from +
+                    fullTurn) %
+                fullTurn
+            )
+        }
+
+        let leftSector =
+            (VERSION_MAX_HALF_SECTOR_DEGREES *
+                Math.PI) /
+            180
+
+        let rightSector =
+            leftSector
+
+        if (
+            siblingVariants.length >
+            1
+        ) {
+            const currentIndex =
+                siblingVariants.findIndex(
+                    (entry) =>
+                        entry.id ===
+                        variantId,
+                )
+
+            if (
+                currentIndex >= 0
+            ) {
+                const previous =
+                    siblingVariants[
+                        (currentIndex -
+                            1 +
+                            siblingVariants.length) %
+                            siblingVariants.length
+                    ]
+
+                const current =
+                    siblingVariants[
+                        currentIndex
+                    ]
+
+                const next =
+                    siblingVariants[
+                        (currentIndex +
+                            1) %
+                            siblingVariants.length
+                    ]
+
+                const previousGap =
+                    positiveAngleDelta(
+                        previous.angle,
+                        current.angle,
+                    )
+
+                const nextGap =
+                    positiveAngleDelta(
+                        current.angle,
+                        next.angle,
+                    )
+
+                const maxHalfSector =
+                    (VERSION_MAX_HALF_SECTOR_DEGREES *
+                        Math.PI) /
+                    180
+
+                /*
+                 * A Variant owns almost half of the empty angular gap
+                 * on either side of it. The small safety ratio leaves
+                 * a visual gutter between neighbouring Variant clusters.
+                 */
+                leftSector =
+                    Math.min(
+                        maxHalfSector,
+                        previousGap *
+                            (0.5 -
+                                VERSION_SECTOR_SAFETY_RATIO),
+                    )
+
+                rightSector =
+                    Math.min(
+                        maxHalfSector,
+                        nextGap *
+                            (0.5 -
+                                VERSION_SECTOR_SAFETY_RATIO),
+                    )
+            }
+        }
+
+        const sortedVersions =
+            [...versions].sort(
                 (a, b) =>
                     a.label.localeCompare(
                         b.label,
                     ),
             )
-            .forEach(
-                (
-                    version,
-                    index,
-                ) => {
-                    const radialDistance =
-                        VERSION_DISTANCE +
-                        index *
-                            VERSION_RADIAL_GAP
 
-                    let sideOffset = 0
+        let versionIndex = 0
+        let ringIndex = 0
 
-                    if (index > 0) {
-                        sideOffset =
-                            (index % 2 ===
-                            0
-                                ? -1
-                                : 1) *
-                            VERSION_LANE_WOBBLE
-                    }
+        while (
+            versionIndex <
+            sortedVersions.length
+        ) {
+            const radius =
+                VERSION_RING_START +
+                ringIndex *
+                    VERSION_RING_GAP
 
-                    positions.set(
-                        version.id,
-                        {
-                            x:
-                                variantPosition.x +
-                                directionX *
-                                    radialDistance +
-                                perpendicularX *
-                                    sideOffset,
+            /*
+             * Reserve a little more angular room for the physical node
+             * itself. This prevents neighbouring sectors from touching
+             * even when the angular sector becomes very narrow.
+             */
+            const nodeInset =
+                Math.min(
+                    Math.min(
+                        leftSector,
+                        rightSector,
+                    ) *
+                        0.22,
 
-                            y:
-                                variantPosition.y +
-                                directionY *
-                                    radialDistance +
-                                perpendicularY *
-                                    sideOffset,
-                        },
+                    VERSION_MIN_SPACING /
+                        (2 *
+                            Math.max(
+                                radius,
+                                1,
+                            )),
+                )
+
+            const usableLeft =
+                Math.max(
+                    0,
+                    leftSector -
+                        nodeInset,
+                )
+
+            const usableRight =
+                Math.max(
+                    0,
+                    rightSector -
+                        nodeInset,
+                )
+
+            const usableSpan =
+                usableLeft +
+                usableRight
+
+            /*
+             * Arc length determines how many Versions can comfortably
+             * fit on this ring. With lots of free space several Versions
+             * share a ring; in a dense graph the capacity naturally falls
+             * to one, producing the radial lane behavior.
+             */
+            const arcLength =
+                radius *
+                usableSpan
+
+            const ringCapacity =
+                Math.max(
+                    1,
+                    Math.floor(
+                        arcLength /
+                            VERSION_MIN_SPACING,
+                    ) + 1,
+                )
+
+            const remaining =
+                sortedVersions.length -
+                versionIndex
+
+            const countOnRing =
+                Math.min(
+                    ringCapacity,
+                    remaining,
+                )
+
+            let startOffset = 0
+            let step = 0
+
+            if (
+                countOnRing > 1
+            ) {
+                const desiredSpan =
+                    Math.min(
+                        usableSpan,
+
+                        ((countOnRing -
+                            1) *
+                            VERSION_MIN_SPACING) /
+                            radius,
                     )
-                },
-            )
+
+                let candidateStart =
+                    -desiredSpan /
+                    2
+
+                if (
+                    candidateStart <
+                    -usableLeft
+                ) {
+                    candidateStart =
+                        -usableLeft
+                }
+
+                if (
+                    candidateStart +
+                        desiredSpan >
+                    usableRight
+                ) {
+                    candidateStart =
+                        usableRight -
+                        desiredSpan
+                }
+
+                startOffset =
+                    candidateStart
+
+                step =
+                    desiredSpan /
+                    (countOnRing -
+                        1)
+            }
+
+            for (
+                let localIndex = 0;
+                localIndex <
+                countOnRing;
+                localIndex += 1
+            ) {
+                const version =
+                    sortedVersions[
+                        versionIndex +
+                            localIndex
+                    ]
+
+                const angleOffset =
+                    countOnRing === 1
+                        ? 0
+                        : startOffset +
+                          localIndex *
+                              step
+
+                const finalAngle =
+                    baseAngle +
+                    angleOffset
+
+                positions.set(
+                    version.id,
+                    {
+                        x:
+                            variantPosition.x +
+                            Math.cos(
+                                finalAngle,
+                            ) *
+                                radius,
+
+                        y:
+                            variantPosition.y +
+                            Math.sin(
+                                finalAngle,
+                            ) *
+                                radius,
+                    },
+                )
+            }
+
+            versionIndex +=
+                countOnRing
+
+            ringIndex += 1
+        }
     }
 
     const engineEdges =
