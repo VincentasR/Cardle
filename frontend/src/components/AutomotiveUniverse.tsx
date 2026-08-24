@@ -2639,6 +2639,22 @@ function AutomotiveUniverse({
             engineFamily:
                 NodeSingular,
         ) {
+            /*
+             * This function lives inside the Cytoscape effect.
+             * TypeScript does not preserve the outer `graph !== null`
+             * narrowing inside nested callbacks/functions, so keep a
+             * locally narrowed reference for this focus operation.
+             */
+            const currentGraph =
+                graph
+
+            if (
+                currentGraph ===
+                null
+            ) {
+                return
+            }
+
             restoreCenteredLayout()
             clearClasses()
             resetAnimatedDetails()
@@ -2648,7 +2664,7 @@ function AutomotiveUniverse({
 
             const graphNodesById =
                 new Map(
-                    graph.nodes.map(
+                    currentGraph.nodes.map(
                         (node) => [
                             node.id,
                             node,
@@ -2657,7 +2673,7 @@ function AutomotiveUniverse({
                 )
 
             const connectedVersionIds =
-                graph.edges
+                currentGraph.edges
                     .filter(
                         (edge) =>
                             edge.type ===
@@ -2869,7 +2885,7 @@ function AutomotiveUniverse({
                 new Set<string>()
 
             for (const edge of
-                graph.edges) {
+                currentGraph.edges) {
                 const bothFocused =
                     focusNodeIds.has(
                         edge.source,

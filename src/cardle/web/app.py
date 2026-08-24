@@ -10,11 +10,14 @@ from ..game.comparison import VehicleComparer
 from ..game.repository import Neo4jVehicleRepository
 from ..game.session import GameSession
 from ..game.target_selection import DailyTargetSelector
+from ..universe.repository import Neo4jUniverseRepository
 
 from .schemas import (
     GameStateRequest,
     GameStateResponse,
     VehicleSearchResponse,
+    UniverseGraphRequest,
+    UniverseGraphResponse,
 )
 
 from .serialization import serialize_game_state
@@ -72,6 +75,11 @@ async def lifespan(app: FastAPI):
 
     app.state.driver = driver
     app.state.repository = repository
+
+    app.state.universe_repository = Neo4jUniverseRepository(
+        driver=driver,
+        database=NEO4J_DATABASE,
+    )
 
     try:
         yield
@@ -160,4 +168,21 @@ def game_state(
     return serialize_game_state(
         game=game,
         day=today,
+    )
+
+
+@app.post("/api/universe/graph")
+def universe_graph(
+    body: UniverseGraphRequest,
+    request: Request,
+) -> UniverseGraphResponse:
+    repository = request.app.state.universe_repository
+
+    nodes, edges = repository.get_graph(
+        body.unlocked_vehicle_ids
+    )
+
+    return UniverseGraphResponse(
+        nodes=nodes,
+        edges=edges,
     )

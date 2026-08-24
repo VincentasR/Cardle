@@ -80,3 +80,62 @@ class GameStateResponse(BaseModel):
     target: TargetVehicleResponse | None
 
     guesses: list[GuessResultResponse]
+
+# ============================================================
+# Automotive Universe
+# ============================================================
+
+from typing import Literal
+
+
+UniverseNodeType = Literal[
+    "manufacturer",
+    "model",
+    "variant",
+    "version",
+    "engine_family",
+]
+
+UniverseEdgeType = Literal[
+    "hierarchy",
+    "version",
+    "engine",
+]
+
+
+class UniverseGraphRequest(BaseModel):
+    unlocked_vehicle_ids: list[str]
+
+
+class UniverseNodeResponse(BaseModel):
+    id: str
+    entity_id: str
+    label: str
+    type: UniverseNodeType
+
+    manufacturer_id: str | None = None
+    parent_model_id: str | None = None
+    parent_variant_id: str | None = None
+
+    production_start: int | None = None
+    production_end: int | None = None
+
+    vehicle_classes: list[str] = []
+    body_styles: list[str] = []
+    drivetrains: list[str] = []
+
+    power_hp: int | None = None
+    engine_labels: list[str] = []
+
+
+class UniverseEdgeResponse(BaseModel):
+    id: str
+    source: str
+    target: str
+    type: UniverseEdgeType
+
+
+class UniverseGraphResponse(BaseModel):
+    nodes: list[UniverseNodeResponse]
+    edges: list[UniverseEdgeResponse]
+
