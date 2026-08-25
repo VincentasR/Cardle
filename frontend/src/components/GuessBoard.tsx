@@ -1,10 +1,42 @@
-import type { GameState } from '../types/game'
+import type {
+    GameState,
+    GuessResult,
+    GuessVehicle,
+} from '../types/game'
 
 import GuessRow from './GuessRow'
 
 
 type GuessBoardProps = {
     gameState: GameState | null
+}
+
+
+function createAnswerResult(
+    vehicle: GuessVehicle,
+): GuessResult {
+    return {
+        guess_number: 0,
+
+        vehicle,
+
+        feedback: {
+            closeness: 'match',
+
+            manufacturer: 'green',
+
+            production_start: 'green',
+            production_end: 'green',
+
+            vehicle_class: 'green',
+            body_style: 'green',
+            engine_family: 'green',
+
+            power: 'green',
+
+            drivetrain: 'green',
+        },
+    }
 }
 
 
@@ -16,6 +48,14 @@ function GuessBoard({
 
     const maxGuesses =
         gameState?.max_guesses ?? 7
+
+    const answerResult =
+        gameState?.lost &&
+        gameState.target !== null
+            ? createAnswerResult(
+                gameState.target,
+            )
+            : null
 
     return (
         <section className="guess-board">
@@ -48,17 +88,23 @@ function GuessBoard({
                 ))}
             </div>
 
-            {gameState?.finished && gameState.target && (
+            {gameState?.won && (
                 <div className="game-result">
                     <p>
-                        {gameState.won
-                            ? 'Correct!'
-                            : 'The hidden car was:'}
+                        Correct!
+                    </p>
+                </div>
+            )}
+
+            {answerResult && (
+                <div className="game-result">
+                    <p>
+                        The hidden car was:
                     </p>
 
-                    <strong>
-                        {gameState.target.display_name}
-                    </strong>
+                    <GuessRow
+                        result={answerResult}
+                    />
                 </div>
             )}
         </section>

@@ -104,7 +104,7 @@ function App() {
     const [
         showRules,
         setShowRules,
-    ] = useState(false)
+    ] = useState(true)
 
 
     function saveUnlocks(

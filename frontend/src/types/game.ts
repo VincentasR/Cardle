@@ -3,18 +3,15 @@ export type VehicleSearchResult = {
     display_name: string
 }
 
-export type TargetVehicle = {
-    id: string
-    display_name: string
-}
-
 
 export type GuessVehicle = {
     id: string
     display_name: string
     manufacturer: string
+
     production_start: number | null
     production_end: number | null
+
     vehicle_classes: string[]
     body_styles: string[]
 
@@ -23,6 +20,7 @@ export type GuessVehicle = {
     engines: string[]
 
     power_hp: number | null
+
     drivetrains: string[]
 }
 
@@ -47,6 +45,7 @@ export type GuessFeedback = {
 
 export type GuessResult = {
     guess_number: number
+
     vehicle: GuessVehicle
     feedback: GuessFeedback
 }
@@ -63,10 +62,11 @@ export type GameState = {
     max_guesses: number
     remaining_guesses: number
 
-    target: TargetVehicle | null
+    target: GuessVehicle | null
 
     guesses: GuessResult[]
 }
+
 
 export type SavedGame = {
     date: string
