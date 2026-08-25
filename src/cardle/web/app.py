@@ -113,7 +113,6 @@ def search_vehicles(
 
     results = repository.search_vehicles(
         q,
-        limit=20,
     )
 
     return [
@@ -147,7 +146,6 @@ def game_state(
         vehicles=vehicles,
         day=today,
     )
-
 
     target = repository.get_vehicle(
         selected.id

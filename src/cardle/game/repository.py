@@ -160,10 +160,6 @@ class Neo4jVehicleRepository:
                 END
             ) AS engines,
 
-            // Display exactly what the source gave us at its
-            // most precise level:
-            // exact code for USES_ENGINE,
-            // family for USES_ENGINE_FAMILY.
             collect(
                 DISTINCT CASE
                     WHEN specific_engine IS NULL
@@ -462,7 +458,6 @@ class Neo4jVehicleRepository:
     def search_vehicles(
         self,
         search_text: str,
-        limit: int = 20,
     ) -> list[VehicleOption]:
         search_text = search_text.strip().lower()
 
@@ -487,6 +482,8 @@ class Neo4jVehicleRepository:
                 name,
             )
 
-        matches.sort(key=rank)
+        matches.sort(
+            key=rank,
+        )
 
-        return matches[:limit]
+        return matches

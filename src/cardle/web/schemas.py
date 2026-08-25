@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import BaseModel
 
 from ..game.models import (
@@ -12,11 +14,6 @@ class GameStateRequest(BaseModel):
 
 
 class VehicleSearchResponse(BaseModel):
-    id: str
-    display_name: str
-
-
-class TargetVehicleResponse(BaseModel):
     id: str
     display_name: str
 
@@ -77,16 +74,14 @@ class GameStateResponse(BaseModel):
     max_guesses: int
     remaining_guesses: int
 
-    target: TargetVehicleResponse | None
+    target: GuessVehicleResponse | None
 
     guesses: list[GuessResultResponse]
+
 
 # ============================================================
 # Automotive Universe
 # ============================================================
-
-from typing import Literal
-
 
 UniverseNodeType = Literal[
     "manufacturer",
@@ -138,4 +133,3 @@ class UniverseEdgeResponse(BaseModel):
 class UniverseGraphResponse(BaseModel):
     nodes: list[UniverseNodeResponse]
     edges: list[UniverseEdgeResponse]
-

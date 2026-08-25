@@ -19,6 +19,20 @@ class VehicleComparer:
         guess: GameVehicle,
         target: GameVehicle,
     ) -> GuessFeedback:
+
+        if guess.id == target.id:
+            return GuessFeedback(
+                closeness=Closeness.MATCH,
+                manufacturer=ColorFeedback.GREEN,
+                production_start=OrderedFeedback.GREEN,
+                production_end=OrderedFeedback.GREEN,
+                vehicle_class=ColorFeedback.GREEN,
+                body_style=ColorFeedback.GREEN,
+                engine_family=ColorFeedback.GREEN,
+                power=OrderedFeedback.GREEN,
+                drivetrain=ColorFeedback.GREEN,
+            )
+        
         return GuessFeedback(
             closeness=self._compare_closeness(
                 guess,
