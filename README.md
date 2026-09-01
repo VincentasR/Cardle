@@ -21,13 +21,21 @@ The project is also an exploration of a broader knowledge-engineering problem: h
 ## From source data to application
 
 ```mermaid
-flowchart LR
-    A[Wikipedia] --> B[Raw extraction JSON]
-    B --> C[Canonicalization]
-    C --> D[Canonical JSON]
-    D --> E[Neo4j property graph]
-    E --> F[FastAPI]
-    F --> G[React application]
+graph TD
+    wikipedia["Wikipedia"]
+    rawJson["Raw extraction JSON"]
+    canonicalization["Canonicalization"]
+    canonicalJson["Canonical JSON"]
+    neo4j["Neo4j property graph"]
+    fastapi["FastAPI"]
+    react["React application"]
+
+    wikipedia --> rawJson
+    rawJson --> canonicalization
+    canonicalization --> canonicalJson
+    canonicalJson --> neo4j
+    neo4j --> fastapi
+    fastapi --> react
 ```
 
 Cardle separates the pipeline into distinct layers so that uncertainty and source-specific formatting do not leak directly into the database or game logic.
