@@ -1,4 +1,6 @@
 # Cardle [(Click to play)](https://cardle-pi.vercel.app/)   
+<img src="./readme_images/image.png" width=650> <img src="readme_images/image2.png" width=650>
+
 
 Cardle is a daily car-guessing game built around an automotive knowledge graph. Inspired by Wordle, it challenges players to identify one vehicle each day using structured feedback about its properties and relationships.
 
@@ -93,6 +95,8 @@ The hierarchy also drives the game feedback:
 Automotive entities are connected through more than a single hierarchy. Two vehicles may share an engine family or designer, belong to adjacent generations, or connect through a mixture of lineage and component relationships. A property graph makes these connections explicit and directly traversable.
 
 Neo4j was selected after initial RDF/SHACL and handwritten property-graph prototypes. RDF remains valuable for semantic interoperability, but the Neo4j property-graph model was chosen for the playable application because Cypher provides a concise way to reconstruct vehicles, traverse lineage, query shared entities, and return subgraphs for interactive visualization.
+
+<img src="readme_images/image3.png" width=1300>
 
 ## Neo4j implementation
 
