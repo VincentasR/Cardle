@@ -20,23 +20,10 @@ The project is also an exploration of a broader knowledge-engineering problem: h
 
 ## From source data to application
 
-```mermaid
-graph TD
-    wikipedia["Wikipedia"]
-    rawJson["Raw extraction JSON"]
-    canonicalization["Canonicalization"]
-    canonicalJson["Canonical JSON"]
-    neo4j["Neo4j property graph"]
-    fastapi["FastAPI"]
-    react["React application"]
+> **Wikipedia** → **Raw extraction JSON** → **Canonicalization** →
+> **Canonical JSON** → **Neo4j property graph** → **FastAPI** →
+> **React application**
 
-    wikipedia --> rawJson
-    rawJson --> canonicalization
-    canonicalization --> canonicalJson
-    canonicalJson --> neo4j
-    neo4j --> fastapi
-    fastapi --> react
-```
 
 Cardle separates the pipeline into distinct layers so that uncertainty and source-specific formatting do not leak directly into the database or game logic.
 
@@ -54,15 +41,21 @@ The canonical JSON is therefore the reproducible source of truth for the applica
 
 The main vehicle hierarchy distinguishes between concepts that are often conflated in automotive datasets:
 
-```mermaid
-flowchart TD
-    Manufacturer -->|PRODUCES| Model
-    Model -->|HAS_VARIANT| Variant
-    Variant -->|HAS_VERSION| Version
-    Variant -->|SUCCEEDED_BY| NextVariant[Variant]
-    Variant -->|DESIGNED_BY| Designer
-    Variant -->|HAS_BODY_STYLE / HAS_CLASS / HAS_DRIVETRAIN| Attribute[Reusable entity]
-```
+| From | Relationship | To |
+|---|---|---|
+| Manufacturer | `PRODUCES` | Model |
+| Model | `HAS_VARIANT` | Variant |
+| Variant | `HAS_VERSION` | Version |
+| Variant | `SUCCEEDED_BY` | Variant |
+| Variant | `DESIGNED_BY` | Designer |
+| Variant | `HAS_BODY_STYLE` | BodyStyle |
+| Variant | `HAS_CLASS` | VehicleClass |
+| Variant | `HAS_DRIVETRAIN` | Drivetrain |
+
+- A **Manufacturer** represents a marque, such as BMW.
+- A **Model** represents a marketed model line, such as the 3 Series.
+- A **Variant** represents a generation or chassis, such as E36 or G20.
+- A **Version** represents a marketed configuration, such as 325i or 330d xDrive.
 
 - A **Manufacturer** represents a marque, such as BMW.
 - A **Model** represents a marketed model line, such as the 3 Series.
@@ -75,14 +68,13 @@ The explicit Variant layer makes it possible to represent production periods, de
 
 Engine identity is represented at three levels:
 
-```mermaid
-flowchart LR
-    Manufacturer -->|HAS_ENGINE_SERIES| Series[EngineSeries: B]
-    Series -->|HAS_ENGINE_FAMILY| Family[EngineFamily: B48]
-    Family -->|HAS_ENGINE| Engine[Engine: B48B20O1]
-    Version -->|USES_ENGINE| Engine
-    Version -->|USES_ENGINE_FAMILY| Family
-```
+| From | Relationship | To | Example |
+|---|---|---|---|
+| Manufacturer | `HAS_ENGINE_SERIES` | EngineSeries | B |
+| EngineSeries | `HAS_ENGINE_FAMILY` | EngineFamily | B48 |
+| EngineFamily | `HAS_ENGINE` | Engine | B48B20O1 |
+| Version | `USES_ENGINE` | Engine | Exact code known |
+| Version | `USES_ENGINE_FAMILY` | EngineFamily | Only family known |
 
 This distinction prevents a broad engine family such as `B48` from being treated as equivalent to a specific code such as `B48B20O1`. When Wikipedia supports only a family-level assertion, Cardle links the Version directly to the EngineFamily instead of inventing a more precise Engine node.
 
@@ -173,12 +165,11 @@ These counts describe the canonical BMW v1.1 dataset committed in `data/canonica
 
 ## Architecture and deployment
 
-```mermaid
-flowchart LR
-    Browser[React + Cytoscape.js] -->|HTTPS / JSON| API[FastAPI on Render]
-    API -->|Cypher| DB[Neo4j AuraDB]
-    Browser -->|Daily progress and unlocks| Storage[localStorage]
-```
+| From | Connection | To |
+|---|---|---|
+| React and Cytoscape.js | HTTPS/JSON API | FastAPI on Render |
+| FastAPI | Cypher | Neo4j AuraDB |
+| Browser | Daily progress and unlocks | localStorage |
 
 The production application uses:
 
